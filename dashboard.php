@@ -18,15 +18,10 @@ content="width=device-width, initial-scale=1.0">
 <title>Dashboard</title>
 
 <link rel="stylesheet" href="/orcamento/assets/css/reset.css">
-
 <link rel="stylesheet" href="/orcamento/assets/css/variables.css">
-
 <link rel="stylesheet" href="/orcamento/assets/css/layout.css">
-
 <link rel="stylesheet" href="/orcamento/assets/css/header.css">
-
 <link rel="stylesheet" href="/orcamento/assets/css/sidebar.css">
-
 <link rel="stylesheet" href="/orcamento/assets/css/dashboard.css">
 
 </head>
@@ -58,7 +53,6 @@ content="width=device-width, initial-scale=1.0">
 <?php include 'includes/footer.php'; ?>
 
 <script src="/orcamento/assets/js/sidebar.js"></script>
-
 <script src="/orcamento/assets/js/app.js"></script>
 
 </body>
