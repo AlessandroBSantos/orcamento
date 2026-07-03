@@ -1,93 +1,65 @@
 <?php
-session_start();
 
 require_once 'includes/auth.php';
 
-if (!isset($_SESSION['usuario_id'])) {
-    header("Location: login.php");
-    exit;
-}
-
-$usuario = $_SESSION['usuario_nome'];
 ?>
 
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-    <title>Dashboard | LLA ERP Comercial</title>
+<title>Dashboard</title>
 
-    <link rel="stylesheet" href="/orcamento/assets/css/reset.css">
-    <link rel="stylesheet" href="/orcamento/assets/css/variables.css">
-    <link rel="stylesheet" href="/orcamento/assets/css/layout.css">
-    <link rel="stylesheet" href="/orcamento/assets/css/header.css">
-    <link rel="stylesheet" href="/orcamento/assets/css/menu.css">
-    <link rel="stylesheet" href="/orcamento/assets/css/dashboard.css">
+<link rel="stylesheet" href="/orcamento/assets/css/reset.css">
+
+<link rel="stylesheet" href="/orcamento/assets/css/variables.css">
+
+<link rel="stylesheet" href="/orcamento/assets/css/layout.css">
+
+<link rel="stylesheet" href="/orcamento/assets/css/header.css">
+
+<link rel="stylesheet" href="/orcamento/assets/css/sidebar.css">
+
+<link rel="stylesheet" href="/orcamento/assets/css/dashboard.css">
 
 </head>
 
 <body>
 
-    <?php include 'includes/header.php'; ?>
+<?php include 'includes/header.php'; ?>
 
-    <?php include 'includes/menu.php'; ?>
+<?php include 'includes/sidebar.php'; ?>
 
-    <main id="content" class="content">
+<main class="content">
 
-        <div class="container">
+    <h1>
 
-            <section class="page-header">
+        Dashboard
 
-                <h1>Dashboard</h1>
+    </h1>
 
-                <p>
+    <p>
 
-                    Bem-vindo,
+        Bem-vindo,
 
-                    <strong><?= htmlspecialchars($usuario) ?></strong>
+        <?= htmlspecialchars($_SESSION['usuario_nome']) ?>
 
-                </p>
+    </p>
 
-            </section>
+</main>
 
-            <section class="dashboard">
+<?php include 'includes/footer.php'; ?>
 
-                <div class="dashboard-empty">
+<script src="/orcamento/assets/js/sidebar.js"></script>
 
-                    <h2>
-
-                        LLA ERP Comercial
-
-                    </h2>
-
-                    <p>
-
-                        Sistema iniciado com sucesso.
-
-                    </p>
-
-                    <p>
-
-                        Nesta área serão exibidos os indicadores do sistema.
-
-                    </p>
-
-                </div>
-
-            </section>
-
-        </div>
-
-    </main>
-
-    <script src="/orcamento/assets/js/menu.js"></script>
-
-    <script src="/orcamento/assets/js/app.js"></script>
+<script src="/orcamento/assets/js/app.js"></script>
 
 </body>
 

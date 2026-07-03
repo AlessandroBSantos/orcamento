@@ -2,36 +2,27 @@
 
     <div class="topbar-left">
 
-        <button id="btnMenu" class="btn-menu">
+        <button id="btnMenu" class="menu-button">
 
-            <img
-                src="/orcamento/assets/icons/menu.svg"
-                alt="Menu">
+            ☰
 
         </button>
 
-        <div class="logo">
+        <h2>
 
-            <span>LLA</span>
+            LLA ERP
 
-            ERP Comercial
-
-        </div>
+        </h2>
 
     </div>
 
     <div class="topbar-right">
 
-        <div class="usuario">
+        <span>
 
-            <?= htmlspecialchars($usuario ?? "Administrador") ?>
+            <?= htmlspecialchars($_SESSION['usuario_nome']) ?>
 
-        </div>
-
-        <img
-            src="/orcamento/assets/images/avatar.png"
-            class="avatar"
-            alt="Usuário">
+        </span>
 
     </div>
 
