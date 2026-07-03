@@ -1,0 +1,61 @@
+.sidebar{
+
+    position:fixed;
+
+    top:70px;
+
+    left:-260px;
+
+    width:260px;
+
+    height:calc(100vh - 70px);
+
+    background:#111827;
+
+    transition:.30s;
+
+    z-index:999;
+
+}
+
+.sidebar.active{
+
+    left:0;
+
+}
+
+.sidebar ul{
+
+    list-style:none;
+
+    padding:20px;
+
+}
+
+.sidebar li{
+
+    margin-bottom:10px;
+
+}
+
+.sidebar a{
+
+    display:block;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    color:white;
+
+    transition:.3s;
+
+}
+
+.sidebar a:hover{
+
+    background:#1E293B;
+
+    color:#38BDF8;
+
+}

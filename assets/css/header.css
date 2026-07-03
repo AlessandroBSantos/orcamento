@@ -1,0 +1,97 @@
+.topbar{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:70px;
+
+    background:#111827;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 25px;
+
+    border-bottom:1px solid #1E293B;
+
+    z-index:1000;
+
+}
+
+.topbar-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+.logo{
+
+    font-size:26px;
+
+    font-weight:bold;
+
+    color:#FFFFFF;
+
+}
+
+.logo span{
+
+    color:#38BDF8;
+
+}
+
+.btn-menu{
+
+    width:45px;
+
+    height:45px;
+
+    background:#38BDF8;
+
+    border-radius:10px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.btn-menu img{
+
+    width:24px;
+
+}
+
+.topbar-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.avatar{
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+}
