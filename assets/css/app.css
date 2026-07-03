@@ -160,6 +160,10 @@ body{
 
 /* ---------- SIDEBAR ---------- */
 
+/* ==========================
+   SIDEBAR
+========================== */
+
 .sidebar{
 
     position:fixed;
@@ -172,11 +176,11 @@ body{
 
     height:calc(100vh - 70px);
 
-    background:var(--sidebar);
+    background:#1E293B;
 
-    border-right:1px solid var(--border);
+    border-right:1px solid #334155;
 
-    transition:.30s;
+    transition:left .30s ease;
 
     z-index:999;
 
@@ -184,7 +188,7 @@ body{
 
 }
 
-.sidebar.open{
+.sidebar.active{
 
     left:0;
 
@@ -242,9 +246,11 @@ body{
 
     margin-top:70px;
 
+    margin-left:0;
+
     padding:35px;
 
-    transition:.30s;
+    transition:margin-left .30s ease;
 
 }
 
@@ -253,7 +259,6 @@ body{
     margin-left:260px;
 
 }
-
 
 /* ---------- TÍTULOS ---------- */
 
