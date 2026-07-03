@@ -1,0 +1,25 @@
+.sidebar{
+
+    position:fixed;
+
+    top:70px;
+
+    left:-260px;
+
+    width:260px;
+
+    height:calc(100vh - 70px);
+
+    background:#1E293B;
+
+    transition:.3s;
+
+    z-index:999;
+
+}
+
+.sidebar.open{
+
+    left:0;
+
+}

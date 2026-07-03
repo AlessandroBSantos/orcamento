@@ -8,21 +8,13 @@
 
         </button>
 
-        <h2>
-
-            LLA ERP
-
-        </h2>
+        <h2>LLA ERP</h2>
 
     </div>
 
     <div class="topbar-right">
 
-        <span>
-
-            <?= htmlspecialchars($_SESSION['usuario_nome']) ?>
-
-        </span>
+        <?= htmlspecialchars($_SESSION['usuario_nome']) ?>
 
     </div>
 
