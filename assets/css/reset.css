@@ -1,0 +1,40 @@
+/* =====================================
+   RESET CSS
+   LLA SOFTWARE ERP
+===================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+}
+
+img{
+    max-width:100%;
+    display:block;
+}
+
+a{
+    text-decoration:none;
+}
+
+button{
+    border:none;
+    background:none;
+   cursor:pointer;
+}
+
+input,
+select,
+textarea{
+    outline:none;
+    font-family:inherit;
+}
