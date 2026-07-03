@@ -2,19 +2,30 @@
 
     <div class="topbar-left">
 
-        <button id="btnMenu" class="menu-button">
+        <button
+            id="btnMenu"
+            class="menu-button"
+            aria-label="Abrir Menu">
 
             ☰
 
         </button>
 
-        <h2>LLA ERP</h2>
+        <div class="logo">
+
+            LLA <span>ERP</span>
+
+        </div>
 
     </div>
 
-    <div class="topbar-right">
+    <div class="usuario">
 
-        <?= htmlspecialchars($_SESSION['usuario_nome']) ?>
+        <span>
+
+            <?= htmlspecialchars($_SESSION['usuario_nome']) ?>
+
+        </span>
 
     </div>
 

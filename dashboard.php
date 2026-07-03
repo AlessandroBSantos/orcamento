@@ -52,7 +52,6 @@ content="width=device-width, initial-scale=1.0">
 
 <?php include 'includes/footer.php'; ?>
 
-<script src="/orcamento/assets/js/sidebar.js"></script>
 <script src="/orcamento/assets/js/app.js"></script>
 
 </body>

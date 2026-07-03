@@ -1,0 +1,502 @@
+/* ==========================================================
+   LLA ERP
+   app.css
+   ========================================================== */
+
+/* ---------- BODY ---------- */
+
+body{
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    overflow-x:hidden;
+
+}
+
+
+/* ---------- HEADER ---------- */
+
+.topbar{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:70px;
+
+    background:var(--header);
+
+    border-bottom:1px solid var(--border);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 25px;
+
+    z-index:1000;
+
+}
+
+.topbar-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+.topbar-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+
+/* ---------- BOTÃO MENU ---------- */
+
+.menu-button{
+
+    width:46px;
+
+    height:46px;
+
+    border-radius:12px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.menu-button:hover{
+
+    background:#1F2937;
+
+}
+
+.menu-button svg{
+
+    width:26px;
+
+    height:26px;
+
+    fill:white;
+
+}
+
+
+/* ---------- LOGO ---------- */
+
+.logo{
+
+    font-size:32px;
+
+    font-weight:bold;
+
+    color:white;
+
+}
+
+.logo span{
+
+    color:var(--primary);
+
+}
+
+
+/* ---------- USUÁRIO ---------- */
+
+.usuario{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.usuario img{
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+}
+
+.usuario span{
+
+    color:white;
+
+    font-size:15px;
+
+}
+
+
+/* ---------- SIDEBAR ---------- */
+
+.sidebar{
+
+    position:fixed;
+
+    top:70px;
+
+    left:-260px;
+
+    width:260px;
+
+    height:calc(100vh - 70px);
+
+    background:var(--sidebar);
+
+    border-right:1px solid var(--border);
+
+    transition:.30s;
+
+    z-index:999;
+
+    overflow-y:auto;
+
+}
+
+.sidebar.open{
+
+    left:0;
+
+}
+
+
+/* ---------- MENU ---------- */
+
+.sidebar nav{
+
+    padding:20px;
+
+}
+
+.sidebar a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:15px;
+
+    margin-bottom:8px;
+
+    border-radius:12px;
+
+    color:#CBD5E1;
+
+    transition:.25s;
+
+}
+
+.sidebar a:hover{
+
+    background:#334155;
+
+    color:white;
+
+}
+
+.sidebar a.active{
+
+    background:var(--primary);
+
+    color:white;
+
+}
+
+
+/* ---------- CONTEÚDO ---------- */
+
+.content{
+
+    margin-top:70px;
+
+    padding:35px;
+
+    transition:.30s;
+
+}
+
+.content.menu-open{
+
+    margin-left:260px;
+
+}
+
+
+/* ---------- TÍTULOS ---------- */
+
+h1{
+
+    font-size:38px;
+
+    margin-bottom:8px;
+
+}
+
+h2{
+
+    font-size:26px;
+
+}
+
+h3{
+
+    font-size:22px;
+
+}
+
+
+/* ---------- CARDS ---------- */
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+    gap:25px;
+
+    margin-top:30px;
+
+}
+
+.card{
+
+    background:var(--card);
+
+    border-radius:var(--radius);
+
+    padding:25px;
+
+    box-shadow:var(--shadow);
+
+    transition:.30s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-4px);
+
+}
+
+.card h3{
+
+    color:#94A3B8;
+
+    margin-bottom:20px;
+
+}
+
+.card h2{
+
+    font-size:40px;
+
+}
+
+
+/* ---------- PAINEL ---------- */
+
+.panel{
+
+    margin-top:35px;
+
+    background:var(--card);
+
+    border-radius:var(--radius);
+
+    padding:25px;
+
+    box-shadow:var(--shadow);
+
+}
+
+
+/* ---------- TABELAS ---------- */
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:20px;
+
+}
+
+thead{
+
+    background:#0F172A;
+
+}
+
+th{
+
+    padding:15px;
+
+    text-align:left;
+
+    color:white;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+td{
+
+    padding:15px;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+tbody tr:hover{
+
+    background:#1F2937;
+
+}
+
+
+/* ---------- BOTÕES ---------- */
+
+.btn{
+
+    padding:12px 22px;
+
+    border-radius:10px;
+
+    background:var(--primary);
+
+    color:white;
+
+    transition:.30s;
+
+}
+
+.btn:hover{
+
+    background:var(--primary-hover);
+
+}
+
+
+/* ---------- INPUT ---------- */
+
+input,
+select,
+textarea{
+
+    width:100%;
+
+    padding:14px;
+
+    background:#111827;
+
+    border:1px solid var(--border);
+
+    color:white;
+
+    border-radius:10px;
+
+    outline:none;
+
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+
+    border-color:var(--primary);
+
+}
+
+
+/* ---------- FOOTER ---------- */
+
+.footer{
+
+    margin-top:40px;
+
+    text-align:center;
+
+    color:#94A3B8;
+
+    padding:25px;
+
+}
+
+
+/* ---------- SCROLL ---------- */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#334155;
+
+    border-radius:20px;
+
+}
+
+
+/* ---------- RESPONSIVO ---------- */
+
+@media(max-width:900px){
+
+    .content{
+
+        padding:20px;
+
+        margin-left:0 !important;
+
+    }
+
+    .sidebar{
+
+        width:250px;
+
+    }
+
+    .cards{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
