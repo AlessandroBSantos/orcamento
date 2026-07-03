@@ -160,7 +160,7 @@ require_once 'includes/auth.php';
 </main>
 
 <script src="/orcamento/assets/js/app.js"></script>
-
+<script src="/orcamento/assets/js/dashboard.js"></script>
 </body>
 
 </html>
