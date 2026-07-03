@@ -5,6 +5,7 @@ app.js
 ======================================================
 */
 
+
 document.addEventListener("DOMContentLoaded", () => {
 
     iniciarMenu();
