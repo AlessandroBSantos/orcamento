@@ -1,8 +1,8 @@
 <?php
 
 $host = "localhost";
-$banco = "lla_erp";
-$usuario = "lla_erp_user";
+$banco = "ales7542_llaerp";
+$usuario = "ales7542_llaerp_user";
 $senha = "&KCiM?1sb0HI";
 
 try {
