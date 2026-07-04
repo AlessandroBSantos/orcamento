@@ -1,32 +1,26 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
+
+    console.log("LLA ERP - app.js carregado");
 
     const btnMenu = document.getElementById("btnMenu");
     const sidebar = document.getElementById("sidebar");
     const content = document.querySelector(".content");
 
-    if(btnMenu){
+    console.log(btnMenu);
+    console.log(sidebar);
+    console.log(content);
 
-        btnMenu.addEventListener("click",()=>{
-
-            sidebar.classList.toggle("active");
-
-            content.classList.toggle("menu-open");
-
-        });
-
+    if (!btnMenu || !sidebar || !content) {
+        console.error("Algum elemento não foi encontrado.");
+        return;
     }
 
-    const links=document.querySelectorAll(".sidebar-menu a");
+    btnMenu.addEventListener("click", function () {
 
-    const pagina=window.location.pathname;
+        console.log("Clique no menu");
 
-    links.forEach(link=>{
-
-        if(link.getAttribute("href")==pagina){
-
-            link.classList.add("active");
-
-        }
+        sidebar.classList.toggle("active");
+        content.classList.toggle("menu-open");
 
     });
 
