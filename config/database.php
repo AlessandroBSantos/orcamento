@@ -10,7 +10,7 @@ class Database
     {
         if (self::$connection === null) {
 
-            $host = 'localhost';
+            $host = "localhost";
             $banco = "ales7542_lla_erp";
             $usuario = "ales7542_lla_erp_user";
             $senha = "&KCiM?1sb0HI";
@@ -18,9 +18,9 @@ class Database
             try {
 
                 self::$connection = new PDO(
-                    "mysql:host={$host};dbname={$database};charset=utf8mb4",
-                    $user,
-                    $password
+                    "mysql:host={$host};dbname={$banco};charset=utf8mb4",
+                    $usuario,
+                    $senha
                 );
 
                 self::$connection->setAttribute(
