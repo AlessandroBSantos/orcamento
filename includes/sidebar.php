@@ -6,8 +6,8 @@
             Dashboard
         </a>
 
-        <a href="/orcamento/pages/clientes.php">
-            Clientes
+        <a href="<?= BASE_URL ?>/pages/clientes/index.php">
+            👥 Clientes
         </a>
 
         <a href="/orcamento/pages/fornecedores.php">
