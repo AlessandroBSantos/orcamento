@@ -1,22 +1,25 @@
 <?php
+
 session_start();
 
-require_once 'config/database.php';
+require_once __DIR__ . '/config/database.php';
+
 $db = Database::getConnection();
 
-if(isset($_SESSION['usuario_id'])){
+// Se já estiver logado
+if (isset($_SESSION['usuario_id'])) {
     header("Location: dashboard.php");
     exit;
 }
 
 $erro = "";
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $email = trim($_POST["email"]);
     $senha = $_POST["senha"];
 
-    $sql = $pdo->prepare("
+    $sql = $db->prepare("
         SELECT *
         FROM usuarios
         WHERE email = ?
@@ -25,22 +28,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     $sql->execute([$email]);
 
-    $usuario = $sql->fetch(PDO::FETCH_ASSOC);
+    $usuario = $sql->fetch();
 
-    if($usuario){
+    if ($usuario) {
 
-        if($usuario["status"] != "Ativo"){
+        if ($usuario["status"] !== "Ativo") {
 
             $erro = "Usuário inativo.";
 
-        }elseif(password_verify($senha,$usuario["senha"])){
+        } elseif (password_verify($senha, $usuario["senha"])) {
 
             $_SESSION["usuario_id"] = $usuario["id"];
             $_SESSION["usuario_nome"] = $usuario["nome"];
             $_SESSION["usuario_email"] = $usuario["email"];
-            $_SESSION["usuario_perfil"] = $usuario["perfil"];
+            $_SESSION["usuario_nivel"] = $usuario["nivel"];
 
-            $update = $pdo->prepare("
+            $update = $db->prepare("
                 UPDATE usuarios
                 SET ultimo_login = NOW()
                 WHERE id = ?
@@ -51,38 +54,36 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             header("Location: dashboard.php");
             exit;
 
-        }else{
+        } else {
 
             $erro = "Senha inválida.";
 
         }
 
-    }else{
+    } else {
 
         $erro = "Usuário não encontrado.";
 
     }
 
 }
+
 ?>
 
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 
 <head>
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>LLA ERP Comercial</title>
+<title>LLA ERP - Login</title>
 
-<link rel="stylesheet" href="assets/css/reset.css">
-
-<link rel="stylesheet" href="assets/css/variables.css">
-
-<link rel="stylesheet" href="assets/css/login.css">
+<link rel="stylesheet" href="assets/css/reset.css?v=<?= filemtime(__DIR__.'/assets/css/reset.css') ?>">
+<link rel="stylesheet" href="assets/css/variables.css?v=<?= filemtime(__DIR__.'/assets/css/variables.css') ?>">
+<link rel="stylesheet" href="assets/css/login.css?v=<?= filemtime(__DIR__.'/assets/css/login.css') ?>">
 
 </head>
 
@@ -92,27 +93,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     <div class="login-box">
 
-        <img
-        src="assets/images/logo.png"
-        class="logo">
+        <img src="assets/img/logo.png" class="logo" alt="LLA ERP">
 
-        <h1>
+        <h1>LLA ERP</h1>
 
-            LLA ERP
+        <p>Sistema de Gestão Comercial</p>
 
-        </h1>
-
-        <p>
-
-            Sistema de Gestão Comercial
-
-        </p>
-
-        <?php if($erro): ?>
+        <?php if ($erro): ?>
 
             <div class="erro">
 
-                <?= $erro ?>
+                <?= htmlspecialchars($erro) ?>
 
             </div>
 
@@ -121,16 +112,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <form method="POST">
 
             <input
-            type="email"
-            name="email"
-            placeholder="E-mail"
-            required>
+                type="email"
+                name="email"
+                placeholder="E-mail"
+                required
+            >
 
             <input
-            type="password"
-            name="senha"
-            placeholder="Senha"
-            required>
+                type="password"
+                name="senha"
+                placeholder="Senha"
+                required
+            >
 
             <button type="submit">
 
@@ -144,7 +137,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 </div>
 
-<script src="assets/js/login.js"></script>
+<script src="assets/js/login.js?v=<?= filemtime(__DIR__.'/assets/js/login.js') ?>"></script>
 
 </body>
 
