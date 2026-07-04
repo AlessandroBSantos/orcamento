@@ -12,13 +12,18 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log(sidebar);
     console.log(content);
 
-    btnMenu.onclick = function () {
+    if (!btnMenu || !sidebar || !content) {
+        alert("Elemento não encontrado");
+        return;
+    }
 
-        alert("CLICOU");
+    btnMenu.addEventListener("click", function () {
+
+        alert("CLIQUE");
 
         sidebar.classList.toggle("active");
         content.classList.toggle("menu-open");
 
-    };
+    });
 
 });
