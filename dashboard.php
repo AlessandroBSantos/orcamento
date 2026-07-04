@@ -2,6 +2,8 @@
 
 require_once 'includes/auth.php';
 
+require_once 'queries/dashboard.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +52,7 @@ content="width=device-width, initial-scale=1.0">
 
             <span>Clientes</span>
 
-            <h2>0</h2>
+            <h2>$totalClientes</h2>
 
         </div>
 
@@ -58,7 +60,7 @@ content="width=device-width, initial-scale=1.0">
 
             <span>Produtos</span>
 
-            <h2>0</h2>
+            <h2>$totalProdutos</h2>
 
         </div>
 
@@ -66,7 +68,7 @@ content="width=device-width, initial-scale=1.0">
 
             <span>Propostas</span>
 
-            <h2>0</h2>
+            <h2>$totalPropostas</h2>
 
         </div>
 
@@ -74,7 +76,7 @@ content="width=device-width, initial-scale=1.0">
 
             <span>Faturamento</span>
 
-            <h2>R$ 0,00</h2>
+            <h2>R$ <?= number_format($totalVendas, 2, ',', '.') ?></h2>
 
         </div>
 
@@ -106,13 +108,100 @@ content="width=device-width, initial-scale=1.0">
 
         <h3>Produtos com Estoque Baixo</h3>
 
-        <p>Nenhum produto encontrado.</p>
+        <p>
+            <?php if(count($estoqueBaixo)): ?>
+
+<table>
+
+    <thead>
+
+        <tr>
+
+            <th>Produto</th>
+
+            <th>Estoque</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        <?php foreach($estoqueBaixo as $produto): ?>
+
+        <tr>
+
+            <td><?= htmlspecialchars($produto['nome']) ?></td>
+
+            <td><?= $produto['estoque'] ?></td>
+
+        </tr>
+
+        <?php endforeach; ?>
+
+    </tbody>
+
+</table>
+
+<?php else: ?>
+
+<p>Nenhum produto com estoque baixo.</p>
+
+<?php endif; ?>
+</p>
 
     </div>
 
     <div class="panel">
 
-        <h3>Últimas Propostas Comerciais</h3>
+        <h3>
+            <tbody>
+
+<?php if(count($ultimasPropostas)): ?>
+
+<?php foreach($ultimasPropostas as $proposta): ?>
+
+<tr>
+
+<td><?= htmlspecialchars($proposta['numero']) ?></td>
+
+<td><?= htmlspecialchars($proposta['cliente']) ?></td>
+
+<td>
+
+R$
+<?= number_format($proposta['valor_total'],2,",",".") ?>
+
+</td>
+
+<td><?= htmlspecialchars($proposta['status']) ?></td>
+
+<td>
+
+<?= date("d/m/Y",strtotime($proposta['data_criacao'])) ?>
+
+</td>
+
+</tr>
+
+<?php endforeach; ?>
+
+<?php else: ?>
+
+<tr>
+
+<td colspan="5">
+
+Nenhuma proposta cadastrada.
+
+</td>
+
+</tr>
+
+<?php endif; ?>
+
+</tbody>
+        </h3>
 
         <table>
 
