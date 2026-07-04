@@ -1,47 +1,54 @@
 <?php
 
-require_once __DIR__ . '/BaseModel.php';
+require_once __DIR__ . '/BaseController.php';
+require_once __DIR__ . '/../models/Cliente.php';
 
-class Cliente extends BaseModel
+class ClienteController extends BaseController
 {
 
-public function listar()
-{
+    private Cliente $cliente;
 
-    $sql = "SELECT * FROM clientes ORDER BY nome";
-
-    return $this->query($sql)->fetchAll();
-
-    echo "<h1>Lista de Clientes</h1>";
-
-    echo "<table border='1' cellpadding='8'>";
-
-    echo "<tr>";
-
-    echo "<th>ID</th>";
-
-    echo "<th>Nome</th>";
-
-    echo "<th>Email</th>";
-
-    echo "</tr>";
-
-    foreach ($clientes as $cliente) {
-
-        echo "<tr>";
-
-        echo "<td>{$cliente['id']}</td>";
-
-        echo "<td>{$cliente['nome']}</td>";
-
-        echo "<td>{$cliente['email']}</td>";
-
-        echo "</tr>";
-
+    public function __construct()
+    {
+        $this->cliente = new Cliente();
     }
 
-    echo "</table>";
+    public function index()
+    {
+        $clientes = $this->cliente->listar();
 
-}
+        echo "<h1>Lista de Clientes</h1>";
+
+        if (empty($clientes)) {
+
+            echo "<p>Nenhum cliente cadastrado.</p>";
+
+            return;
+        }
+
+        echo "<table border='1' cellpadding='8'>";
+
+        echo "<tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+              </tr>";
+
+        foreach ($clientes as $cliente) {
+
+            echo "<tr>";
+
+            echo "<td>{$cliente['id']}</td>";
+
+            echo "<td>{$cliente['nome']}</td>";
+
+            echo "<td>{$cliente['email']}</td>";
+
+            echo "</tr>";
+
+        }
+
+        echo "</table>";
+    }
 
 }
