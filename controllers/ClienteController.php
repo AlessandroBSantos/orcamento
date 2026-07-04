@@ -19,7 +19,13 @@ class ClienteController extends BaseController
     public function index()
     {
 
-        echo "Controller de Clientes funcionando.";
+        $clientes = $this->cliente->listar();
+
+        echo "<pre>";
+
+         print_r($clientes);
+
+        echo "</pre>";
 
     }
 
