@@ -1,27 +1,15 @@
+alert("APP.JS CARREGOU");
+
 document.addEventListener("DOMContentLoaded", function () {
 
-    console.log("LLA ERP - app.js carregado");
+    alert("DOM PRONTO");
 
-    const btnMenu = document.getElementById("btnMenu");
-    const sidebar = document.getElementById("sidebar");
-    const content = document.querySelector(".content");
+    const btn = document.getElementById("btnMenu");
 
-    console.log(btnMenu);
-    console.log(sidebar);
-    console.log(content);
+    btn.onclick = function () {
 
-    if (!btnMenu || !sidebar || !content) {
-        console.error("Algum elemento não foi encontrado.");
-        return;
-    }
+        alert("CLICOU");
 
-    btnMenu.addEventListener("click", function () {
-
-        console.log("Clique no menu");
-
-        sidebar.classList.toggle("active");
-        content.classList.toggle("menu-open");
-
-    });
+    };
 
 });
