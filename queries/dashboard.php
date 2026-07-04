@@ -2,6 +2,9 @@
 
 require_once __DIR__ . '/../config/database.php';
 
+$db = Database::getConnection();
+
+
 /*
 |--------------------------------------------------------------------------
 | Total de Clientes

@@ -2,6 +2,7 @@
 session_start();
 
 require_once 'config/database.php';
+$db = Database::getConnection();
 
 if(isset($_SESSION['usuario_id'])){
     header("Location: dashboard.php");
