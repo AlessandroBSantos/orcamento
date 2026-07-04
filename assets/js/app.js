@@ -1,21 +1,24 @@
+alert("APP.JS CARREGOU");
+
 document.addEventListener("DOMContentLoaded", function () {
 
-    console.log("LLA ERP iniciado");
+    alert("DOM PRONTO");
 
     const btnMenu = document.getElementById("btnMenu");
     const sidebar = document.getElementById("sidebar");
     const content = document.querySelector(".content");
 
-    if (!btnMenu || !sidebar || !content) {
-        console.error("Elementos do menu não encontrados.");
-        return;
-    }
+    console.log(btnMenu);
+    console.log(sidebar);
+    console.log(content);
 
-    btnMenu.addEventListener("click", function () {
+    btnMenu.onclick = function () {
+
+        alert("CLICOU");
 
         sidebar.classList.toggle("active");
         content.classList.toggle("menu-open");
 
-    });
+    };
 
 });
