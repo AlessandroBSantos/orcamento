@@ -52,7 +52,7 @@ content="width=device-width, initial-scale=1.0">
 
             <span>Clientes</span>
 
-            <h2>$totalClientes</h2>
+           <h2><?= $totalClientes ?></h2>
 
         </div>
 
@@ -60,7 +60,7 @@ content="width=device-width, initial-scale=1.0">
 
             <span>Produtos</span>
 
-            <h2>$totalProdutos</h2>
+           <h2><?= $totalProdutos ?></h2>
 
         </div>
 
@@ -68,7 +68,7 @@ content="width=device-width, initial-scale=1.0">
 
             <span>Propostas</span>
 
-            <h2>$totalPropostas</h2>
+            <h2><?= $totalPropostas ?></h2>
 
         </div>
 
@@ -76,7 +76,11 @@ content="width=device-width, initial-scale=1.0">
 
             <span>Faturamento</span>
 
-            <h2>R$ <?= number_format($totalVendas, 2, ',', '.') ?></h2>
+            <h2>
+
+R$ <?= number_format($totalVendas,2,",",".") ?>
+
+</h2>
 
         </div>
 
@@ -108,38 +112,39 @@ content="width=device-width, initial-scale=1.0">
 
         <h3>Produtos com Estoque Baixo</h3>
 
-        <p>
-            <?php if(count($estoqueBaixo)): ?>
+<div>
+
+<?php if(count($estoqueBaixo)): ?>
 
 <table>
 
-    <thead>
+<thead>
 
-        <tr>
+<tr>
 
-            <th>Produto</th>
+<th>Produto</th>
 
-            <th>Estoque</th>
+<th>Estoque</th>
 
-        </tr>
+</tr>
 
-    </thead>
+</thead>
 
-    <tbody>
+<tbody>
 
-        <?php foreach($estoqueBaixo as $produto): ?>
+<?php foreach($estoqueBaixo as $produto): ?>
 
-        <tr>
+<tr>
 
-            <td><?= htmlspecialchars($produto['nome']) ?></td>
+<td><?= htmlspecialchars($produto['nome']) ?></td>
 
-            <td><?= $produto['estoque'] ?></td>
+<td><?= $produto['estoque'] ?></td>
 
-        </tr>
+</tr>
 
-        <?php endforeach; ?>
+<?php endforeach; ?>
 
-    </tbody>
+</tbody>
 
 </table>
 
@@ -148,59 +153,64 @@ content="width=device-width, initial-scale=1.0">
 <p>Nenhum produto com estoque baixo.</p>
 
 <?php endif; ?>
-</p>
+
+</div>
 
     </div>
 
     <div class="panel">
 
-        <h3>
-            <tbody>
 
-<?php if(count($ultimasPropostas)): ?>
 
-<?php foreach($ultimasPropostas as $proposta): ?>
+
+
+    <div>
+
+<?php if(count($estoqueBaixo)): ?>
+
+<table>
+
+<thead>
 
 <tr>
 
-<td><?= htmlspecialchars($proposta['numero']) ?></td>
+<th>Produto</th>
 
-<td><?= htmlspecialchars($proposta['cliente']) ?></td>
+<th>Estoque</th>
 
-<td>
+</tr>
 
-R$
-<?= number_format($proposta['valor_total'],2,",",".") ?>
+</thead>
 
-</td>
+<tbody>
 
-<td><?= htmlspecialchars($proposta['status']) ?></td>
+<?php foreach($estoqueBaixo as $produto): ?>
 
-<td>
+<tr>
 
-<?= date("d/m/Y",strtotime($proposta['data_criacao'])) ?>
+<td><?= htmlspecialchars($produto['nome']) ?></td>
 
-</td>
+<td><?= $produto['estoque'] ?></td>
 
 </tr>
 
 <?php endforeach; ?>
 
+</tbody>
+
+</table>
+
 <?php else: ?>
 
-<tr>
-
-<td colspan="5">
-
-Nenhuma proposta cadastrada.
-
-</td>
-
-</tr>
+<p>Nenhum produto com estoque baixo.</p>
 
 <?php endif; ?>
 
-</tbody>
+</div>
+
+
+
+
         </h3>
 
         <table>
@@ -223,7 +233,7 @@ Nenhuma proposta cadastrada.
 
             </thead>
 
-            <tbody>
+           </tbody>
 
                 <tr>
 
