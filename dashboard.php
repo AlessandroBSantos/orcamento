@@ -19,9 +19,7 @@ content="width=device-width, initial-scale=1.0">
 
 <link rel="stylesheet" href="/orcamento/assets/css/reset.css">
 <link rel="stylesheet" href="/orcamento/assets/css/variables.css">
-<link rel="stylesheet" href="/orcamento/assets/css/layout.css">
-<link rel="stylesheet" href="/orcamento/assets/css/header.css">
-<link rel="stylesheet" href="/orcamento/assets/css/sidebar.css">
+<link rel="stylesheet" href="/orcamento/assets/css/app.css">
 <link rel="stylesheet" href="/orcamento/assets/css/dashboard.css">
 
 </head>
