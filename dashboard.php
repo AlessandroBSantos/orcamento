@@ -8,8 +8,6 @@ require_once 'includes/auth.php';
 require_once 'queries/dashboard.php';
 
 
-
-
 require_once 'includes/auth.php';
 require_once 'queries/dashboard.php';
 
