@@ -5,6 +5,7 @@
         <button
             id="btnMenu"
             class="menu-button"
+            type="button"
             aria-label="Abrir Menu">
 
             ☰
@@ -13,19 +14,40 @@
 
         <div class="logo">
 
-            LLA <span>ERP</span>
+            <span>LLA</span> ERP
 
         </div>
 
     </div>
 
-    <div class="usuario">
+    <div class="topbar-center">
 
-        <span>
+        <input
+            type="text"
+            class="search-box"
+            placeholder="Pesquisar...">
 
-            <?= htmlspecialchars($_SESSION['usuario_nome']) ?>
+    </div>
 
-        </span>
+    <div class="topbar-right">
+
+        <div class="user-info">
+
+            <div class="avatar">
+
+                <?= strtoupper(substr($_SESSION['usuario_nome'],0,1)); ?>
+
+            </div>
+
+            <div>
+
+                <strong><?= htmlspecialchars($_SESSION['usuario_nome']) ?></strong>
+
+                <small>Administrador</small>
+
+            </div>
+
+        </div>
 
     </div>
 
