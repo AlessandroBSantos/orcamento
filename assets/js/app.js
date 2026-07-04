@@ -21,25 +21,22 @@ MENU LATERAL
 ======================================================
 */
 
-function iniciarMenu(){
+function iniciarMenu() {
 
-    const botao = document.getElementById("btnMenu");
-
+    const btnMenu = document.getElementById("btnMenu");
     const sidebar = document.getElementById("sidebar");
-
     const content = document.querySelector(".content");
 
-    if(!botao || !sidebar) return;
+    if (!btnMenu || !sidebar || !content) {
+        console.log("Menu não encontrado");
+        return;
+    }
 
-    botao.addEventListener("click",()=>{
+    btnMenu.addEventListener("click", function () {
 
-        sidebar.classList.toggle("open");
+        sidebar.classList.toggle("active");
 
-        if(content){
-
-            content.classList.toggle("menu-open");
-
-        }
+        content.classList.toggle("menu-open");
 
     });
 

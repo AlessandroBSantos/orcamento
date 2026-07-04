@@ -1,6 +1,10 @@
+/* ==========================================================
+   DASHBOARD
+==========================================================*/
+
 .page-header{
 
-    margin-bottom:40px;
+    margin-bottom:35px;
 
 }
 
@@ -14,58 +18,219 @@
 
 .page-header p{
 
-    margin-top:10px;
+    margin-top:8px;
 
     color:var(--text-secondary);
 
 }
 
-.dashboard{
 
-    display:flex;
+/* GRID DOS CARDS */
 
-    justify-content:center;
+.cards{
 
-    align-items:center;
+    display:grid;
 
-    min-height:500px;
+    grid-template-columns:repeat(4,1fr);
+
+    gap:20px;
+
+    margin-bottom:35px;
 
 }
 
-.dashboard-empty{
 
-    width:100%;
+/* CARD */
 
-    max-width:900px;
-
-    padding:60px;
-
-    border-radius:20px;
+.card{
 
     background:var(--card);
 
-    text-align:center;
+    border:1px solid var(--border);
 
-    box-shadow:var(--shadow);
+    border-radius:16px;
+
+    padding:25px;
+
+    transition:.30s;
+
+    cursor:pointer;
 
 }
 
-.dashboard-empty h2{
+.card:hover{
 
-    font-size:38px;
+    transform:translateY(-6px);
 
-    color:var(--primary);
+    border-color:var(--primary);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.30);
+
+}
+
+.card h3{
+
+    color:#94A3B8;
+
+    font-size:16px;
+
+    margin-bottom:15px;
+
+}
+
+.card h2{
+
+    font-size:40px;
+
+    color:white;
+
+}
+
+
+/* GRID DOS PAINÉIS */
+
+.dashboard-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:25px;
+
+    margin-bottom:35px;
+
+}
+
+
+/* PAINÉIS */
+
+.panel{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:16px;
+
+    padding:25px;
+
+}
+
+.panel h2{
 
     margin-bottom:20px;
 
 }
 
-.dashboard-empty p{
 
-    color:var(--text-secondary);
+/* BOTÕES */
 
-    font-size:18px;
+.quick-actions{
 
-    margin-bottom:15px;
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+.btn{
+
+    display:block;
+
+    width:100%;
+
+    text-align:center;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    background:var(--primary);
+
+    color:white;
+
+    transition:.30s;
+
+}
+
+.btn:hover{
+
+    background:var(--primary-hover);
+
+}
+
+
+/* TABELA */
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+thead{
+
+    background:#111827;
+
+}
+
+th{
+
+    padding:16px;
+
+    text-align:left;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+td{
+
+    padding:16px;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+tbody tr:hover{
+
+    background:#1F2937;
+
+}
+
+
+/* RESPONSIVO */
+
+@media(max-width:1200px){
+
+    .cards{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+@media(max-width:900px){
+
+    .dashboard-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:700px){
+
+    .cards{
+
+        grid-template-columns:1fr;
+
+    }
 
 }
