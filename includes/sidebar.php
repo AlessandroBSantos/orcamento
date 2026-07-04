@@ -1,61 +1,43 @@
-<aside class="sidebar" id="sidebar">
+<aside id="sidebar" class="sidebar">
 
-    <nav>
+    <nav class="sidebar-menu">
 
         <a href="/orcamento/dashboard.php">
-
-            🏠 Dashboard
-
+            Dashboard
         </a>
 
         <a href="/orcamento/pages/clientes.php">
-
-            👥 Clientes
-
+            Clientes
         </a>
 
         <a href="/orcamento/pages/fornecedores.php">
-
-            🚚 Fornecedores
-
+            Fornecedores
         </a>
 
         <a href="/orcamento/pages/produtos.php">
-
-            📦 Produtos
-
+            Produtos
         </a>
 
         <a href="/orcamento/pages/estoque.php">
-
-            📊 Estoque
-
+            Estoque
         </a>
 
         <a href="/orcamento/pages/propostas.php">
-
-            📄 Propostas
-
+            Propostas
         </a>
 
         <a href="/orcamento/pages/financeiro.php">
-
-            💰 Financeiro
-
+            Financeiro
         </a>
 
         <a href="/orcamento/pages/configuracoes.php">
-
-            ⚙ Configurações
-
+            Configurações
         </a>
 
         <hr>
 
         <a href="/orcamento/logout.php">
-
-            🚪 Sair
-
+            Sair
         </a>
 
     </nav>
