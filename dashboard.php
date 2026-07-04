@@ -17,13 +17,11 @@ content="width=device-width, initial-scale=1.0">
 
 <title>LLA ERP</title>
 
-<link rel="stylesheet" href="/orcamento/assets/css/reset.css">
+<link rel="stylesheet" href="/orcamento/assets/css/reset.css?v=<?= filemtime(__DIR__.'/assets/css/reset.css') ?>">
+<link rel="stylesheet" href="/orcamento/assets/css/variables.css?v=<?= filemtime(__DIR__.'/assets/css/variables.css') ?>">
+<link rel="stylesheet" href="/orcamento/assets/css/app.css?v=<?= filemtime(__DIR__.'/assets/css/app.css') ?>">
+<link rel="stylesheet" href="/orcamento/assets/css/dashboard.css?v=<?= filemtime(__DIR__.'/assets/css/dashboard.css') ?>">
 
-<link rel="stylesheet" href="/orcamento/assets/css/variables.css">
-
-<link rel="stylesheet" href="/orcamento/assets/css/app.css">
-
-<link rel="stylesheet" href="/orcamento/assets/css/dashboard.css">
 
 </head>
 
@@ -39,7 +37,7 @@ content="width=device-width, initial-scale=1.0">
 
 <?php include 'includes/footer.php'; ?>
 
-<script src="/orcamento/assets/js/app.js"></script>
+<script src="/orcamento/assets/js/app.js?v=<?= filemtime(__DIR__.'/assets/js/app.js') ?>"></script>
 
 </body>
 
