@@ -1,24 +1,25 @@
 <?php
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 require_once '../../includes/auth.php';
 require_once '../../controllers/ClienteController.php';
 
-echo "<h2>Cheguei no salvar.php</h2>";
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
-echo "<pre>";
-print_r($_POST);
-echo "</pre>";
+    header('Location: index.php');
+    exit;
+
+}
 
 $controller = new ClienteController();
 
-echo "<h3>Controller carregado.</h3>";
-
 $resultado = $controller->salvar($_POST);
 
-var_dump($resultado);
+if ($resultado) {
 
-die();
+    header('Location: index.php?sucesso=1');
+    exit;
+
+}
+
+header('Location: novo.php?erro=1');
+exit;
