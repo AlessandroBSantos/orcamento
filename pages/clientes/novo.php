@@ -1,10 +1,6 @@
-<script src="../../assets/js/clientes.js"></script>
-
 <?php
 
 $titulo = "Novo Cliente";
-
-
 
 require_once '../../includes/layout_inicio.php';
 
@@ -29,191 +25,204 @@ require_once '../../includes/layout_inicio.php';
 </div>
 
 <form action="salvar.php" method="POST">
-<div class="panel">
 
-    <h2>Endereço</h2>
+    <!-- =========================
+         DADOS GERAIS
+    ========================== -->
 
-    <div class="form-grid">
+    <div class="panel">
 
-        <div class="form-group">
+        <h2>Dados Gerais</h2>
 
-            <label>CEP</label>
+        <div class="form-grid">
 
-            <input
-                type="text"
-                id="cep"
-                name="cep"
-                maxlength="9">
+            <div class="form-group">
+
+                <label>Tipo de Cliente</label>
+
+                <select name="tipo">
+
+                    <option value="PF">Pessoa Física</option>
+
+                    <option value="PJ">Pessoa Jurídica</option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Status</label>
+
+                <select name="status">
+
+                    <option value="Ativo">Ativo</option>
+
+                    <option value="Inativo">Inativo</option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Nome / Razão Social</label>
+
+                <input
+                    type="text"
+                    name="nome"
+                    required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Nome Fantasia</label>
+
+                <input
+                    type="text"
+                    name="nome_fantasia">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>CPF / CNPJ</label>
+
+                <input
+                    type="text"
+                    name="cpf_cnpj">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>RG / Inscrição Estadual</label>
+
+                <input
+                    type="text"
+                    name="rg_ie">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Inscrição Municipal</label>
+
+                <input
+                    type="text"
+                    name="inscricao_municipal">
+
+            </div>
 
         </div>
-
-        <div class="form-group">
-
-            <label>Endereço</label>
-
-            <input
-                type="text"
-                id="endereco"
-                name="endereco">
-
-        </div>
-
-        <div class="form-group">
-
-            <label>Número</label>
-
-            <input
-                type="text"
-                name="numero">
-
-        </div>
-
-        <div class="form-group">
-
-            <label>Complemento</label>
-
-            <input
-                type="text"
-                name="complemento">
-
-        </div>
-
-        <div class="form-group">
-
-            <label>Bairro</label>
-
-            <input
-                type="text"
-                id="bairro"
-                name="bairro">
-
-        </div>
-
-        <div class="form-group">
-
-            <label>Cidade</label>
-
-            <input
-                type="text"
-                id="cidade"
-                name="cidade">
-
-        </div>
-
-        <div class="form-group">
-
-            <label>Estado</label>
-
-            <input
-                type="text"
-                id="estado"
-                name="estado"
-                maxlength="2">
-
-        </div>
-
-    </div>
-
-</div>
-
-
-
-<h2>Dados Gerais</h2>
-
-<div class="form-grid">
-
-    <div class="form-group">
-
-        <label>Tipo de Cliente</label>
-
-        <select name="tipo">
-
-            <option value="PF">Pessoa Física</option>
-
-            <option value="PJ">Pessoa Jurídica</option>
-
-        </select>
-
-    </div>
-
-    <div class="form-group">
-
-        <label>Status</label>
-
-        <select name="status">
-
-            <option value="Ativo">Ativo</option>
-
-            <option value="Inativo">Inativo</option>
-
-        </select>
-
-    </div>
-
-    <div class="form-group">
-
-        <label>Nome / Razão Social</label>
-
-        <input
-            type="text"
-            name="nome"
-            required>
-
-    </div>
-
-    <div class="form-group">
-
-        <label>Nome Fantasia</label>
-
-        <input
-            type="text"
-            name="nome_fantasia">
-
-    </div>
-
-    <div class="form-group">
-
-        <label>CPF / CNPJ</label>
-
-        <input
-            type="text"
-            name="cpf_cnpj">
-
-    </div>
-
-    <div class="form-group">
-
-        <label>RG / Inscrição Estadual</label>
-
-        <input
-            type="text"
-            name="rg_ie">
-
-    </div>
-
-    <div class="form-group">
-
-        <label>Inscrição Municipal</label>
-
-        <input
-            type="text"
-            name="inscricao_municipal">
-
-    </div>
-
-</div>
 
     </div>
 
     <br>
 
-    <button class="btn">
+    <!-- =========================
+         ENDEREÇO
+    ========================== -->
 
-        Salvar Cliente
+    <div class="panel">
+
+        <h2>Endereço</h2>
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label>CEP</label>
+
+                <input
+                    type="text"
+                    id="cep"
+                    name="cep"
+                    maxlength="9">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Endereço</label>
+
+                <input
+                    type="text"
+                    id="endereco"
+                    name="endereco">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Número</label>
+
+                <input
+                    type="text"
+                    name="numero">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Complemento</label>
+
+                <input
+                    type="text"
+                    name="complemento">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Bairro</label>
+
+                <input
+                    type="text"
+                    id="bairro"
+                    name="bairro">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Cidade</label>
+
+                <input
+                    type="text"
+                    id="cidade"
+                    name="cidade">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Estado</label>
+
+                <input
+                    type="text"
+                    id="estado"
+                    name="estado"
+                    maxlength="2">
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <br>
+
+    <button type="submit" class="btn">
+
+        💾 Salvar Cliente
 
     </button>
 
 </form>
+
+<script src="../../assets/js/clientes.js"></script>
 
 <?php
 
