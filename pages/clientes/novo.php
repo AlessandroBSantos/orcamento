@@ -26,11 +26,65 @@ require_once '../../includes/layout_inicio.php';
 
 <form action="salvar.php" method="POST">
 
+<div class="tabs">
+
+    <button
+        type="button"
+        class="tab-button active"
+        data-tab="dados">
+
+        Dados Gerais
+
+    </button>
+
+    <button
+        type="button"
+        class="tab-button"
+        data-tab="endereco">
+
+        Endereço
+
+    </button>
+
+    <button
+        type="button"
+        class="tab-button"
+        data-tab="contato">
+
+        Contato
+
+    </button>
+
+    <button
+        type="button"
+        class="tab-button"
+        data-tab="financeiro">
+
+        Financeiro
+
+    </button>
+
+    <button
+        type="button"
+        class="tab-button"
+        data-tab="observacoes">
+
+        Observações
+
+    </button>
+
+</div>
+
+
     <!-- =========================
          DADOS GERAIS
     ========================== -->
 
-    <div class="panel">
+   <div
+    class="tab-content active"
+    id="dados">
+
+<div class="panel">
 
         <h2>Dados Gerais</h2>
 
@@ -48,6 +102,7 @@ require_once '../../includes/layout_inicio.php';
 
                 </select>
 
+            </div>
             </div>
 
             <div class="form-group">
@@ -126,6 +181,13 @@ require_once '../../includes/layout_inicio.php';
     ========================== -->
 
     <div class="panel">
+
+<div
+    class="tab-content"
+    id="endereco">
+
+<div class="panel">
+
 
         <h2>Endereço</h2>
 
@@ -211,7 +273,7 @@ require_once '../../includes/layout_inicio.php';
         </div>
 
     </div>
-
+</div>
     <br>
 
     <button type="submit" class="btn">
