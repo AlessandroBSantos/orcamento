@@ -439,3 +439,67 @@ tbody tr:hover{
     width:100%;
 
 }
+
+/* ===========================
+   ABAS
+=========================== */
+
+.tabs{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-bottom:25px;
+
+    border-bottom:1px solid #334155;
+
+}
+
+.tab-button{
+
+    background:none;
+
+    border:none;
+
+    color:#CBD5E1;
+
+    padding:15px 20px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    border-bottom:3px solid transparent;
+
+    transition:.3s;
+
+}
+
+.tab-button:hover{
+
+    color:#06B6D4;
+
+}
+
+.tab-button.active{
+
+    color:#06B6D4;
+
+    border-color:#06B6D4;
+
+}
+
+.tab-content{
+
+    display:none;
+
+}
+
+.tab-content.active{
+
+    display:block;
+
+}
