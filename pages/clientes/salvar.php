@@ -1,23 +1,26 @@
 <?php
 
 require_once '../../includes/auth.php';
+require_once '../../controllers/ClienteController.php';
 
-echo "<h2>Dados recebidos do formulário</h2>";
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
-echo "<pre>";
+    header('Location: index.php');
+    exit;
 
-print_r($_POST);
+}
 
-echo "</pre>";
+$controller = new ClienteController();
 
-echo "<hr>";
+$resultado = $controller->salvar($_POST);
 
-if (empty($_POST)) {
+if ($resultado) {
 
-    echo "<h3 style='color:red'>Nenhum dado foi enviado pelo formulário.</h3>";
+    header('Location: index.php?sucesso=1');
+    exit;
 
 } else {
 
-    echo "<h3 style='color:green'>Formulário enviado com sucesso.</h3>";
+    die('Erro ao salvar o cliente.');
 
 }

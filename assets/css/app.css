@@ -503,3 +503,23 @@ tbody tr:hover{
     display:block;
 
 }
+
+.alert{
+
+    padding:15px;
+
+    border-radius:10px;
+
+    margin-bottom:20px;
+
+    font-weight:600;
+
+}
+
+.alert-success{
+
+    background:#16A34A;
+
+    color:#FFF;
+
+}
