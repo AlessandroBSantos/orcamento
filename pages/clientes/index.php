@@ -2,6 +2,9 @@
 
 $titulo = "Clientes";
 
+echo "<h1 style='color:red'>INDEX CARREGADO</h1>"; 
+
+
 require_once '../../includes/layout_inicio.php';
 require_once '../../controllers/ClienteController.php';
 
