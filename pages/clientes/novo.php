@@ -103,7 +103,7 @@ require_once '../../includes/layout_inicio.php';
                 </select>
 
             </div>
-            </div>
+            
 
             <div class="form-group">
 
@@ -180,7 +180,6 @@ require_once '../../includes/layout_inicio.php';
          ENDEREÇO
     ========================== -->
 
-    <div class="panel">
 
 <div
     class="tab-content"
@@ -273,7 +272,7 @@ require_once '../../includes/layout_inicio.php';
         </div>
 
     </div>
-</div>
+
     <br>
 
     <button type="submit" class="btn">
