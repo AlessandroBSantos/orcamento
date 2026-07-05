@@ -51,9 +51,28 @@ class Cliente extends BaseModel
 
         )";
 
-        $stmt = $this->db->prepare($sql);
+$stmt = $this->db->prepare($sql);
 
-        return $stmt->execute($dados);
+$params = [
+
+    'tipo' => $dados['tipo'],
+    'nome' => $dados['nome'],
+    'nome_fantasia' => $dados['nome_fantasia'],
+    'cpf_cnpj' => $dados['cpf_cnpj'],
+    'rg_ie' => $dados['rg_ie'],
+    'inscricao_municipal' => $dados['inscricao_municipal'],
+    'cep' => $dados['cep'],
+    'endereco' => $dados['endereco'],
+    'numero' => $dados['numero'],
+    'complemento' => $dados['complemento'],
+    'bairro' => $dados['bairro'],
+    'cidade' => $dados['cidade'],
+    'estado' => $dados['estado'],
+    'status' => $dados['status']
+
+];
+
+return $stmt->execute($params);
 
     }
 
