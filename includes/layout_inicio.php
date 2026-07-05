@@ -7,6 +7,8 @@ if (!isset($titulo)) {
     $titulo = APP_NAME;
 }
 
+
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">

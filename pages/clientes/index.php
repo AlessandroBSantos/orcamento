@@ -4,14 +4,17 @@ $titulo = "Clientes";
 
 require_once '../../includes/layout_inicio.php';
 
+
 ?>
 
-<div class="page-header">
+<div class="dashboard-header">
 
     <h1>Clientes</h1>
 
     <a href="novo.php" class="btn">
+
         + Novo Cliente
+
     </a>
 
 </div>
@@ -28,7 +31,7 @@ require_once '../../includes/layout_inicio.php';
 
                 <th>Nome</th>
 
-                <th>Cidade</th>
+                <th>Email</th>
 
                 <th>Telefone</th>
 
