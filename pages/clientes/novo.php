@@ -1,6 +1,10 @@
+<script src="../../assets/js/clientes.js"></script>
+
 <?php
 
 $titulo = "Novo Cliente";
+
+
 
 require_once '../../includes/layout_inicio.php';
 
@@ -25,8 +29,94 @@ require_once '../../includes/layout_inicio.php';
 </div>
 
 <form action="salvar.php" method="POST">
+<div class="panel">
 
-    <div class="panel">
+    <h2>Endereço</h2>
+
+    <div class="form-grid">
+
+        <div class="form-group">
+
+            <label>CEP</label>
+
+            <input
+                type="text"
+                id="cep"
+                name="cep"
+                maxlength="9">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Endereço</label>
+
+            <input
+                type="text"
+                id="endereco"
+                name="endereco">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Número</label>
+
+            <input
+                type="text"
+                name="numero">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Complemento</label>
+
+            <input
+                type="text"
+                name="complemento">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Bairro</label>
+
+            <input
+                type="text"
+                id="bairro"
+                name="bairro">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Cidade</label>
+
+            <input
+                type="text"
+                id="cidade"
+                name="cidade">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Estado</label>
+
+            <input
+                type="text"
+                id="estado"
+                name="estado"
+                maxlength="2">
+
+        </div>
+
+    </div>
+
+</div>
+
+
 
 <h2>Dados Gerais</h2>
 
