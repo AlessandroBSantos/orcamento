@@ -277,3 +277,65 @@ SIDEBAR
     margin-left:260px;
 
 }
+
+.dashboard-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:30px;
+
+}
+
+.dashboard-header h1{
+
+    margin:0;
+
+}
+
+.panel{
+
+    background:#111827;
+
+    border-radius:15px;
+
+    padding:25px;
+
+    box-shadow:0 0 20px rgba(0,0,0,.25);
+
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+th{
+
+    background:#1E293B;
+
+    color:#FFF;
+
+    padding:15px;
+
+}
+
+td{
+
+    padding:15px;
+
+    border-bottom:1px solid #334155;
+
+}
+
+tbody tr:hover{
+
+    background:#1F2937;
+
+}
