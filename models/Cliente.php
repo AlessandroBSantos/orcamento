@@ -1,54 +1,60 @@
 <?php
 
-require_once __DIR__ . '/BaseController.php';
-require_once __DIR__ . '/../models/Cliente.php';
+require_once __DIR__ . '/BaseModel.php';
 
-class ClienteController extends BaseController
+class Cliente extends BaseModel
 {
 
-    private Cliente $cliente;
-
-    public function __construct()
+    public function listar()
     {
-        $this->cliente = new Cliente();
+        $sql = "SELECT * FROM clientes ORDER BY nome";
+
+        return $this->query($sql)->fetchAll();
     }
 
-    public function index()
+    public function salvar(array $dados)
     {
-        $clientes = $this->cliente->listar();
 
-        echo "<h1>Lista de Clientes</h1>";
+        $sql = "INSERT INTO clientes (
 
-        if (empty($clientes)) {
+            tipo,
+            nome,
+            nome_fantasia,
+            cpf_cnpj,
+            rg_ie,
+            inscricao_municipal,
+            cep,
+            endereco,
+            numero,
+            complemento,
+            bairro,
+            cidade,
+            estado,
+            status
 
-            echo "<p>Nenhum cliente cadastrado.</p>";
+        ) VALUES (
 
-            return;
-        }
+            :tipo,
+            :nome,
+            :nome_fantasia,
+            :cpf_cnpj,
+            :rg_ie,
+            :inscricao_municipal,
+            :cep,
+            :endereco,
+            :numero,
+            :complemento,
+            :bairro,
+            :cidade,
+            :estado,
+            :status
 
-        echo "<table border='1' cellpadding='8'>";
+        )";
 
-        echo "<tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Email</th>
-              </tr>";
+        $stmt = $this->db->prepare($sql);
 
-        foreach ($clientes as $cliente) {
+        return $stmt->execute($dados);
 
-            echo "<tr>";
-
-            echo "<td>{$cliente['id']}</td>";
-
-            echo "<td>{$cliente['nome']}</td>";
-
-            echo "<td>{$cliente['email']}</td>";
-
-            echo "</tr>";
-
-        }
-
-        echo "</table>";
     }
 
 }
