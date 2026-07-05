@@ -1,7 +1,6 @@
 <?php
 
 require_once __DIR__ . '/BaseController.php';
-
 require_once __DIR__ . '/../models/Cliente.php';
 
 class ClienteController extends BaseController
@@ -11,21 +10,20 @@ class ClienteController extends BaseController
 
     public function __construct()
     {
-
         $this->cliente = new Cliente();
-
     }
 
     public function index()
     {
+        return $this->cliente->listar();
+    }
 
-        $clientes = $this->cliente->listar();
+    public function salvar(array $dados)
+    {
 
-        echo "<pre>";
+        $resultado = $this->cliente->salvar($dados);
 
-         print_r($clientes);
-
-        echo "</pre>";
+        return $resultado;
 
     }
 
