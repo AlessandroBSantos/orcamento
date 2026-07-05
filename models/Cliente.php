@@ -6,11 +6,28 @@ class Cliente extends BaseModel
 {
 
     public function listar()
-    {
-        $sql = "SELECT * FROM clientes ORDER BY nome";
+    public function listar()
+        {
 
-        return $this->query($sql)->fetchAll();
-    }
+          $sql = "
+
+              SELECT
+
+                   id,
+                  nome,
+                 cidade,
+                 cpf_cnpj,
+                  status
+
+              FROM clientes
+
+               ORDER BY nome
+
+            ";
+
+           return $this->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+
+        }
 
     public function salvar(array $dados)
     {

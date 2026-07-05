@@ -35,66 +35,75 @@ $clientes = $controller->index();
 
     <table>
 
-        <thead>
+<thead>
 
-            <tr>
+<tr>
 
-                <th>ID</th>
-                <th>Nome</th>
-                <th>CPF/CNPJ</th>
-                <th>Cidade</th>
-                <th>Status</th>
-                <th>Ações</th>
+    <th>ID</th>
 
-            </tr>
+    <th>Nome</th>
 
-        </thead>
+    <th>Cidade</th>
 
-        <tbody>
+    <th>CPF/CNPJ</th>
 
-        <?php if (count($clientes) > 0): ?>
+    <th>Status</th>
 
-            <?php foreach ($clientes as $cliente): ?>
+    <th>Ações</th>
 
-            <tr>
+</tr>
 
-                <td><?= $cliente['id'] ?></td>
+</thead>
+<tbody>
 
-                <td><?= htmlspecialchars($cliente['nome']) ?></td>
+<?php if(!empty($clientes)): ?>
 
-                <td><?= htmlspecialchars($cliente['cpf_cnpj']) ?></td>
+<?php foreach($clientes as $cliente): ?>
 
-                <td><?= htmlspecialchars($cliente['cidade']) ?></td>
+<tr>
 
-                <td><?= htmlspecialchars($cliente['status']) ?></td>
+    <td><?= $cliente['id'] ?></td>
 
-                <td>
+    <td><?= htmlspecialchars($cliente['nome']) ?></td>
 
-                    <a href="editar.php?id=<?= $cliente['id'] ?>" class="btn btn-sm">
-                        Editar
-                    </a>
+    <td><?= htmlspecialchars($cliente['cidade']) ?></td>
 
-                </td>
+    <td><?= htmlspecialchars($cliente['cpf_cnpj']) ?></td>
 
-            </tr>
+    <td><?= htmlspecialchars($cliente['status']) ?></td>
 
-            <?php endforeach; ?>
+    <td>
 
-        <?php else: ?>
+        <a href="editar.php?id=<?= $cliente['id'] ?>">
 
-            <tr>
+            ✏ Editar
 
-                <td colspan="6">
+        </a>
 
-                    Nenhum cliente cadastrado.
+    </td>
 
-                </td>
+</tr>
 
-            </tr>
+<?php endforeach; ?>
 
-        <?php endif; ?>
+<?php else: ?>
 
-        </tbody>
+<tr>
+
+    <td colspan="6">
+
+        Nenhum cliente encontrado.
+
+    </td>
+
+</tr>
+
+<?php endif; ?>
+
+</tbody>
+        
+
+
 
     </table>
 
