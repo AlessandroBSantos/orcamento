@@ -38,19 +38,76 @@ require_once '../../includes/layout_inicio.php';
 
         <select name="tipo">
 
-            <option value="PF">
+            <option value="PF">Pessoa Física</option>
 
-                Pessoa Física
-
-            </option>
-
-            <option value="PJ">
-
-                Pessoa Jurídica
-
-            </option>
+            <option value="PJ">Pessoa Jurídica</option>
 
         </select>
+
+    </div>
+
+    <div class="form-group">
+
+        <label>Status</label>
+
+        <select name="status">
+
+            <option value="Ativo">Ativo</option>
+
+            <option value="Inativo">Inativo</option>
+
+        </select>
+
+    </div>
+
+    <div class="form-group">
+
+        <label>Nome / Razão Social</label>
+
+        <input
+            type="text"
+            name="nome"
+            required>
+
+    </div>
+
+    <div class="form-group">
+
+        <label>Nome Fantasia</label>
+
+        <input
+            type="text"
+            name="nome_fantasia">
+
+    </div>
+
+    <div class="form-group">
+
+        <label>CPF / CNPJ</label>
+
+        <input
+            type="text"
+            name="cpf_cnpj">
+
+    </div>
+
+    <div class="form-group">
+
+        <label>RG / Inscrição Estadual</label>
+
+        <input
+            type="text"
+            name="rg_ie">
+
+    </div>
+
+    <div class="form-group">
+
+        <label>Inscrição Municipal</label>
+
+        <input
+            type="text"
+            name="inscricao_municipal">
 
     </div>
 
