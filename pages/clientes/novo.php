@@ -8,23 +8,68 @@ require_once '../../includes/layout_inicio.php';
 
 <div class="dashboard-header">
 
-    <h1>Novo Cliente</h1>
+    <div>
+
+        <h1>Novo Cliente</h1>
+
+        <p>Cadastro de Clientes</p>
+
+    </div>
 
     <a href="index.php" class="btn">
 
-        Voltar
+        ← Voltar
 
     </a>
 
+</div>
+
+<form action="salvar.php" method="POST">
+
     <div class="panel">
-        <h2>Casdastro de Cliente</h2>
 
-        <p>Esta é a apagina de cadastro de clientes.</p>
+<h2>Dados Gerais</h2>
 
-        </div>
+<div class="form-grid">
 
-    <?php
+    <div class="form-group">
 
-    require_once '../../includes/layout_fim.php';
+        <label>Tipo de Cliente</label>
 
-    ?>
+        <select name="tipo">
+
+            <option value="PF">
+
+                Pessoa Física
+
+            </option>
+
+            <option value="PJ">
+
+                Pessoa Jurídica
+
+            </option>
+
+        </select>
+
+    </div>
+
+</div>
+
+    </div>
+
+    <br>
+
+    <button class="btn">
+
+        Salvar Cliente
+
+    </button>
+
+</form>
+
+<?php
+
+require_once '../../includes/layout_fim.php';
+
+?>
