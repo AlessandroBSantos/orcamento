@@ -78,7 +78,7 @@ $clientes = $controller->index();
 
                 <td>
 
-                    <a href="editar.php?id=<?= $cliente['id'] ?>" class="btn btn-sm">
+                    <a href="editar.php?id=<?= $cliente['id'] ?>" class="btn">
 
                         Editar
 
