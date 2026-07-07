@@ -112,4 +112,76 @@ class Cliente extends BaseModel
 
     }
 
+    /**
+     * Atualiza um cliente
+     */
+    public function atualizar(array $dados)
+    {
+
+        $sql = "
+            UPDATE clientes SET
+
+                tipo = :tipo,
+                status = :status,
+                nome = :nome,
+                nome_fantasia = :nome_fantasia,
+                cpf_cnpj = :cpf_cnpj,
+                rg_ie = :rg_ie,
+                inscricao_municipal = :inscricao_municipal,
+                cep = :cep,
+                endereco = :endereco,
+                numero = :numero,
+                complemento = :complemento,
+                bairro = :bairro,
+                cidade = :cidade,
+                estado = :estado,
+                telefone = :telefone,
+                celular = :celular,
+                whatsapp = :whatsapp,
+                email = :email,
+                contato = :contato,
+                cargo_contato = :cargo_contato,
+                limite_credito = :limite_credito,
+                desconto_padrao = :desconto_padrao,
+                vendedor_id = :vendedor_id,
+                observacoes = :observacoes,
+                atualizado_em = NOW()
+
+            WHERE id = :id
+        ";
+
+        $stmt = $this->db->prepare($sql);
+
+        return $stmt->execute([
+
+            'id' => $dados['id'],
+            'tipo' => $dados['tipo'],
+            'status' => $dados['status'],
+            'nome' => $dados['nome'],
+            'nome_fantasia' => $dados['nome_fantasia'],
+            'cpf_cnpj' => $dados['cpf_cnpj'],
+            'rg_ie' => $dados['rg_ie'],
+            'inscricao_municipal' => $dados['inscricao_municipal'],
+            'cep' => $dados['cep'],
+            'endereco' => $dados['endereco'],
+            'numero' => $dados['numero'],
+            'complemento' => $dados['complemento'],
+            'bairro' => $dados['bairro'],
+            'cidade' => $dados['cidade'],
+            'estado' => $dados['estado'],
+            'telefone' => $dados['telefone'],
+            'celular' => $dados['celular'],
+            'whatsapp' => $dados['whatsapp'],
+            'email' => $dados['email'],
+            'contato' => $dados['contato'],
+            'cargo_contato' => $dados['cargo_contato'],
+            'limite_credito' => $dados['limite_credito'],
+            'desconto_padrao' => $dados['desconto_padrao'],
+            'vendedor_id' => $dados['vendedor_id'],
+            'observacoes' => $dados['observacoes']
+
+        ]);
+
+    }
+
 }
