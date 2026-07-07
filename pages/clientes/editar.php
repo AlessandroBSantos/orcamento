@@ -5,9 +5,9 @@ $titulo = "Editar Cliente";
 require_once '../../includes/layout_inicio.php';
 require_once '../../controllers/ClienteController.php';
 
-if (!isset($_GET['id']) || empty($_GET['id'])) {
+if (!isset($_GET['id'])) {
 
-    die("Cliente não informado.");
+    die("ID do cliente não informado.");
 
 }
 
@@ -31,7 +31,7 @@ if (!$cliente) {
 
         <h1>Editar Cliente</h1>
 
-        <p>Alteração de Cadastro</p>
+        <p>Teste de carregamento dos dados</p>
 
     </div>
 
@@ -45,7 +45,7 @@ if (!$cliente) {
 
 <div class="panel">
 
-    <h2>Teste de carregamento</h2>
+    <h2>Dados do Cliente</h2>
 
     <pre>
 
