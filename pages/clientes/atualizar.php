@@ -2,9 +2,9 @@
 
 require_once '../../controllers/ClienteController.php';
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 
-    header('Location: index.php');
+    header("Location: index.php");
     exit;
 
 }
@@ -18,8 +18,7 @@ if ($resultado) {
     header("Location: index.php?sucesso=editado");
     exit;
 
-} else {
-
-    die("Erro ao atualizar o cliente.");
-
 }
+
+header("Location: editar.php?id=" . $_POST['id'] . "&erro=1");
+exit;
