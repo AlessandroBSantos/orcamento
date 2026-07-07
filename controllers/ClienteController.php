@@ -28,4 +28,9 @@ class ClienteController extends BaseController
         return $this->cliente->salvar($dados);
     }
 
+    public function atualizar(array $dados)
+    {
+        return $this->cliente->atualizar($dados);
+    }
+
 }
