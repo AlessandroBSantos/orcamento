@@ -33,4 +33,9 @@ class ClienteController extends BaseController
         return $this->cliente->atualizar($dados);
     }
 
+    public function excluir(int $id)
+    {
+        return $this->cliente->excluir($id);
+    }
+
 }

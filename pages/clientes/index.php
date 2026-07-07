@@ -108,6 +108,15 @@ switch($_GET['sucesso']){
 
                     </a>
 
+                    <a
+                        href="excluir.php?id=<?= $cliente['id'] ?>"
+                        class="btn btn-danger"
+                        onclick="return confirm('Deseja realmente excluir este cliente?');">
+
+                            Excluir
+
+                    </a>
+                    
                 </td>
 
             </tr>

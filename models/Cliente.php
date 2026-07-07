@@ -184,4 +184,27 @@ class Cliente extends BaseModel
 
     }
 
+/**
+ * Exclui um cliente
+ */
+public function excluir(int $id)
+{
+
+    $sql = "
+
+        DELETE FROM clientes
+
+        WHERE id = :id
+
+    ";
+
+    $stmt = $this->db->prepare($sql);
+
+    return $stmt->execute([
+
+        'id' => $id
+
+    ]);
+
+}
 }
