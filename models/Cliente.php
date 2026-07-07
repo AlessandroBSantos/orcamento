@@ -5,22 +5,51 @@ require_once __DIR__ . '/BaseModel.php';
 class Cliente extends BaseModel
 {
 
+    /**
+     * Lista todos os clientes
+     */
     public function listar()
     {
+
         $sql = "
             SELECT
                 id,
+                tipo,
                 nome,
-                cidade,
+                nome_fantasia,
                 cpf_cnpj,
+                cidade,
                 status
             FROM clientes
             ORDER BY nome
         ";
 
         return $this->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+
     }
 
+    /**
+     * Busca um cliente pelo ID
+     */
+    public function buscarPorId(int $id)
+    {
+
+        $sql = "
+            SELECT *
+            FROM clientes
+            WHERE id = :id
+            LIMIT 1
+        ";
+
+        return $this->query($sql, [
+            'id' => $id
+        ])->fetch(PDO::FETCH_ASSOC);
+
+    }
+
+    /**
+     * Salva um novo cliente
+     */
     public function salvar(array $dados)
     {
 
@@ -62,7 +91,7 @@ class Cliente extends BaseModel
 
         $stmt = $this->db->prepare($sql);
 
-        $params = [
+        return $stmt->execute([
 
             'tipo' => $dados['tipo'],
             'nome' => $dados['nome'],
@@ -79,9 +108,7 @@ class Cliente extends BaseModel
             'estado' => $dados['estado'],
             'status' => $dados['status']
 
-        ];
-
-        return $stmt->execute($params);
+        ]);
 
     }
 
