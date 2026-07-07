@@ -18,13 +18,14 @@ class ClienteController extends BaseController
         return $this->cliente->listar();
     }
 
+    public function buscarPorId(int $id)
+    {
+        return $this->cliente->buscarPorId($id);
+    }
+
     public function salvar(array $dados)
     {
-
-        $resultado = $this->cliente->salvar($dados);
-
-        return $resultado;
-
+        return $this->cliente->salvar($dados);
     }
 
 }
