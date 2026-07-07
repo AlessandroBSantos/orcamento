@@ -33,7 +33,31 @@ $clientes = $controller->index();
 
 <div class="alert alert-success">
 
-    Cliente cadastrado com sucesso.
+<?php
+
+switch($_GET['sucesso']){
+
+    case "cadastrado":
+
+        echo "Cliente cadastrado com sucesso.";
+
+        break;
+
+    case "editado":
+
+        echo "Cliente atualizado com sucesso.";
+
+        break;
+
+    case "excluido":
+
+        echo "Cliente excluído com sucesso.";
+
+        break;
+
+}
+
+?>
 
 </div>
 

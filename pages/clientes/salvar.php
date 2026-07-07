@@ -16,7 +16,7 @@ $resultado = $controller->salvar($_POST);
 
 if ($resultado) {
 
-    header('Location: index.php?sucesso=1');
+    header("Location: index.php?sucesso=cadastrado");
     exit;
 
 }
