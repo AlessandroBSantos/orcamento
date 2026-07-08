@@ -1,13 +1,13 @@
 <?php
 
-$titulo = "Produtos";
+$titulo = "Clientes";
 
 require_once '../../includes/layout_inicio.php';
-require_once '../../controllers/ProdutoController.php';
+require_once '../../controllers/ClienteController.php';
 
-$controller = new ProdutoController();
+$controller = new ClienteController();
 
-$produtos = $controller->index();
+$clientes = $controller->index();
 
 ?>
 
@@ -15,15 +15,15 @@ $produtos = $controller->index();
 
     <div>
 
-        <h1>Produtos</h1>
+        <h1>Clientes</h1>
 
-        <p>Cadastro de Produtos</p>
+        <p>Cadastro de Clientes</p>
 
     </div>
 
-    <a href="novo.php" class="btn btn-primary">
+    <a href="novo.php" class="btn">
 
-        + Novo Produto
+        + Novo Cliente
 
     </a>
 
@@ -39,19 +39,19 @@ switch($_GET['sucesso']){
 
     case "cadastrado":
 
-        echo "Produto cadastrado com sucesso.";
+        echo "Cliente cadastrado com sucesso.";
 
         break;
 
     case "editado":
 
-        echo "Produto atualizado com sucesso.";
+        echo "Cliente atualizado com sucesso.";
 
         break;
 
     case "excluido":
 
-        echo "Produto excluído com sucesso.";
+        echo "Cliente excluído com sucesso.";
 
         break;
 
@@ -65,93 +65,82 @@ switch($_GET['sucesso']){
 
 <div class="panel">
 
-<table>
+    <table>
 
-    <thead>
+        <thead>
 
-        <tr>
+            <tr>
 
-            <th>ID</th>
-            <th>Código</th>
-            <th>Nome</th>
-            <th>Categoria</th>
-            <th>Marca</th>
-            <th>Preço</th>
-            <th>Estoque</th>
-            <th>Status</th>
-            <th>Ações</th>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Cidade</th>
+                <th>CPF/CNPJ</th>
+                <th>Status</th>
+                <th>Ações</th>
 
-        </tr>
+            </tr>
 
-    </thead>
+        </thead>
 
-    <tbody>
+        <tbody>
 
-    <?php if(empty($produtos)): ?>
+        <?php if(!empty($clientes)): ?>
 
-        <tr>
+            <?php foreach($clientes as $cliente): ?>
 
-            <td colspan="9" style="text-align:center;">
+            <tr>
 
-                Nenhum produto cadastrado.
+                <td><?= $cliente['id'] ?></td>
 
-            </td>
+                <td><?= htmlspecialchars($cliente['nome']) ?></td>
 
-        </tr>
+                <td><?= htmlspecialchars($cliente['cidade']) ?></td>
 
-    <?php else: ?>
+                <td><?= htmlspecialchars($cliente['cpf_cnpj']) ?></td>
 
-        <?php foreach($produtos as $produto): ?>
+                <td><?= htmlspecialchars($cliente['status']) ?></td>
 
-        <tr>
+                <td>
 
-            <td><?= $produto['id'] ?></td>
+                    <a href="editar.php?id=<?= $cliente['id'] ?>" 
+                    class="btn btn-primary">
 
-            <td><?= htmlspecialchars($produto['codigo']) ?></td>
+                        Editar
 
-            <td><?= htmlspecialchars($produto['nome']) ?></td>
+                    </a>
 
-            <td><?= htmlspecialchars($produto['categoria']) ?></td>
+                    <a
+                        href="excluir.php?id=<?= $cliente['id'] ?>"
+                        class="btn btn-danger"
+                        onclick="return confirm('Deseja realmente excluir este cliente?');">
 
-            <td><?= htmlspecialchars($produto['marca']) ?></td>
+                            Excluir
 
-            <td>
+                    </a>
+                    
+                </td>
 
-                R$
+            </tr>
 
-                <?= number_format($produto['preco_venda'],2,",",".") ?>
+            <?php endforeach; ?>
 
-            </td>
+        <?php else: ?>
 
-            <td><?= $produto['estoque_atual'] ?></td>
+            <tr>
 
-            <td><?= htmlspecialchars($produto['status']) ?></td>
+                <td colspan="6">
 
-            <td class="acoes">
+                    Nenhum cliente cadastrado.
 
-                <a href="#" class="btn btn-primary">
+                </td>
 
-                    ✏ Editar
+            </tr>
 
-                </a>
+        <?php endif; ?>
 
-                <a href="#" class="btn btn-danger">
+        </tbody>
 
-                    🗑 Excluir
-
-                </a>
-
-            </td>
-
-        </tr>
-
-        <?php endforeach; ?>
-
-    <?php endif; ?>
-
-    </tbody>
-
-</table>
+    </table>
 
 </div>
 
