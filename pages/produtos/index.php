@@ -3,7 +3,7 @@
 $titulo = "Produtos";
 
 require_once '../../includes/layout_inicio.php';
-require_once '../../controllers/ClienteController.php';
+require_once '../../controllers/ProdutosController.php';
 
 $controller = new ClienteController();
 
