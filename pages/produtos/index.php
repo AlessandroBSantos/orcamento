@@ -1,6 +1,6 @@
 <?php
 
-$titulo = "Clientes";
+$titulo = "Produtos";
 
 require_once '../../includes/layout_inicio.php';
 require_once '../../controllers/ClienteController.php';
