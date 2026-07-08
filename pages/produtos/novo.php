@@ -25,131 +25,135 @@ require_once '../../includes/layout_inicio.php';
 </div>
 
 <form action="salvar.php" method="POST">
-    <!-- =========================
-     ABAS
-========================= -->
 
-<div class="tabs">
+    <!-- ==========================================
+         ABAS
+    =========================================== -->
 
-    <button
-        type="button"
-        class="tab-button active"
-        data-tab="dados">
+    <div class="tabs">
 
-        📦 Dados Gerais
+        <button
+            type="button"
+            class="tab-button active"
+            data-tab="dados">
 
-    </button>
+            📦 Dados Gerais
 
-    <button
-        type="button"
-        class="tab-button"
-        data-tab="classificacao">
+        </button>
 
-        🏷️ Classificação
+        <button
+            type="button"
+            class="tab-button"
+            data-tab="classificacao">
 
-    </button>
+            🏷️ Classificação
 
-    <button
-        type="button"
-        class="tab-button"
-        data-tab="fiscal">
+        </button>
 
-        📄 Fiscal
+        <button
+            type="button"
+            class="tab-button"
+            data-tab="fiscal">
 
-    </button>
+            📄 Fiscal
 
-    <button
-        type="button"
-        class="tab-button"
-        data-tab="comercial">
+        </button>
 
-        💰 Comercial
+        <button
+            type="button"
+            class="tab-button"
+            data-tab="comercial">
 
-    </button>
+            💰 Comercial
 
-    <button
-        type="button"
-        class="tab-button"
-        data-tab="estoque">
+        </button>
 
-        📦 Estoque
+        <button
+            type="button"
+            class="tab-button"
+            data-tab="estoque">
 
-    </button>
+            📦 Estoque
 
-    <button
-        type="button"
-        class="tab-button"
-        data-tab="observacoes">
+        </button>
 
-        📝 Observações
+        <button
+            type="button"
+            class="tab-button"
+            data-tab="observacoes">
 
-    </button>
+            📝 Observações
 
-</div>
+        </button>
 
-<!-- =========================
-     DADOS GERAIS
-========================= -->
+    </div>
 
-<div
-    class="tab-content active"
-    id="dados">
+    <!-- ==========================================
+         DADOS GERAIS
+    =========================================== -->
 
-    <div class="panel">
+    <div
+        class="tab-content active"
+        id="dados">
 
-        <h2>Dados Gerais</h2>
+        <div class="panel">
 
-        <div class="form-grid">
+            <h2>Dados Gerais</h2>
 
-            <div class="form-group">
+            <div class="form-grid">
 
-                <label>Código</label>
+                <div class="form-group">
 
-                <input
-                    type="text"
-                    name="codigo">
+                    <label>Código</label>
 
-            </div>
+                    <input
+                        type="text"
+                        name="codigo">
 
-            <div class="form-group">
+                </div>
 
-                <label>Código de Barras</label>
+                <div class="form-group">
 
-                <input
-                    type="text"
-                    name="codigo_barras">
+                    <label>Código de Barras</label>
 
-            </div>
+                    <input
+                        type="text"
+                        name="codigo_barras">
 
-            <div class="form-group">
+                </div>
 
-                <label>SKU</label>
+                <div class="form-group">
 
-                <input
-                    type="text"
-                    name="sku">
+                    <label>SKU</label>
 
-            </div>
+                    <input
+                        type="text"
+                        name="sku">
 
-            <div class="form-group">
+                </div>
 
-                <label>Nome do Produto</label>
+                <div class="form-group">
 
-                <input
-                    type="text"
-                    name="nome"
-                    required>
+                    <label>Nome do Produto</label>
 
-            </div>
+                    <input
+                        type="text"
+                        name="nome"
+                        required>
 
-            <div class="form-group"
-                 style="grid-column:1/-1;">
+                </div>
 
-                <label>Descrição</label>
+                <div
+                    class="form-group"
+                    style="grid-column:1/-1;">
 
-                <textarea
-                    name="descricao"
-                    rows="5"></textarea>
+                    <label>Descrição</label>
+
+                    <textarea
+                        name="descricao"
+                        rows="5"></textarea>
+
+                </div>
 
             </div>
 
@@ -157,18 +161,120 @@ require_once '../../includes/layout_inicio.php';
 
     </div>
 
-</div>
+    <!-- ==========================================
+         CLASSIFICAÇÃO
+    =========================================== -->
 
-<br>
+    <div
+        class="tab-content"
+        id="classificacao">
 
-<button
-    type="submit"
-    class="btn btn-primary">
+        <div class="panel">
 
-    💾 Salvar Produto
+            <h2>Classificação</h2>
 
-</button>
+            <p>Em construção...</p>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================================
+         FISCAL
+    =========================================== -->
+
+    <div
+        class="tab-content"
+        id="fiscal">
+
+        <div class="panel">
+
+            <h2>Fiscal</h2>
+
+            <p>Em construção...</p>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================================
+         COMERCIAL
+    =========================================== -->
+
+    <div
+        class="tab-content"
+        id="comercial">
+
+        <div class="panel">
+
+            <h2>Comercial</h2>
+
+            <p>Em construção...</p>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================================
+         ESTOQUE
+    =========================================== -->
+
+    <div
+        class="tab-content"
+        id="estoque">
+
+        <div class="panel">
+
+            <h2>Estoque</h2>
+
+            <p>Em construção...</p>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================================
+         OBSERVAÇÕES
+    =========================================== -->
+
+    <div
+        class="tab-content"
+        id="observacoes">
+
+        <div class="panel">
+
+            <h2>Observações</h2>
+
+            <div class="form-group">
+
+                <label>Observações</label>
+
+                <textarea
+                    name="observacoes"
+                    rows="6"></textarea>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <br>
+
+    <button
+        type="submit"
+        class="btn btn-primary">
+
+        💾 Salvar Produto
+
+    </button>
 
 </form>
 
 <script src="../../assets/js/tabs.js"></script>
+
+<?php
+
+require_once '../../includes/layout_fim.php';
+
+?>
