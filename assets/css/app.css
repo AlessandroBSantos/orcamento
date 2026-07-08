@@ -1,49 +1,56 @@
 /* =====================================================
-   HEADER
+   HEADER (Cabeçalho Superior)
 ===================================================== */
 
+/* Barra superior fixa no topo da tela */
 .topbar{
-    position:fixed;
+    position:fixed;                 /* Mantém o cabeçalho fixo */
     top:0;
     left:0;
-    width:100%;
-    height:70px;
-    background:#111827;
-    border-bottom:1px solid #334155;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 20px;
-    z-index:1000;
+    width:100%;                     /* Ocupa toda a largura */
+    height:70px;                    /* Altura do cabeçalho */
+    background:#111827;             /* Cor de fundo */
+    border-bottom:1px solid #334155;/* Linha inferior */
+    display:flex;                   /* Layout Flexbox */
+    align-items:center;             /* Centraliza verticalmente */
+    justify-content:space-between;  /* Espaço entre os elementos */
+    padding:0 20px;                 /* Espaçamento interno */
+    z-index:1000;                   /* Fica acima dos demais elementos */
 }
 
+/* Lado esquerdo do cabeçalho */
 .topbar-left{
     display:flex;
     align-items:center;
-    gap:15px;
+    gap:15px;                       /* Espaço entre botão e logo */
 }
 
+/* Área central (campo de pesquisa) */
 .topbar-center{
-    flex:1;
+    flex:1;                         /* Ocupa espaço restante */
     display:flex;
     justify-content:center;
 }
 
+/* Área direita (usuário) */
 .topbar-right{
     display:flex;
     align-items:center;
 }
 
+/* Logo do sistema */
 .logo{
     font-size:24px;
     font-weight:700;
     color:#F8FAFC;
 }
 
+/* Cor de destaque da palavra dentro do logo */
 .logo span{
     color:#06B6D4;
 }
 
+/* Botão que abre e fecha o menu lateral */
 .menu-button{
     width:42px;
     height:42px;
@@ -56,10 +63,12 @@
     transition:.3s;
 }
 
+/* Efeito ao passar o mouse */
 .menu-button:hover{
     background:#1F2937;
 }
 
+/* Caixa de pesquisa */
 .search-box{
     width:100%;
     max-width:400px;
@@ -71,17 +80,20 @@
     color:#F8FAFC;
 }
 
+/* Destaque quando recebe foco */
 .search-box:focus{
     outline:none;
     border-color:#06B6D4;
 }
 
+/* Área das informações do usuário */
 .user-info{
     display:flex;
     align-items:center;
     gap:12px;
 }
 
+/* Avatar circular */
 .avatar{
     width:42px;
     height:42px;
@@ -95,38 +107,44 @@
     font-size:18px;
 }
 
+/* Texto secundário (cargo ou e-mail) */
 .user-info small{
     display:block;
     color:#94A3B8;
 }
 
+
 /*==================================================
-SIDEBAR
+SIDEBAR (Menu Lateral)
 ==================================================*/
 
+/* Menu lateral oculto inicialmente */
 .sidebar{
     position:fixed;
-    top:70px;
-    left:-260px;
+    top:70px;                       /* Abaixo do cabeçalho */
+    left:-260px;                    /* Escondido fora da tela */
     width:260px;
-    height:calc(100vh - 70px);
+    height:calc(100vh - 70px);      /* Altura total menos o header */
     background:#111827;
     border-right:1px solid #334155;
-    transition:left .30s ease;
-    overflow-y:auto;
+    transition:left .30s ease;      /* Animação ao abrir */
+    overflow-y:auto;                /* Scroll se necessário */
     z-index:999;
 }
 
+/* Menu aberto */
 .sidebar.active{
     left:0;
 }
 
+/* Container dos links */
 .sidebar-menu{
     display:flex;
     flex-direction:column;
     padding:20px;
 }
 
+/* Links do menu */
 .sidebar-menu a{
     display:block;
     padding:15px 18px;
@@ -136,34 +154,45 @@ SIDEBAR
     transition:.25s;
 }
 
+/* Hover do menu */
 .sidebar-menu a:hover{
     background:#1E293B;
     color:#FFFFFF;
 }
 
+/* Item selecionado */
 .sidebar-menu a.active{
     background:#0EA5E9;
     color:#FFFFFF;
 }
 
+/* Linha divisória */
 .sidebar hr{
     margin:20px 0;
     border:none;
     border-top:1px solid #334155;
 }
 
+
+/*==================================================
+CONTEÚDO PRINCIPAL
+==================================================*/
+
+/* Área principal da página */
 .content{
-    margin-top:70px;
+    margin-top:70px;                /* Compensa o cabeçalho */
     margin-left:0;
     padding:35px;
     transition:margin-left .30s ease;
     min-height:calc(100vh - 70px);
 }
 
+/* Quando o menu estiver aberto */
 .content.menu-open{
     margin-left:260px;
 }
 
+/* Cabeçalho da Dashboard */
 .dashboard-header{
     display:flex;
     justify-content:space-between;
@@ -171,10 +200,12 @@ SIDEBAR
     margin-bottom:30px;
 }
 
+/* Remove margem padrão */
 .dashboard-header h1{
     margin:0;
 }
 
+/* Painel/Card */
 .panel{
     background:#111827;
     border-radius:15px;
@@ -182,38 +213,54 @@ SIDEBAR
     box-shadow:0 0 20px rgba(0,0,0,.25);
 }
 
+
+/*==================================================
+TABELAS
+==================================================*/
+
+/* Configuração geral */
 table{
     width:100%;
     border-collapse:collapse;
 }
 
+/* Cabeçalho */
 th{
     background:#1E293B;
     color:#FFF;
     padding:15px;
 }
 
+/* Células */
 td{
     padding:15px;
     border-bottom:1px solid #334155;
 }
 
+/* Linha destacada ao passar o mouse */
 tbody tr:hover{
     background:#1F2937;
 }
 
 
+/*==================================================
+FORMULÁRIOS
+==================================================*/
+
+/* Grupo de campos */
 .form-group{
     display:flex;
     flex-direction:column;
 }
 
+/* Texto do campo */
 .form-group label{
     margin-bottom:8px;
     color:#CBD5E1;
     font-weight:600;
 }
 
+/* Campos de entrada */
 .form-group input,
 .form-group select,
 .form-group textarea{
@@ -224,6 +271,7 @@ tbody tr:hover{
     color:#FFF;
 }
 
+/* Campo selecionado */
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus{
@@ -231,33 +279,26 @@ tbody tr:hover{
     outline:none;
 }
 
+/* Layout automático dos formulários */
 .form-grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
     gap:20px;
 }
 
-.form-group{
-    display:flex;
-    flex-direction:column;
-}
-
-.form-group label{
-    margin-bottom:8px;
-    font-weight:600;
-    color:#CBD5E1;
-}
-
+/* Garante largura total */
 .form-group input,
 .form-group select,
 .form-group textarea{
     width:100%;
 }
 
-/* ===========================
-   ABAS
-=========================== */
 
+/*==================================================
+ABAS (TABS)
+==================================================*/
+
+/* Barra das abas */
 .tabs{
     display:flex;
     gap:10px;
@@ -265,6 +306,7 @@ tbody tr:hover{
     border-bottom:1px solid #334155;
 }
 
+/* Botões das abas */
 .tab-button{
     background:none;
     border:none;
@@ -277,23 +319,33 @@ tbody tr:hover{
     transition:.3s;
 }
 
+/* Hover */
 .tab-button:hover{
     color:#06B6D4;
 }
 
+/* Aba ativa */
 .tab-button.active{
     color:#06B6D4;
     border-color:#06B6D4;
 }
 
+/* Conteúdo oculto */
 .tab-content{
     display:none;
 }
 
+/* Conteúdo visível */
 .tab-content.active{
     display:block;
 }
 
+
+/*==================================================
+ALERTAS
+==================================================*/
+
+/* Caixa de mensagem */
 .alert{
     padding:15px;
     border-radius:10px;
@@ -301,15 +353,18 @@ tbody tr:hover{
     font-weight:600;
 }
 
+/* Mensagem de sucesso */
 .alert-success{
     background:#16A34A;
     color:#FFF;
 }
 
-/* ===========================
-   BOTÕES
-=========================== */
 
+/*==================================================
+BOTÕES
+==================================================*/
+
+/* Estilo padrão */
 .btn{
     display:inline-flex;
     align-items:center;
@@ -325,24 +380,34 @@ tbody tr:hover{
     margin-right:6px;
 }
 
+/* Botão azul (Principal) */
 .btn-primary{
     background:#0EA5E9;
     color:#FFF;
 }
 
+/* Hover do botão principal */
 .btn-primary:hover{
     background:#0284C7;
 }
 
+/* Botão vermelho (Excluir) */
 .btn-danger{
     background:#DC2626;
     color:#FFF;
 }
 
+/* Hover do botão de exclusão */
 .btn-danger:hover{
     background:#B91C1C;
 }
 
+
+/*==================================================
+AÇÕES DA TABELA
+==================================================*/
+
+/* Impede quebra de linha nos botões */
 .acoes{
     white-space:nowrap;
 }
