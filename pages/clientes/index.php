@@ -103,7 +103,7 @@ switch($_GET['sucesso']){
                 <td>
 
                     <a href="editar.php?id=<?= $cliente['id'] ?>" 
-                    class="btn" btn-primary">
+                    class="btn btn-primary"
 
                         Editar
 
