@@ -1,31 +1,59 @@
+/* =====================================================
+   VARIÁVEIS GLOBAIS (CSS CUSTOM PROPERTIES)
+   =====================================================
+   As variáveis abaixo definem a identidade visual do sistema.
+   Alterando os valores aqui, todas as páginas que utilizam
+   essas variáveis serão atualizadas automaticamente.
+===================================================== */
+
 :root{
 
+    /* Cor de fundo principal da aplicação */
     --bg:#0F172A;
 
+    /* Cor utilizada na barra lateral (Sidebar/Menu) */
     --sidebar:#1E293B;
 
+    /* Cor padrão dos cartões (Cards) */
     --card:#1E293B;
 
+    /* Cor do cabeçalho superior (Header/Topbar) */
     --header:#111827;
 
+    /* Cor principal da identidade visual
+       Utilizada em botões, links e elementos ativos */
     --primary:#06B6D4;
 
+    /* Cor aplicada quando o mouse passa
+       sobre elementos que usam a cor principal */
     --primary-hover:#0891B2;
 
+    /* Cor de sucesso
+       Ex.: confirmações, status positivo e botões de salvar */
     --success:#22C55E;
 
+    /* Cor de alerta
+       Ex.: avisos e mensagens de atenção */
     --warning:#F59E0B;
 
+    /* Cor de erro ou ações perigosas
+       Ex.: excluir registros ou mensagens de erro */
     --danger:#EF4444;
 
+    /* Cor principal dos textos */
     --text:#F8FAFC;
 
+    /* Cor dos textos secundários
+       Utilizada para descrições e informações menos importantes */
     --text-secondary:#94A3B8;
 
+    /* Cor padrão das bordas dos componentes */
     --border:#334155;
 
+    /* Arredondamento padrão dos cantos
+       Utilizado em cards, botões, inputs e tabelas */
     --radius:14px;
 
+    /* Sombra padrão aplicada aos componentes */
     --shadow:0 8px 25px rgba(0,0,0,.30);
-
 }

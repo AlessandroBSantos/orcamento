@@ -7,14 +7,14 @@
         </a>
 
         <a href="<?= BASE_URL ?>/pages/clientes/index.php">
-            👥 Clientes
+            Clientes
         </a>
 
         <a href="/orcamento/pages/fornecedores.php">
             Fornecedores
         </a>
 
-        <a href="/orcamento/pages/produtos.php">
+       <a href="<?= BASE_URL ?>/pages/produtos/index.php">
             Produtos
         </a>
 
