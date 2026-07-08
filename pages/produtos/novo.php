@@ -156,7 +156,6 @@ require_once '../../includes/layout_inicio.php';
                 </div>
 
             </div>
-
         </div>
 
     </div>

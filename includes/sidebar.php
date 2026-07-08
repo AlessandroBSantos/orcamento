@@ -1,3 +1,6 @@
+<?php
+echo "<!-- SIDEBAR CARREGADA -->";
+?>
 <aside id="sidebar" class="sidebar">
 
     <nav class="sidebar-menu">
