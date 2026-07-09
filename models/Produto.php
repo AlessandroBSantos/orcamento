@@ -114,4 +114,66 @@ public function listarCategorias()
     return $this->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
 }
+
+/**
+ * Lista as marcas
+ */
+public function listarMarcas()
+{
+
+    $sql = "
+        SELECT
+            id,
+            nome
+        FROM marcas
+        WHERE status='Ativo'
+        ORDER BY nome
+    ";
+
+    return $this->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+
+}
+
+/**
+ * Lista as unidades de medida
+ */
+public function listarUnidades()
+{
+
+    $sql = "
+        SELECT
+            id,
+            sigla,
+            descricao
+        FROM unidades_medida
+        WHERE status='Ativo'
+        ORDER BY descricao
+    ";
+
+    return $this->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+
+}
+
+/**
+ * Lista os fornecedores
+ */
+public function listarFornecedores()
+{
+
+    $sql = "
+        SELECT
+            id,
+            nome_fantasia
+        FROM fornecedores
+        WHERE status='Ativo'
+        ORDER BY nome_fantasia
+    ";
+
+    return $this->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+
+}
+
+
+
+
 }
