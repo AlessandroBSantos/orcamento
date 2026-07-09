@@ -28,4 +28,38 @@ class ProdutoController extends BaseController
         return $this->produto->salvar($dados);
     }
 
+    /**
+ * Lista categorias
+ */
+public function listarCategorias()
+{
+    return $this->produto->listarCategorias();
+}
+
+/**
+ * Lista marcas
+ */
+public function listarMarcas()
+{
+    return $this->produto->listarMarcas();
+}
+
+/**
+ * Lista unidades de medida
+ */
+public function listarUnidades()
+{
+    return $this->produto->listarUnidades();
+}
+
+/**
+ * Lista fornecedores
+ */
+public function listarFornecedores()
+{
+    return $this->produto->listarFornecedores();
+}
+
+
+
 }
