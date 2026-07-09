@@ -461,31 +461,32 @@ require_once '../../includes/layout_inicio.php';
 
 </div>
 
-    <!-- ==========================================
-         OBSERVAÇÕES
-    =========================================== -->
+<!-- ==========================================
+     OBSERVAÇÕES
+=========================================== -->
 
-    <div
-        class="tab-content"
-        id="observacoes">
+<div
+    class="tab-content"
+    id="observacoes">
 
-        <div class="panel">
+    <div class="panel">
 
-            <h2>Observações</h2>
+        <h2>Observações</h2>
 
-            <div class="form-group">
+        <div class="form-group">
 
-                <label>Observações</label>
+            <label>Observações Internas</label>
 
-                <textarea
-                    name="observacoes"
-                    rows="6"></textarea>
-
-            </div>
+            <textarea
+                name="observacoes"
+                rows="8"
+                placeholder="Digite informações importantes sobre o produto..."></textarea>
 
         </div>
 
     </div>
+
+</div>
 
     <br>
 
