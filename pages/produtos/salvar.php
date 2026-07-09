@@ -31,7 +31,9 @@ $dados = [
     'ncm'                => trim($_POST['ncm'] ?? ''),
     'cfop'               => trim($_POST['cfop'] ?? ''),
     'cest'               => trim($_POST['cest'] ?? ''),
-    'origem'             => trim($_POST['origem'] ?? ''),
+    'origem' => isset($_POST['origem']) && $_POST['origem'] !== ''
+    ? $_POST['origem']
+    : '0',
 
     'peso'               => !empty($_POST['peso']) ? (float) $_POST['peso'] : 0,
     'largura'            => !empty($_POST['largura']) ? (float) $_POST['largura'] : 0,
