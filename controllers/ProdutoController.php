@@ -9,21 +9,15 @@ class ProdutoController extends BaseController
 
     public function __construct()
     {
-        echo "Passo 1<br>";
-
-        $this->produto = new produto();
-
-        echo "Passo 2<br>";
+        $this->produto = new Produto();
     }
 
+    /**
+     * Lista todos os produtos
+     */
     public function index()
     {
-        echo "Passo 3<br>";
-
-        $dados = $this->produto->listar();
-
-        echo "Passo 4<br>";
-
-        return $dados;
+        return $this->produto->listar();
     }
+
 }
