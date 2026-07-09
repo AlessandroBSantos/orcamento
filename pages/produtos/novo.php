@@ -160,77 +160,306 @@ require_once '../../includes/layout_inicio.php';
 
     </div>
 
-    <!-- ==========================================
-         CLASSIFICAÇÃO
-    =========================================== -->
+<!-- ==========================================
+     CLASSIFICAÇÃO
+=========================================== -->
 
-    <div
-        class="tab-content"
-        id="classificacao">
+<div
+    class="tab-content"
+    id="classificacao">
 
-        <div class="panel">
+    <div class="panel">
 
-            <h2>Classificação</h2>
+        <h2>Classificação</h2>
 
-            <p>Em construção...</p>
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label>Categoria</label>
+
+                <input
+                    type="text"
+                    name="categoria_id">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Marca</label>
+
+                <input
+                    type="text"
+                    name="marca_id">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Unidade</label>
+
+                <input
+                    type="text"
+                    name="unidade_id">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Fornecedor</label>
+
+                <input
+                    type="text"
+                    name="fornecedor_id">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+     FISCAL
+=========================================== -->
+
+<div
+    class="tab-content"
+    id="fiscal">
+
+    <div class="panel">
+
+        <h2>Dados Fiscais</h2>
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label>NCM</label>
+
+                <input
+                    type="text"
+                    name="ncm"
+                    maxlength="8">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>CFOP</label>
+
+                <input
+                    type="text"
+                    name="cfop"
+                    maxlength="4">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>CEST</label>
+
+                <input
+                    type="text"
+                    name="cest">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Origem</label>
+
+                <select name="origem">
+
+                    <option value="">Selecione</option>
+
+                    <option value="0">0 - Nacional</option>
+
+                    <option value="1">1 - Estrangeira - Importação Direta</option>
+
+                    <option value="2">2 - Estrangeira - Mercado Interno</option>
+
+                    <option value="3">3 - Nacional com conteúdo de importação superior a 40%</option>
+
+                    <option value="4">4 - Nacional produzida conforme PPB</option>
+
+                    <option value="5">5 - Nacional com conteúdo inferior ou igual a 40%</option>
+
+                    <option value="6">6 - Estrangeira - Importação Direta sem similar nacional</option>
+
+                    <option value="7">7 - Estrangeira - Mercado Interno sem similar nacional</option>
+
+                    <option value="8">8 - Nacional com conteúdo de importação superior a 70%</option>
+
+                </select>
+
+            </div>
 
         </div>
 
     </div>
 
-    <!-- ==========================================
-         FISCAL
-    =========================================== -->
+</div>
 
-    <div
-        class="tab-content"
-        id="fiscal">
+<!-- ==========================================
+     COMERCIAL
+=========================================== -->
 
-        <div class="panel">
+<div
+    class="tab-content"
+    id="comercial">
 
-            <h2>Fiscal</h2>
+    <div class="panel">
 
-            <p>Em construção...</p>
+        <h2>Dados Comerciais</h2>
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label>Custo (R$)</label>
+
+                <input
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    id="custo"
+                    name="custo"
+                    value="0.00">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Percentual de Lucro (%)</label>
+
+                <input
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    id="percentual_lucro"
+                    name="percentual_lucro"
+                    value="0.00">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Preço de Venda (R$)</label>
+
+                <input
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    id="preco_venda"
+                    name="preco_venda"
+                    value="0.00">
+
+            </div>
 
         </div>
 
     </div>
 
-    <!-- ==========================================
-         COMERCIAL
-    =========================================== -->
+</div>
 
-    <div
-        class="tab-content"
-        id="comercial">
+<!-- ==========================================
+     ESTOQUE
+=========================================== -->
 
-        <div class="panel">
+<div
+    class="tab-content"
+    id="estoque">
 
-            <h2>Comercial</h2>
+    <div class="panel">
 
-            <p>Em construção...</p>
+        <h2>Controle de Estoque</h2>
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label>Localização</label>
+
+                <input
+                    type="text"
+                    name="localizacao"
+                    placeholder="Ex.: Prateleira A01">
+
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="form-group">
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    name="controla_estoque"
+                    value="1"
+                    checked>
+
+                Controlar Estoque
+
+            </label>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    name="vende"
+                    value="1"
+                    checked>
+
+                Produto disponível para Venda
+
+            </label>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    name="compra"
+                    value="1"
+                    checked>
+
+                Produto disponível para Compra
+
+            </label>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    name="ativo"
+                    value="1"
+                    checked>
+
+                Produto Ativo
+
+            </label>
 
         </div>
 
     </div>
 
-    <!-- ==========================================
-         ESTOQUE
-    =========================================== -->
-
-    <div
-        class="tab-content"
-        id="estoque">
-
-        <div class="panel">
-
-            <h2>Estoque</h2>
-
-            <p>Em construção...</p>
-
-        </div>
-
-    </div>
+</div>
 
     <!-- ==========================================
          OBSERVAÇÕES
