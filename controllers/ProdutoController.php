@@ -13,11 +13,19 @@ class ProdutoController extends BaseController
     }
 
     /**
-     * Lista todos os produtos
+     * Lista os produtos
      */
     public function index()
     {
         return $this->produto->listar();
+    }
+
+    /**
+     * Salva um novo produto
+     */
+    public function salvar(array $dados)
+    {
+        return $this->produto->salvar($dados);
     }
 
 }

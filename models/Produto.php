@@ -23,4 +23,78 @@ class Produto extends BaseModel
 
     return $this->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 }
+/**
+ * Salva um novo produto
+ */
+public function salvar(array $dados)
+{
+
+    $sql = "
+        INSERT INTO produtos (
+
+            codigo,
+            codigo_barras,
+            sku,
+            nome,
+            descricao,
+            categoria_id,
+            marca_id,
+            unidade_id,
+            fornecedor_id,
+            ncm,
+            cfop,
+            cest,
+            origem,
+            peso,
+            largura,
+            altura,
+            comprimento,
+            custo,
+            percentual_lucro,
+            preco_venda,
+            localizacao,
+            controla_estoque,
+            vende,
+            compra,
+            ativo,
+            observacoes
+
+        ) VALUES (
+
+            :codigo,
+            :codigo_barras,
+            :sku,
+            :nome,
+            :descricao,
+            :categoria_id,
+            :marca_id,
+            :unidade_id,
+            :fornecedor_id,
+            :ncm,
+            :cfop,
+            :cest,
+            :origem,
+            :peso,
+            :largura,
+            :altura,
+            :comprimento,
+            :custo,
+            :percentual_lucro,
+            :preco_venda,
+            :localizacao,
+            :controla_estoque,
+            :vende,
+            :compra,
+            :ativo,
+            :observacoes
+
+        )
+    ";
+
+    $stmt = $this->db->prepare($sql);
+
+    return $stmt->execute($dados);
+
+}
+
 }
