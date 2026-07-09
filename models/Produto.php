@@ -96,5 +96,22 @@ public function salvar(array $dados)
     return $stmt->execute($dados);
 
 }
+/**
+ * Lista categorias
+ */
+public function listarCategorias()
+{
 
+    $sql = "
+        SELECT
+            id,
+            nome
+        FROM categorias
+        WHERE status='Ativo'
+        ORDER BY nome
+    ";
+
+    return $this->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+
+}
 }
