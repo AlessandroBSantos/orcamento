@@ -104,21 +104,12 @@ require_once '../../includes/layout_inicio.php';
 
                 <div class="form-group">
 
-                    <label>Código</label>
+                    <label>Nome do Produto</label>
 
                     <input
                         type="text"
-                        name="codigo">
-
-                </div>
-
-                <div class="form-group">
-
-                    <label>Código de Barras</label>
-
-                    <input
-                        type="text"
-                        name="codigo_barras">
+                        name="nome"
+                        required>
 
                 </div>
 
@@ -134,12 +125,21 @@ require_once '../../includes/layout_inicio.php';
 
                 <div class="form-group">
 
-                    <label>Nome do Produto</label>
+                    <label>Código</label>
 
                     <input
                         type="text"
-                        name="nome"
-                        required>
+                        name="codigo">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Código de Barras</label>
+
+                    <input
+                        type="text"
+                        name="codigo_barras">
 
                 </div>
 
