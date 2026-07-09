@@ -91,9 +91,43 @@ public function salvar(array $dados)
         )
     ";
 
-    $stmt = $this->db->prepare($sql);
+$stmt = $this->db->prepare($sql);
 
-    return $stmt->execute($dados);
+$stmt->bindValue(':codigo', $dados['codigo']);
+$stmt->bindValue(':codigo_barras', $dados['codigo_barras']);
+$stmt->bindValue(':sku', $dados['sku']);
+$stmt->bindValue(':nome', $dados['nome']);
+$stmt->bindValue(':descricao', $dados['descricao']);
+
+$stmt->bindValue(':categoria_id', $dados['categoria_id'], PDO::PARAM_INT);
+$stmt->bindValue(':marca_id', $dados['marca_id'], $dados['marca_id'] === null ? PDO::PARAM_NULL : PDO::PARAM_INT);
+$stmt->bindValue(':unidade_id', $dados['unidade_id'], PDO::PARAM_INT);
+$stmt->bindValue(':fornecedor_id', $dados['fornecedor_id'], $dados['fornecedor_id'] === null ? PDO::PARAM_NULL : PDO::PARAM_INT);
+
+$stmt->bindValue(':ncm', $dados['ncm']);
+$stmt->bindValue(':cfop', $dados['cfop']);
+$stmt->bindValue(':cest', $dados['cest']);
+$stmt->bindValue(':origem', $dados['origem']);
+
+$stmt->bindValue(':peso', $dados['peso']);
+$stmt->bindValue(':largura', $dados['largura']);
+$stmt->bindValue(':altura', $dados['altura']);
+$stmt->bindValue(':comprimento', $dados['comprimento']);
+
+$stmt->bindValue(':custo', $dados['custo']);
+$stmt->bindValue(':percentual_lucro', $dados['percentual_lucro']);
+$stmt->bindValue(':preco_venda', $dados['preco_venda']);
+
+$stmt->bindValue(':localizacao', $dados['localizacao']);
+
+$stmt->bindValue(':controla_estoque', $dados['controla_estoque'], PDO::PARAM_INT);
+$stmt->bindValue(':vende', $dados['vende'], PDO::PARAM_INT);
+$stmt->bindValue(':compra', $dados['compra'], PDO::PARAM_INT);
+$stmt->bindValue(':ativo', $dados['ativo'], PDO::PARAM_INT);
+
+$stmt->bindValue(':observacoes', $dados['observacoes']);
+
+return $stmt->execute();
 
 }
 /**

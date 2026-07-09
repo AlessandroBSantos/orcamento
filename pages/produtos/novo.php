@@ -4,6 +4,18 @@ $titulo = "Novo Produto";
 
 require_once '../../includes/layout_inicio.php';
 
+require_once '../../controllers/ProdutoController.php';
+
+$controller = new ProdutoController();
+
+$categorias = $controller->listarCategorias();
+
+$marcas = $controller->listarMarcas();
+
+$unidades = $controller->listarUnidades();
+
+$fornecedores = $controller->listarFornecedores();
+
 ?>
 
 <div class="dashboard-header">
@@ -174,45 +186,104 @@ require_once '../../includes/layout_inicio.php';
 
         <div class="form-grid">
 
-            <div class="form-group">
+<div class="form-group">
 
-                <label>Categoria</label>
+    <label>Categoria</label>
 
-                <input
-                    type="text"
-                    name="categoria_id">
+    <select
+        name="categoria_id"
+        required>
 
-            </div>
+        <option value="">Selecione uma categoria</option>
 
-            <div class="form-group">
+        <?php foreach ($categorias as $categoria): ?>
 
-                <label>Marca</label>
+            <option value="<?= $categoria['id']; ?>">
 
-                <input
-                    type="text"
-                    name="marca_id">
+                <?= htmlspecialchars($categoria['nome']); ?>
 
-            </div>
+            </option>
 
-            <div class="form-group">
+        <?php endforeach; ?>
 
-                <label>Unidade</label>
+    </select>
 
-                <input
-                    type="text"
-                    name="unidade_id">
+</div>
 
-            </div>
+<div class="form-group">
 
-            <div class="form-group">
+    <label>Marca</label>
 
-                <label>Fornecedor</label>
+    <select
+        name="marca_id">
 
-                <input
-                    type="text"
-                    name="fornecedor_id">
+        <option value="">Selecione uma marca</option>
 
-            </div>
+        <?php foreach ($marcas as $marca): ?>
+
+            <option value="<?= $marca['id']; ?>">
+
+                <?= htmlspecialchars($marca['nome']); ?>
+
+            </option>
+
+        <?php endforeach; ?>
+
+    </select>
+
+</div>
+
+<div class="form-group">
+
+    <label>Unidade de Medida</label>
+
+    <select
+        name="unidade_id"
+        required>
+
+        <option value="">Selecione uma unidade</option>
+
+        <?php foreach ($unidades as $unidade): ?>
+
+            <option value="<?= $unidade['id']; ?>">
+
+                <?= htmlspecialchars($unidade['sigla']); ?>
+                -
+                <?= htmlspecialchars($unidade['descricao']); ?>
+
+            </option>
+
+        <?php endforeach; ?>
+
+    </select>
+
+</div>
+
+<div class="form-group">
+
+    <label>Unidade de Medida</label>
+
+    <select
+        name="unidade_id"
+        required>
+
+        <option value="">Selecione uma unidade</option>
+
+        <?php foreach ($unidades as $unidade): ?>
+
+            <option value="<?= $unidade['id']; ?>">
+
+                <?= htmlspecialchars($unidade['sigla']); ?>
+                -
+                <?= htmlspecialchars($unidade['descricao']); ?>
+
+            </option>
+
+        <?php endforeach; ?>
+
+    </select>
+
+</div>
 
         </div>
 
