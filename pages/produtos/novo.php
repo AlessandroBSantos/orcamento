@@ -312,58 +312,8 @@ $fornecedores = $controller->listarFornecedores();
                 <input
                     type="text"
                     name="ncm"
-                    maxlength="8">
-
-            </div>
-
-            <div class="form-group">
-
-                <label>CFOP</label>
-
-                <input
-                    type="text"
-                    name="cfop"
-                    maxlength="4">
-
-            </div>
-
-            <div class="form-group">
-
-                <label>CEST</label>
-
-                <input
-                    type="text"
-                    name="cest">
-
-            </div>
-
-            <div class="form-group">
-
-                <label>Origem</label>
-
-                <select name="origem">
-
-                    <option value="">Selecione</option>
-
-                    <option value="0">0 - Nacional</option>
-
-                    <option value="1">1 - Estrangeira - Importação Direta</option>
-
-                    <option value="2">2 - Estrangeira - Mercado Interno</option>
-
-                    <option value="3">3 - Nacional com conteúdo de importação superior a 40%</option>
-
-                    <option value="4">4 - Nacional produzida conforme PPB</option>
-
-                    <option value="5">5 - Nacional com conteúdo inferior ou igual a 40%</option>
-
-                    <option value="6">6 - Estrangeira - Importação Direta sem similar nacional</option>
-
-                    <option value="7">7 - Estrangeira - Mercado Interno sem similar nacional</option>
-
-                    <option value="8">8 - Nacional com conteúdo de importação superior a 70%</option>
-
-                </select>
+                    maxlength="20"
+                    placeholder="Ex.: 85176259">
 
             </div>
 
