@@ -502,6 +502,8 @@ require_once '../../includes/layout_inicio.php';
 
 <script src="../../assets/js/tabs.js"></script>
 
+<script src="../../assets/js/produtos.js"></script>
+
 <?php
 
 require_once '../../includes/layout_fim.php';
