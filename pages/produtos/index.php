@@ -5,7 +5,7 @@ $titulo = "Produtos";
 require_once '../../includes/layout_inicio.php';
 require_once '../../controllers/ProdutosController.php';
 
-$controller = new ClienteController();
+$controller = new ProdutoController();
 
 $clientes = $controller->index();
 
