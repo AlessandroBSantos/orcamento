@@ -17,30 +17,41 @@ CALCULA PREÇO DE VENDA
 
 function iniciarCalculoPreco() {
 
-    const custo = document.getElementById("custo");
-    const lucro = document.getElementById("percentual_lucro");
-    const venda = document.getElementById("preco_venda");
+    const campoCusto = document.getElementById("custo");
+    const campoLucro = document.getElementById("percentual_lucro");
+    const campoVenda = document.getElementById("preco_venda");
 
-    if (!custo || !lucro || !venda) {
+    // Se os campos não existirem, encerra a função
+    if (!campoCusto || !campoLucro || !campoVenda) {
         return;
     }
 
-    custo.addEventListener("input", calcularPrecoVenda);
-    lucro.addEventListener("input", calcularPrecoVenda);
+    // Calcula ao alterar o custo
+    campoCusto.addEventListener("input", function () {
+        calcularPrecoVenda(campoCusto, campoLucro, campoVenda);
+    });
+
+    // Calcula ao alterar o percentual de lucro
+    campoLucro.addEventListener("input", function () {
+        calcularPrecoVenda(campoCusto, campoLucro, campoVenda);
+    });
+
+    // Calcula uma vez ao carregar a página
+    calcularPrecoVenda(campoCusto, campoLucro, campoVenda);
 
 }
 
 /*====================================================
-CÁLCULO
+CÁLCULO DO PREÇO DE VENDA
 ====================================================*/
 
-function calcularPrecoVenda() {
+function calcularPrecoVenda(campoCusto, campoLucro, campoVenda) {
 
-    const custo = parseFloat(document.getElementById("custo").value) || 0;
-    const lucro = parseFloat(document.getElementById("percentual_lucro").value) || 0;
+    const custo = parseFloat(campoCusto.value) || 0;
+    const lucro = parseFloat(campoLucro.value) || 0;
 
-    const preco = custo + (custo * lucro / 100);
+    const precoVenda = custo + (custo * lucro / 100);
 
-    document.getElementById("preco_venda").value = preco.toFixed(2);
+    campoVenda.value = precoVenda.toFixed(2);
 
 }
