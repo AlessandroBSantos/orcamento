@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . '/BaseController.php';
-require_once __DIR__ . '/../models/Produto.php';
+require_once __DIR__ . '/../models/produto.php';
 
 class ProdutoController extends BaseController
 {
@@ -11,7 +11,7 @@ class ProdutoController extends BaseController
     {
         echo "Passo 1<br>";
 
-        $this->produto = new Produto();
+        $this->produto = new produto();
 
         echo "Passo 2<br>";
     }
