@@ -128,9 +128,11 @@ switch ($_GET['sucesso']) {
 
                 <td class="acoes">
 
-                    <a href="editar.php?id=<?= $produto['id'] ?>" class="btn btn-primary">
+                    <a
+                        href="editar.php?id=<?= $produto['id'] ?>"
+                        class="btn btn-primary">
 
-                        ✏ Editar
+                        Editar
 
                     </a>
 
@@ -139,7 +141,7 @@ switch ($_GET['sucesso']) {
                         class="btn btn-danger"
                         onclick="return confirm('Deseja realmente excluir este produto?')">
 
-                        🗑 Excluir
+                        Excluir
 
                     </a>
 
