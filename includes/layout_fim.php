@@ -10,9 +10,15 @@
 
 <script src="<?= BASE_URL ?>/assets/js/app.js?v=<?= filemtime(__DIR__ . '/../assets/js/app.js') ?>"></script>
 
-<script src="<?= BASE_URL ?>/assets/js/tabs.js?v=<?= filemtime(__DIR__ . '/../assets/js/tabs.js') ?>"></script>
+<!-- =====================================================
+     JavaScript específico da página
+====================================================== -->
 
-<script src="<?= BASE_URL ?>/assets/js/produtos.js?v=<?= filemtime(__DIR__ . '/../assets/js/produtos.js') ?>"></script>
+<?php foreach ($scripts as $script): ?>
+
+<script src="<?= BASE_URL ?>/assets/js/<?= htmlspecialchars($script) ?>?v=<?= filemtime(__DIR__ . '/../assets/js/' . $script) ?>"></script>
+
+<?php endforeach; ?>
 
 </body>
 
