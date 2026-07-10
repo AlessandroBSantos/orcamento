@@ -2,6 +2,16 @@
 
 $titulo = "Produtos";
 
+/*
+|--------------------------------------------------------------------------
+| JavaScripts desta página
+|--------------------------------------------------------------------------
+*/
+
+$scripts = [
+    // Nenhum JavaScript específico por enquanto
+];
+
 require_once '../../includes/layout_inicio.php';
 require_once '../../controllers/ProdutoController.php';
 
