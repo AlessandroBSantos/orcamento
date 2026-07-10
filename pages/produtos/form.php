@@ -33,6 +33,15 @@
 
     </button>
 
+    <button
+        type="button"
+        class="tab-button"
+        data-tab="fiscal">
+
+        📄 Fiscal
+
+</button>
+
 </div>
 
 <!-- ==========================================
@@ -237,6 +246,109 @@
                         </option>
 
                     <?php endforeach; ?>
+
+                </select>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+     FISCAL
+=========================================== -->
+
+<div
+    class="tab-content"
+    id="fiscal">
+
+    <div class="panel">
+
+        <h2>Dados Fiscais</h2>
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label>NCM</label>
+
+                <input
+                    type="text"
+                    name="ncm"
+                    maxlength="8"
+                    value="<?= htmlspecialchars($produto['ncm'] ?? '') ?>">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>CFOP</label>
+
+                <input
+                    type="text"
+                    name="cfop"
+                    maxlength="4"
+                    value="<?= htmlspecialchars($produto['cfop'] ?? '') ?>">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>CEST</label>
+
+                <input
+                    type="text"
+                    name="cest"
+                    value="<?= htmlspecialchars($produto['cest'] ?? '') ?>">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Origem</label>
+
+                <select name="origem">
+
+                    <option value="">Selecione...</option>
+
+                    <option value="0" <?= (($produto['origem'] ?? '') == '0') ? 'selected' : '' ?>>
+                        0 - Nacional
+                    </option>
+
+                    <option value="1" <?= (($produto['origem'] ?? '') == '1') ? 'selected' : '' ?>>
+                        1 - Estrangeira - Importação Direta
+                    </option>
+
+                    <option value="2" <?= (($produto['origem'] ?? '') == '2') ? 'selected' : '' ?>>
+                        2 - Estrangeira - Mercado Interno
+                    </option>
+
+                    <option value="3" <?= (($produto['origem'] ?? '') == '3') ? 'selected' : '' ?>>
+                        3 - Nacional com conteúdo superior a 40%
+                    </option>
+
+                    <option value="4" <?= (($produto['origem'] ?? '') == '4') ? 'selected' : '' ?>>
+                        4 - Produzida conforme PPB
+                    </option>
+
+                    <option value="5" <?= (($produto['origem'] ?? '') == '5') ? 'selected' : '' ?>>
+                        5 - Conteúdo inferior ou igual a 40%
+                    </option>
+
+                    <option value="6" <?= (($produto['origem'] ?? '') == '6') ? 'selected' : '' ?>>
+                        6 - Importação direta sem similar nacional
+                    </option>
+
+                    <option value="7" <?= (($produto['origem'] ?? '') == '7') ? 'selected' : '' ?>>
+                        7 - Mercado interno sem similar nacional
+                    </option>
+
+                    <option value="8" <?= (($produto['origem'] ?? '') == '8') ? 'selected' : '' ?>>
+                        8 - Conteúdo de importação superior a 70%
+                    </option>
 
                 </select>
 
