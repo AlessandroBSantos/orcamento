@@ -7,7 +7,23 @@ if (!isset($titulo)) {
     $titulo = APP_NAME;
 }
 
+/*
+|--------------------------------------------------------------------------
+| Scripts específicos da página
+|--------------------------------------------------------------------------
+| Cada página poderá informar quais arquivos JavaScript serão carregados.
+| Exemplo:
+|
+| $scripts = [
+|     'tabs.js',
+|     'produtos.js'
+| ];
+|
+*/
 
+if (!isset($scripts)) {
+    $scripts = [];
+}
 
 ?>
 <!DOCTYPE html>
