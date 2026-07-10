@@ -24,6 +24,15 @@
 
     </button>
 
+    <button
+        type="button"
+        class="tab-button"
+        data-tab="classificacao">
+
+        🏷️ Classificação
+
+    </button>
+
 </div>
 
 <!-- ==========================================
@@ -94,6 +103,142 @@
                 <textarea
                     name="descricao"
                     rows="5"><?= htmlspecialchars($produto['descricao'] ?? '') ?></textarea>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+     CLASSIFICAÇÃO
+=========================================== -->
+
+<div
+    class="tab-content"
+    id="classificacao">
+
+    <div class="panel">
+
+        <h2>Classificação</h2>
+
+        <div class="form-grid">
+
+            <!-- Categoria -->
+
+            <div class="form-group">
+
+                <label>Categoria</label>
+
+                <select
+                    name="categoria_id"
+                    required>
+
+                    <option value="">Selecione...</option>
+
+                    <?php foreach ($categorias as $categoria): ?>
+
+                        <option
+                            value="<?= $categoria['id'] ?>"
+
+                            <?= (($produto['categoria_id'] ?? '') == $categoria['id']) ? 'selected' : '' ?>>
+
+                            <?= htmlspecialchars($categoria['nome']) ?>
+
+                        </option>
+
+                    <?php endforeach; ?>
+
+                </select>
+
+            </div>
+
+            <!-- Marca -->
+
+            <div class="form-group">
+
+                <label>Marca</label>
+
+                <select
+                    name="marca_id">
+
+                    <option value="">Selecione...</option>
+
+                    <?php foreach ($marcas as $marca): ?>
+
+                        <option
+                            value="<?= $marca['id'] ?>"
+
+                            <?= (($produto['marca_id'] ?? '') == $marca['id']) ? 'selected' : '' ?>>
+
+                            <?= htmlspecialchars($marca['nome']) ?>
+
+                        </option>
+
+                    <?php endforeach; ?>
+
+                </select>
+
+            </div>
+
+            <!-- Unidade -->
+
+            <div class="form-group">
+
+                <label>Unidade</label>
+
+                <select
+                    name="unidade_id"
+                    required>
+
+                    <option value="">Selecione...</option>
+
+                    <?php foreach ($unidades as $unidade): ?>
+
+                        <option
+                            value="<?= $unidade['id'] ?>"
+
+                            <?= (($produto['unidade_id'] ?? '') == $unidade['id']) ? 'selected' : '' ?>>
+
+                            <?= htmlspecialchars($unidade['sigla']) ?>
+                            -
+                            <?= htmlspecialchars($unidade['descricao']) ?>
+
+                        </option>
+
+                    <?php endforeach; ?>
+
+                </select>
+
+            </div>
+
+            <!-- Fornecedor -->
+
+            <div class="form-group">
+
+                <label>Fornecedor</label>
+
+                <select
+                    name="fornecedor_id">
+
+                    <option value="">Selecione...</option>
+
+                    <?php foreach ($fornecedores as $fornecedor): ?>
+
+                        <option
+                            value="<?= $fornecedor['id'] ?>"
+
+                            <?= (($produto['fornecedor_id'] ?? '') == $fornecedor['id']) ? 'selected' : '' ?>>
+
+                            <?= htmlspecialchars($fornecedor['nome_fantasia']) ?>
+
+                        </option>
+
+                    <?php endforeach; ?>
+
+                </select>
 
             </div>
 
