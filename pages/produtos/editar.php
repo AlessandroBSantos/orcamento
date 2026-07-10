@@ -18,4 +18,19 @@ require_once '../../controllers/ProdutoController.php';
 
 $controller = new ProdutoController();
 
+/*
+|--------------------------------------------------------------------------
+| Valida o ID do produto
+|--------------------------------------------------------------------------
+*/
+
+$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+
+if (!$id) {
+
+    header('Location: index.php');
+    exit;
+
+}
+
 ?>
