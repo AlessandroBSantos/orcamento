@@ -583,9 +583,7 @@ $fornecedores = $controller->listarFornecedores();
 
 </form>
 
-<script src="../../assets/js/tabs.js"></script>
 
-<script src="../../assets/js/produtos.js"></script>
 
 <?php
 
