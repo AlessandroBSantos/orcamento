@@ -79,17 +79,13 @@ $fornecedores = $controller->listarFornecedores();
 
 </div>
 
-<div class="panel">
+<?php
 
-    <h2>Produto encontrado com sucesso</h2>
+$acao = "atualizar.php";
 
-    <p><strong>ID:</strong> <?= $produto['id'] ?></p>
+require_once "form.php";
 
-    <p><strong>Nome:</strong> <?= htmlspecialchars($produto['nome']) ?></p>
-
-    <p><strong>Código:</strong> <?= htmlspecialchars($produto['codigo']) ?></p>
-
-</div>
+?>
 
 <?php
 
