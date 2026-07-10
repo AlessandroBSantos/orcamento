@@ -60,6 +60,12 @@ public function listarFornecedores()
     return $this->produto->listarFornecedores();
 }
 
-
+    /**
+     * Busca um produto pelo ID
+     */
+    public function buscarPorId(int $id)
+    {
+        return $this->produto->buscarPorId($id);
+    }
 
 }

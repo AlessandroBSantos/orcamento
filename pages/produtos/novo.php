@@ -4,7 +4,7 @@ $titulo = "Novo Produto";
 
 /*
 |--------------------------------------------------------------------------
-| JavaScripts desta página
+| JavaScripts da página
 |--------------------------------------------------------------------------
 */
 
@@ -13,20 +13,31 @@ $scripts = [
     'produtos.js'
 ];
 
-
 require_once '../../includes/layout_inicio.php';
-
 require_once '../../controllers/ProdutoController.php';
 
 $controller = new ProdutoController();
 
+/*
+|--------------------------------------------------------------------------
+| Listas dos selects
+|--------------------------------------------------------------------------
+*/
+
 $categorias = $controller->listarCategorias();
-
 $marcas = $controller->listarMarcas();
-
 $unidades = $controller->listarUnidades();
-
 $fornecedores = $controller->listarFornecedores();
+
+/*
+|--------------------------------------------------------------------------
+| Dados do formulário
+|--------------------------------------------------------------------------
+*/
+
+$acao = "salvar.php";
+
+$produto = [];
 
 ?>
 
@@ -48,7 +59,7 @@ $fornecedores = $controller->listarFornecedores();
 
 </div>
 
-<form action="salvar.php" method="POST">
+<?php require_once '_form.php'; ?>
 
     <!-- ==========================================
          ABAS
