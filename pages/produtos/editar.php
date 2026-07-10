@@ -33,4 +33,66 @@ if (!$id) {
 
 }
 
+/*
+|--------------------------------------------------------------------------
+| Busca o produto
+|--------------------------------------------------------------------------
+*/
+
+$produto = $controller->buscarPorId($id);
+
+if (!$produto) {
+
+    header('Location: index.php');
+    exit;
+
+}
+
+/*
+|--------------------------------------------------------------------------
+| Carrega listas
+|--------------------------------------------------------------------------
+*/
+
+$categorias   = $controller->listarCategorias();
+$marcas       = $controller->listarMarcas();
+$unidades     = $controller->listarUnidades();
+$fornecedores = $controller->listarFornecedores();
+
+?>
+
+<div class="dashboard-header">
+
+    <div>
+
+        <h1>Editar Produto</h1>
+
+        <p><?= htmlspecialchars($produto['nome']) ?></p>
+
+    </div>
+
+    <a href="index.php" class="btn btn-primary">
+
+        ← Voltar
+
+    </a>
+
+</div>
+
+<div class="panel">
+
+    <h2>Produto encontrado com sucesso</h2>
+
+    <p><strong>ID:</strong> <?= $produto['id'] ?></p>
+
+    <p><strong>Nome:</strong> <?= htmlspecialchars($produto['nome']) ?></p>
+
+    <p><strong>Código:</strong> <?= htmlspecialchars($produto['codigo']) ?></p>
+
+</div>
+
+<?php
+
+require_once '../../includes/layout_fim.php';
+
 ?>
