@@ -230,5 +230,96 @@ public function buscarPorId(int $id)
 
 }
 
+/**
+ * Atualiza um produto
+ */
+public function atualizar(array $dados)
+{
+
+    $sql = "
+
+        UPDATE produtos SET
+
+            codigo               = :codigo,
+            codigo_barras        = :codigo_barras,
+            sku                  = :sku,
+            nome                 = :nome,
+            descricao            = :descricao,
+
+            categoria_id         = :categoria_id,
+            marca_id             = :marca_id,
+            unidade_id           = :unidade_id,
+            fornecedor_id        = :fornecedor_id,
+
+            ncm                  = :ncm,
+            cfop                 = :cfop,
+            cest                 = :cest,
+            origem               = :origem,
+
+            peso                 = :peso,
+            largura              = :largura,
+            altura               = :altura,
+            comprimento          = :comprimento,
+
+            custo                = :custo,
+            percentual_lucro     = :percentual_lucro,
+            preco_venda          = :preco_venda,
+
+            localizacao          = :localizacao,
+
+            controla_estoque     = :controla_estoque,
+            vende                = :vende,
+            compra               = :compra,
+            ativo                = :ativo,
+
+            observacoes          = :observacoes
+
+        WHERE id = :id
+
+    ";
+
+    $stmt = $this->db->prepare($sql);
+
+    return $stmt->execute([
+
+        ':id'                 => $dados['id'],
+
+        ':codigo'             => $dados['codigo'],
+        ':codigo_barras'      => $dados['codigo_barras'],
+        ':sku'                => $dados['sku'],
+        ':nome'               => $dados['nome'],
+        ':descricao'          => $dados['descricao'],
+
+        ':categoria_id'       => $dados['categoria_id'],
+        ':marca_id'           => $dados['marca_id'],
+        ':unidade_id'         => $dados['unidade_id'],
+        ':fornecedor_id'      => $dados['fornecedor_id'],
+
+        ':ncm'                => $dados['ncm'],
+        ':cfop'               => $dados['cfop'],
+        ':cest'               => $dados['cest'],
+        ':origem'             => $dados['origem'],
+
+        ':peso'               => $dados['peso'],
+        ':largura'            => $dados['largura'],
+        ':altura'             => $dados['altura'],
+        ':comprimento'        => $dados['comprimento'],
+
+        ':custo'              => $dados['custo'],
+        ':percentual_lucro'   => $dados['percentual_lucro'],
+        ':preco_venda'        => $dados['preco_venda'],
+
+        ':localizacao'        => $dados['localizacao'],
+
+        ':controla_estoque'   => $dados['controla_estoque'],
+        ':vende'              => $dados['vende'],
+        ':compra'             => $dados['compra'],
+        ':ativo'              => $dados['ativo'],
+
+        ':observacoes'        => $dados['observacoes']
+
+    ]);
+
+}
 
 }

@@ -59,6 +59,14 @@ $marcas       = $controller->listarMarcas();
 $unidades     = $controller->listarUnidades();
 $fornecedores = $controller->listarFornecedores();
 
+/*
+|--------------------------------------------------------------------------
+| Ação do formulário
+|--------------------------------------------------------------------------
+*/
+
+$acao = "atualizar.php";
+
 ?>
 
 <div class="dashboard-header">
@@ -67,11 +75,13 @@ $fornecedores = $controller->listarFornecedores();
 
         <h1>Editar Produto</h1>
 
-        <p><?= htmlspecialchars($produto['nome']) ?></p>
+        <p>Editando: <strong><?= htmlspecialchars($produto['nome']) ?></strong></p>
 
     </div>
 
-    <a href="index.php" class="btn btn-primary">
+    <a
+        href="index.php"
+        class="btn btn-primary">
 
         ← Voltar
 
@@ -79,13 +89,7 @@ $fornecedores = $controller->listarFornecedores();
 
 </div>
 
-<?php
-
-$acao = "atualizar.php";
-
-require_once "form.php";
-
-?>
+<?php require_once 'form.php'; ?>
 
 <?php
 

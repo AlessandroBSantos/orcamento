@@ -39,6 +39,8 @@ $acao = "salvar.php";
 
 $produto = [];
 
+require_once "form.php";
+
 ?>
 
 <div class="dashboard-header">

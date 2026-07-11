@@ -5,6 +5,7 @@ require_once __DIR__ . '/../models/Produto.php';
 
 class ProdutoController extends BaseController
 {
+
     private Produto $produto;
 
     public function __construct()
@@ -13,7 +14,7 @@ class ProdutoController extends BaseController
     }
 
     /**
-     * Lista os produtos
+     * Lista produtos
      */
     public function index()
     {
@@ -21,7 +22,7 @@ class ProdutoController extends BaseController
     }
 
     /**
-     * Salva um novo produto
+     * Salva um produto
      */
     public function salvar(array $dados)
     {
@@ -29,43 +30,51 @@ class ProdutoController extends BaseController
     }
 
     /**
- * Lista categorias
- */
-public function listarCategorias()
-{
-    return $this->produto->listarCategorias();
-}
-
-/**
- * Lista marcas
- */
-public function listarMarcas()
-{
-    return $this->produto->listarMarcas();
-}
-
-/**
- * Lista unidades de medida
- */
-public function listarUnidades()
-{
-    return $this->produto->listarUnidades();
-}
-
-/**
- * Lista fornecedores
- */
-public function listarFornecedores()
-{
-    return $this->produto->listarFornecedores();
-}
+     * Atualiza um produto
+     */
+    public function atualizar(array $dados)
+    {
+        return $this->produto->atualizar($dados);
+    }
 
     /**
-     * Busca um produto pelo ID
+     * Busca produto por ID
      */
     public function buscarPorId(int $id)
     {
         return $this->produto->buscarPorId($id);
+    }
+
+    /**
+     * Lista categorias
+     */
+    public function listarCategorias()
+    {
+        return $this->produto->listarCategorias();
+    }
+
+    /**
+     * Lista marcas
+     */
+    public function listarMarcas()
+    {
+        return $this->produto->listarMarcas();
+    }
+
+    /**
+     * Lista unidades
+     */
+    public function listarUnidades()
+    {
+        return $this->produto->listarUnidades();
+    }
+
+    /**
+     * Lista fornecedores
+     */
+    public function listarFornecedores()
+    {
+        return $this->produto->listarFornecedores();
     }
 
 }
