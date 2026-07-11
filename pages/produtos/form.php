@@ -40,6 +40,33 @@
 
         📄 Fiscal
 
+    </button>
+
+    <button
+    type="button"
+    class="tab-button"
+    data-tab="comercial">
+
+    💰 Comercial
+
+</button>
+
+<button
+    type="button"
+    class="tab-button"
+    data-tab="estoque">
+
+    📦 Estoque
+
+</button>
+
+<button
+    type="button"
+    class="tab-button"
+    data-tab="observacoes">
+
+    📝 Observações
+
 </button>
 
 </div>
@@ -359,6 +386,199 @@
     </div>
 
 </div>
+<!-- ==========================================
+     COMERCIAL
+=========================================== -->
+
+<div
+    class="tab-content"
+    id="comercial">
+
+    <div class="panel">
+
+        <h2>Dados Comerciais</h2>
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label>Custo (R$)</label>
+
+                <input
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    id="custo"
+                    name="custo"
+                    value="<?= htmlspecialchars($produto['custo'] ?? '0.00') ?>">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Percentual de Lucro (%)</label>
+
+                <input
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    id="percentual_lucro"
+                    name="percentual_lucro"
+                    value="<?= htmlspecialchars($produto['percentual_lucro'] ?? '0.00') ?>">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Preço de Venda (R$)</label>
+
+                <input
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    id="preco_venda"
+                    name="preco_venda"
+                    value="<?= htmlspecialchars($produto['preco_venda'] ?? '0.00') ?>">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ==========================================
+     ESTOQUE
+=========================================== -->
+
+<div
+    class="tab-content"
+    id="estoque">
+
+    <div class="panel">
+
+        <h2>Controle de Estoque</h2>
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label>Localização</label>
+
+                <input
+                    type="text"
+                    name="localizacao"
+                    placeholder="Ex.: Prateleira A01"
+                    value="<?= htmlspecialchars($produto['localizacao'] ?? '') ?>">
+
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="form-group">
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    name="controla_estoque"
+                    value="1"
+
+                    <?= !empty($produto['controla_estoque']) ? 'checked' : '' ?>>
+
+                Controlar Estoque
+
+            </label>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    name="vende"
+                    value="1"
+
+                    <?= !empty($produto['vende']) ? 'checked' : '' ?>>
+
+                Produto disponível para Venda
+
+            </label>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    name="compra"
+                    value="1"
+
+                    <?= !empty($produto['compra']) ? 'checked' : '' ?>>
+
+                Produto disponível para Compra
+
+            </label>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    name="ativo"
+                    value="1"
+
+                    <?= !empty($produto['ativo']) ? 'checked' : '' ?>>
+
+                Produto Ativo
+
+            </label>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ==========================================
+     OBSERVAÇÕES
+=========================================== -->
+
+<div
+    class="tab-content"
+    id="observacoes">
+
+    <div class="panel">
+
+        <h2>Observações</h2>
+
+        <div class="form-group">
+
+            <label>Observações Internas</label>
+
+            <textarea
+                name="observacoes"
+                rows="8"
+                placeholder="Digite informações importantes sobre o produto..."><?= htmlspecialchars($produto['observacoes'] ?? '') ?></textarea>
+
+        </div>
+
+    </div>
+
+</div>
+
 
 <br>
 
