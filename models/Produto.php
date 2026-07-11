@@ -322,4 +322,25 @@ public function atualizar(array $dados)
 
 }
 
+/**
+ * Exclui um produto
+ */
+public function excluir(int $id)
+{
+
+    $sql = "
+        DELETE FROM produtos
+        WHERE id = :id
+    ";
+
+    $stmt = $this->db->prepare($sql);
+
+    return $stmt->execute([
+
+        ':id' => $id
+
+    ]);
+
+}
+
 }

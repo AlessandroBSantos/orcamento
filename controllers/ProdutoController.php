@@ -77,4 +77,12 @@ class ProdutoController extends BaseController
         return $this->produto->listarFornecedores();
     }
 
+    /**
+    * Exclui um produto
+    */
+    public function excluir(int $id)
+    {
+        return $this->produto->excluir($id);
+    }
+
 }
