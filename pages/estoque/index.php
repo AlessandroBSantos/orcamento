@@ -1,135 +1,80 @@
-<?php
+<tbody>
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+<?php if (empty($estoque)): ?>
 
+    <tr>
+        <td colspan="10" class="text-center">
+            Nenhum produto encontrado no estoque.
+        </td>
+    </tr>
 
-$titulo = "Estoque";
+<?php else: ?>
 
-require_once '../../controllers/EstoqueController.php';
+    <?php foreach ($estoque as $item): ?>
 
-$controller = new EstoqueController();
-$estoque = $controller->index();
+        <?php
 
-require_once '../../includes/layout_inicio.php';
-?>
+        if ($item['quantidade_atual'] <= 0) {
 
-<div>
-    <div>
-        <h1>Estoque</h1>
-        <p>Controle de Estoque</p>
-</div>
+            $status = '<span class="badge bg-danger">Sem Estoque</span>';
 
-<div style="display:flex; gap:10px;">
-    <a href="entrada.php" class="btn btn-primary">
-        Entrada
-    </a>
-    <a href="saida.php" class="btn-warning">
-        Saída
-    </a>
-    <a href="movimentacos.php" class="btn btn-primary">
-        Movimentações
-    </a>
-</div>
+        } elseif ($item['quantidade_atual'] <= $item['estoque_minimo']) {
 
-<div class="card">
+            $status = '<span class="badge bg-warning text-dark">Estoque Baixo</span>';
 
-    <table class="table table-hover align-middle">
+        } elseif (
+            $item['estoque_maximo'] > 0 &&
+            $item['quantidade_atual'] > $item['estoque_maximo']
+        ) {
 
-        <thead>
-            <tr>
-                <th>Código</th>
-                <th>Produto</th>
-                <th class="text-center">Atual</th>
-                <th class="text-center">Reservado</th>
-                <th class="text-center">Disponível</th>
-                <th class="text-center">Mínimo</th>
-                <th class="text-center">Máximo</th>
-                <th>Localização</th>
-                <th>Status</th>
-                <th width="140">Ações</th>
-            </tr>
-        </thead>
+            $status = '<span class="badge bg-info">Acima do Máximo</span>';
 
-        <tbody>
+        } else {
 
-        <?php if(empty($estoque)): ?>
+            $status = '<span class="badge bg-success">Normal</span>';
 
-            <tr>
-                <td colspan="10" class="text-center">
-                    Nenhum produto encontrado no estoque.
-                </td>
-            </tr>
+        }
 
-        <?php else: ?>
+        ?>
 
-            <?php foreach($estoque as $item): ?>
+        <tr>
 
-                <?php
+            <td><?= htmlspecialchars($item['codigo']) ?></td>
 
-                    if($item['quantidade_atual'] <= 0){
+            <td><?= htmlspecialchars($item['nome']) ?></td>
 
-                        $status = '<span class="badge bg-danger">Sem Estoque</span>';
+            <td class="text-center"><?= number_format($item['quantidade_atual'], 3, ',', '.') ?></td>
 
-                    }elseif($item['quantidade_atual'] <= $item['estoque_minimo']){
+            <td class="text-center"><?= number_format($item['quantidade_reservada'], 3, ',', '.') ?></td>
 
-                        $status = '<span class="badge bg-warning text-dark">Estoque Baixo</span>';
+            <td class="text-center"><?= number_format($item['disponivel'], 3, ',', '.') ?></td>
 
-                    }elseif($item['quantidade_atual'] > $item['estoque_maximo']){
+            <td class="text-center"><?= number_format($item['estoque_minimo'], 3, ',', '.') ?></td>
 
-                        $status = '<span class="badge bg-info">Acima do Máximo</span>';
+            <td class="text-center"><?= number_format($item['estoque_maximo'], 3, ',', '.') ?></td>
 
-                    }else{
+            <td><?= htmlspecialchars($item['localizacao'] ?? '') ?></td>
 
-                        $status = '<span class="badge bg-success">Normal</span>';
+            <td><?= $status ?></td>
 
-                    }
+            <td>
 
-                ?>
+                <a href="entrada.php?id=<?= $item['produto_id'] ?>"
+                   class="btn btn-success btn-sm">
+                    Entrada
+                </a>
 
-                <tr>
+                <a href="saida.php?id=<?= $item['produto_id'] ?>"
+                   class="btn btn-danger btn-sm">
+                    Saída
+                </a>
 
-                    <td><?= htmlspecialchars($item['codigo']) ?></td>
+            </td>
 
-                    <td><?= htmlspecialchars($item['nome']) ?></td>
+        </tr>
 
-                    <td class="text-center"><?= $item['quantidade_atual'] ?></td>
+    <?php endforeach; ?>
 
-                    <td class="text-center"><?= $item['quantidade_reservada'] ?></td>
+<?php endif; ?>
 
-                    <td class="text-center"><?= $item['disponivel'] ?></td>
-
-                    <td class="text-center"><?= $item['estoque_minimo'] ?></td>
-
-                    <td class="text-center"><?= $item['estoque_maximo'] ?></td>
-
-                    <td><?= htmlspecialchars($item['localizacao']) ?></td>
-
-                    <td><?= $status ?></td>
-
-                    <td>
-
-                        <a href="entrada.php?id=<?= $item['produto_id'] ?>" class="btn btn-success btn-sm">
-                            Entrada
-                        </a>
-
-                        <a href="saida.php?id=<?= $item['produto_id'] ?>" class="btn btn-danger btn-sm">
-                            Saída
-                        </a>
-
-                    </td>
-
-                </tr>
-
-            <?php endforeach; ?>
-
-        <?php endif; ?>
-
-        </tbody>
-
-    </table>
-
-</div>
-
-<?php require_once '../../includes/layout_fim.php'; ?>
+</tbody>
