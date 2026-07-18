@@ -6,10 +6,13 @@ error_reporting(E_ALL);
 
 
 $titulo = "Estoque";
+
 require_once '../../controllers/EstoqueController.php';
+
 $controller = new EstoqueController();
 $estoque = $controller->index();
-require_once '../../includes/layout.php';
+
+require_once '../../includes/layout_inicio.php';
 ?>
 
 <div>
