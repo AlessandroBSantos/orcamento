@@ -28,5 +28,19 @@ public function buscarPorProduto(int $produtoId)
 {
     return $this->estoque->buscarPorProduto($produtoId);
 }
+/**
+ * Realiza uma entrada de estoque
+ */
+public function entrada(array $dados)
+{
+    return $this->estoque->entrada($dados);
+}
+/**
+ * Lista todas as movimentações
+ */
+public function listarMovimentacoes()
+{
+    return $this->estoque->listarMovimentacoes();
+}
 
 }

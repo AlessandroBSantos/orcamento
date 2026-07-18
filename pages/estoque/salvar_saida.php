@@ -29,7 +29,6 @@ $dados = [
 
     'observacoes'     => trim($_POST['observacoes'] ?? ''),
 
-    // depois iremos integrar com o login
     'usuario_id'      => $_SESSION['usuario_id'] ?? 1
 
 ];
@@ -46,9 +45,9 @@ try {
 
     $controller = new EstoqueController();
 
-    $controller->entrada($dados);
+    $controller->saida($dados);
 
-    header("Location: index.php?sucesso=entrada");
+    header("Location: index.php?sucesso=saida");
 
     exit;
 

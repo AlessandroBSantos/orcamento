@@ -73,4 +73,172 @@ public function buscarPorProduto(int $produtoId)
         'produto_id' => $produtoId
     ])->fetch(PDO::FETCH_ASSOC);
 }
+
+/**
+ * Realiza uma saída de estoque
+ */
+public function saida(array $dados)
+{
+    $this->pdo->beginTransaction();
+
+    try {
+
+        // Bloqueia o registro para atualização
+        $sql = "SELECT quantidade_atual
+                FROM estoque
+                WHERE produto_id = :produto_id
+                FOR UPDATE";
+
+        $stmt = $this->pdo->prepare($sql);
+
+        $stmt->execute([
+            'produto_id' => $dados['produto_id']
+        ]);
+
+        $estoque = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$estoque) {
+            throw new Exception("Produto não encontrado no estoque.");
+        }
+
+        $estoqueAnterior = (float)$estoque['quantidade_atual'];
+
+        if ($dados['quantidade'] > $estoqueAnterior) {
+            throw new Exception("Estoque insuficiente para realizar a saída.");
+        }
+
+        $estoqueAtual = $estoqueAnterior - $dados['quantidade'];
+
+        // Atualiza o estoque
+        $sql = "UPDATE estoque
+                SET quantidade_atual = :quantidade,
+                    ultima_movimentacao = NOW()
+                WHERE produto_id = :produto_id";
+
+        $stmt = $this->pdo->prepare($sql);
+
+        $stmt->execute([
+            'quantidade' => $estoqueAtual,
+            'produto_id' => $dados['produto_id']
+        ]);
+
+        // Registra a movimentação
+        $sql = "INSERT INTO movimentacoes_estoque (
+            produto_id,
+            usuario_id,
+            fornecedor_id,
+            tipo,
+            documento,
+            quantidade,
+            valor_unitario,
+            valor_total,
+            estoque_anterior,
+            estoque_atual,
+            lote,
+            numero_serie,
+            observacoes,
+            data_movimentacao
+        ) VALUES (
+            :produto_id,
+            :usuario_id,
+            :fornecedor_id,
+            'SAIDA',
+            :documento,
+            :quantidade,
+            :valor_unitario,
+            :valor_total,
+            :estoque_anterior,
+            :estoque_atual,
+            :lote,
+            :numero_serie,
+            :observacoes,
+            NOW()
+        )";
+
+        $stmt = $this->pdo->prepare($sql);
+
+        $stmt->execute([
+            'produto_id'        => $dados['produto_id'],
+            'usuario_id'        => $dados['usuario_id'],
+            'fornecedor_id'     => $dados['fornecedor_id'],
+            'documento'         => $dados['documento'],
+            'quantidade'        => $dados['quantidade'],
+            'valor_unitario'    => $dados['valor_unitario'],
+            'valor_total'       => $dados['valor_unitario'] * $dados['quantidade'],
+            'estoque_anterior'  => $estoqueAnterior,
+            'estoque_atual'     => $estoqueAtual,
+            'lote'              => $dados['lote'],
+            'numero_serie'      => $dados['numero_serie'],
+            'observacoes'       => $dados['observacoes']
+        ]);
+
+        $this->pdo->commit();
+
+        return true;
+
+    } catch (Exception $e) {
+
+        $this->pdo->rollBack();
+
+        throw $e;
+    }
+}
+/**
+ * Lista todas as movimentações de estoque
+ */
+public function listarMovimentacoes()
+{
+    $sql = "
+        SELECT
+
+            m.id,
+
+            m.data_movimentacao,
+
+            p.codigo,
+            p.nome,
+
+            u.nome AS usuario,
+
+            f.nome AS fornecedor,
+
+            m.tipo,
+
+            m.documento,
+
+            m.quantidade,
+
+            m.valor_unitario,
+
+            m.valor_total,
+
+            m.estoque_anterior,
+
+            m.estoque_atual,
+
+            m.lote,
+
+            m.numero_serie,
+
+            m.observacoes
+
+        FROM movimentacoes_estoque m
+
+        INNER JOIN produtos p
+            ON p.id = m.produto_id
+
+        LEFT JOIN usuarios u
+            ON u.id = m.usuario_id
+
+        LEFT JOIN fornecedores f
+            ON f.id = m.fornecedor_id
+
+        ORDER BY
+            m.data_movimentacao DESC,
+            m.id DESC
+    ";
+
+    return $this->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+}
+
 }
