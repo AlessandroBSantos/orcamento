@@ -1,14 +1,18 @@
 <?php
-require_once __DIR__ . '/BaseModel.php';
+
+require_once __DIR__ . '/BaseController.php';
 require_once __DIR__ . '/../models/Estoque.php';
 
-class EstoqueController extends BaseModel
+class EstoqueController extends BaseController
 {
+
     private Estoque $estoque;
+
     public function __construct()
     {
         $this->estoque = new Estoque();
     }
+
     /**
      * Lista o estoque
      */
@@ -16,4 +20,5 @@ class EstoqueController extends BaseModel
     {
         return $this->estoque->listar();
     }
+
 }
