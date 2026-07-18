@@ -1,6 +1,9 @@
 <?php 
 $titulo = "Estoque";
-requere_once '../../includes/layout.php';
+require_once '../../controllers/EstoqueController.php';
+$controller = new EstoqueController();
+$estoque = $controller->index();
+require_once '../../includes/layout.php';
 ?>
 
 <div>
@@ -21,9 +24,8 @@ requere_once '../../includes/layout.php';
     </a>
 </div>
 
-<div class="panel">
-    <h2>Estoque</h2>
-    <p>Em construção...</p>
-</div>
+<pre> 
+    <?php print_r($estoque); ?>
+</pre>
 
 <?php require_once '../../includes/layout_fim.php'; ?>
