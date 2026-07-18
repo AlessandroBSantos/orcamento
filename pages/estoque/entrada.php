@@ -15,13 +15,25 @@ if (!isset($_GET['id']) || empty($_GET['id'])) {
     die("Produto não informado.");
 }
 
+echo "<h3>Passo 1</h3>";
+
 $produto = $controller->buscarPorProduto((int)$_GET['id']);
+
+echo "<h3>Passo 2</h3>";
+
+echo "<pre>";
+print_r($produto);
+echo "</pre>";
 
 if (!$produto) {
     die("Produto não encontrado.");
 }
 
+echo "<h3>Passo 3</h3>";
+
 require_once '../../includes/layout_inicio.php';
+
+echo "<h3>Passo 4</h3>";
 
 ?>
 
