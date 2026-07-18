@@ -21,4 +21,12 @@ class EstoqueController extends BaseController
         return $this->estoque->listar();
     }
 
+    /**
+ * Busca um produto do estoque pelo ID do produto
+ */
+public function buscarPorProduto(int $produtoId)
+{
+    return $this->estoque->buscarPorProduto($produtoId);
+}
+
 }

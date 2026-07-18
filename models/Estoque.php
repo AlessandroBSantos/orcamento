@@ -52,5 +52,25 @@ class Estoque extends BaseModel
         return $this->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
     }
+/**
+ * Busca um produto no estoque pelo ID do produto
+ */
+public function buscarPorProduto(int $produtoId)
+{
+    $sql = "
+        SELECT
+            e.*,
+            p.codigo,
+            p.nome
+        FROM estoque e
+        INNER JOIN produtos p
+            ON p.id = e.produto_id
+        WHERE e.produto_id = :produto_id
+        LIMIT 1
+    ";
 
+    return $this->query($sql, [
+        'produto_id' => $produtoId
+    ])->fetch(PDO::FETCH_ASSOC);
+}
 }
