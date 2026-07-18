@@ -1,80 +1,238 @@
-<tbody>
+<?php
 
-<?php if (empty($estoque)): ?>
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-    <tr>
-        <td colspan="10" class="text-center">
-            Nenhum produto encontrado no estoque.
-        </td>
-    </tr>
+$titulo = "Estoque";
 
-<?php else: ?>
+require_once '../../controllers/EstoqueController.php';
 
-    <?php foreach ($estoque as $item): ?>
+$controller = new EstoqueController();
+$estoque = $controller->index();
 
-        <?php
+require_once '../../includes/layout_inicio.php';
 
-        if ($item['quantidade_atual'] <= 0) {
+?>
 
-            $status = '<span class="badge bg-danger">Sem Estoque</span>';
+<div class="container-fluid">
 
-        } elseif ($item['quantidade_atual'] <= $item['estoque_minimo']) {
+    <!-- Cabeçalho -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
 
-            $status = '<span class="badge bg-warning text-dark">Estoque Baixo</span>';
+        <div>
+            <h1 class="mb-0">Estoque</h1>
+            <small class="text-muted">
+                Controle de Estoque
+            </small>
+        </div>
 
-        } elseif (
-            $item['estoque_maximo'] > 0 &&
-            $item['quantidade_atual'] > $item['estoque_maximo']
-        ) {
+        <div>
 
-            $status = '<span class="badge bg-info">Acima do Máximo</span>';
+            <a href="entrada.php" class="btn btn-success">
+                <i class="fas fa-plus"></i>
+                Nova Entrada
+            </a>
 
-        } else {
+            <a href="saida.php" class="btn btn-danger">
+                <i class="fas fa-minus"></i>
+                Nova Saída
+            </a>
 
-            $status = '<span class="badge bg-success">Normal</span>';
+            <a href="movimentacoes.php" class="btn btn-primary">
+                <i class="fas fa-exchange-alt"></i>
+                Movimentações
+            </a>
 
-        }
+        </div>
 
-        ?>
+    </div>
 
-        <tr>
+    <div class="card shadow-sm">
 
-            <td><?= htmlspecialchars($item['codigo']) ?></td>
+        <div class="card-body">
 
-            <td><?= htmlspecialchars($item['nome']) ?></td>
+            <table class="table table-hover table-striped align-middle">
 
-            <td class="text-center"><?= number_format($item['quantidade_atual'], 3, ',', '.') ?></td>
+                <thead class="table-dark">
 
-            <td class="text-center"><?= number_format($item['quantidade_reservada'], 3, ',', '.') ?></td>
+                    <tr>
 
-            <td class="text-center"><?= number_format($item['disponivel'], 3, ',', '.') ?></td>
+                        <th>Código</th>
 
-            <td class="text-center"><?= number_format($item['estoque_minimo'], 3, ',', '.') ?></td>
+                        <th>Produto</th>
 
-            <td class="text-center"><?= number_format($item['estoque_maximo'], 3, ',', '.') ?></td>
+                        <th class="text-center">
+                            Atual
+                        </th>
 
-            <td><?= htmlspecialchars($item['localizacao'] ?? '') ?></td>
+                        <th class="text-center">
+                            Reservado
+                        </th>
 
-            <td><?= $status ?></td>
+                        <th class="text-center">
+                            Disponível
+                        </th>
 
-            <td>
+                        <th class="text-center">
+                            Mínimo
+                        </th>
 
-                <a href="entrada.php?id=<?= $item['produto_id'] ?>"
-                   class="btn btn-success btn-sm">
-                    Entrada
-                </a>
+                        <th class="text-center">
+                            Máximo
+                        </th>
 
-                <a href="saida.php?id=<?= $item['produto_id'] ?>"
-                   class="btn btn-danger btn-sm">
-                    Saída
-                </a>
+                        <th>
+                            Localização
+                        </th>
 
-            </td>
+                        <th class="text-center">
+                            Status
+                        </th>
 
-        </tr>
+                        <th width="180" class="text-center">
+                            Ações
+                        </th>
 
-    <?php endforeach; ?>
+                    </tr>
 
-<?php endif; ?>
+                </thead>
 
-</tbody>
+                <tbody>
+
+                <?php if (empty($estoque)): ?>
+
+                    <tr>
+
+                        <td colspan="10" class="text-center text-muted">
+
+                            Nenhum produto encontrado no estoque.
+
+                        </td>
+
+                    </tr>
+
+                <?php else: ?>
+
+                    <?php foreach ($estoque as $item): ?>
+
+                        <?php
+
+                        if ($item['quantidade_atual'] <= 0) {
+
+                            $status = '<span class="badge bg-danger">Sem Estoque</span>';
+
+                        } elseif ($item['quantidade_atual'] <= $item['estoque_minimo']) {
+
+                            $status = '<span class="badge bg-warning text-dark">Estoque Baixo</span>';
+
+                        } elseif (
+
+                            $item['estoque_maximo'] > 0 &&
+                            $item['quantidade_atual'] > $item['estoque_maximo']
+
+                        ) {
+
+                            $status = '<span class="badge bg-info">Acima do Máximo</span>';
+
+                        } else {
+
+                            $status = '<span class="badge bg-success">Normal</span>';
+
+                        }
+
+                        ?>
+
+                        <tr>
+
+                            <td>
+
+                                <?= htmlspecialchars($item['codigo']) ?>
+
+                            </td>
+
+                            <td>
+
+                                <?= htmlspecialchars($item['nome']) ?>
+
+                            </td>
+
+                            <td class="text-center">
+
+                                <?= number_format($item['quantidade_atual'],3,',','.') ?>
+
+                            </td>
+
+                            <td class="text-center">
+
+                                <?= number_format($item['quantidade_reservada'],3,',','.') ?>
+
+                            </td>
+
+                            <td class="text-center">
+
+                                <?= number_format($item['disponivel'],3,',','.') ?>
+
+                            </td>
+
+                            <td class="text-center">
+
+                                <?= number_format($item['estoque_minimo'],3,',','.') ?>
+
+                            </td>
+
+                            <td class="text-center">
+
+                                <?= number_format($item['estoque_maximo'],3,',','.') ?>
+
+                            </td>
+
+                            <td>
+
+                                <?= htmlspecialchars($item['localizacao'] ?? '') ?>
+
+                            </td>
+
+                            <td class="text-center">
+
+                                <?= $status ?>
+
+                            </td>
+
+                            <td class="text-center">
+
+                                <a
+                                    href="entrada.php?id=<?= $item['produto_id'] ?>"
+                                    class="btn btn-success btn-sm">
+
+                                    Entrada
+
+                                </a>
+
+                                <a
+                                    href="saida.php?id=<?= $item['produto_id'] ?>"
+                                    class="btn btn-danger btn-sm">
+
+                                    Saída
+
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                    <?php endforeach; ?>
+
+                <?php endif; ?>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<?php require_once '../../includes/layout_fim.php'; ?>
