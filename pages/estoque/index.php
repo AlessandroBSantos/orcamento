@@ -29,16 +29,6 @@ require_once '../../includes/layout_inicio.php';
 
         <div>
 
-            <a href="entrada.php" class="btn btn-success">
-                <i class="fas fa-plus"></i>
-                Nova Entrada
-            </a>
-
-            <a href="saida.php" class="btn btn-danger">
-                <i class="fas fa-minus"></i>
-                Nova Saída
-            </a>
-
             <a href="movimentacoes.php" class="btn btn-primary">
                 <i class="fas fa-exchange-alt"></i>
                 Movimentações
