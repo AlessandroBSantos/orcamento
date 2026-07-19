@@ -407,43 +407,56 @@ class Estoque extends BaseModel
     }
 
     /**
-     * Histórico das movimentações
-     */
-    public function listarMovimentacoes()
-    {
-        $sql = "
+ * Histórico das movimentações
+ */
+public function listarMovimentacoes()
+{
+    $sql = "
 
-            SELECT
+        SELECT
 
-                m.*,
+            m.id,
 
-                p.codigo,
-                p.nome,
+            m.tipo,
 
-                u.nome AS usuario,
+            m.documento,
 
-                f.nome AS fornecedor
+            m.quantidade,
 
-            FROM movimentacoes_estoque m
+            m.valor_unitario,
 
-            INNER JOIN produtos p
-                ON p.id = m.produto_id
+            m.valor_total,
 
-            LEFT JOIN usuarios u
-                ON u.id = m.usuario_id
+            m.estoque_anterior,
 
-            LEFT JOIN fornecedores f
-                ON f.id = m.fornecedor_id
+            m.estoque_atual,
 
-            ORDER BY
+            m.observacoes,
 
-                m.data_movimentacao DESC,
+            m.data_movimentacao,
 
-                m.id DESC
+            p.codigo,
 
-        ";
+            p.nome,
 
-        return $this->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-    }
+            u.nome AS usuario
+
+        FROM movimentacoes_estoque m
+
+        INNER JOIN produtos p
+            ON p.id = m.produto_id
+
+        LEFT JOIN usuarios u
+            ON u.id = m.usuario_id
+
+        ORDER BY
+
+            m.data_movimentacao DESC,
+            m.id DESC
+
+    ";
+
+    return $this->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+}
 
 }
