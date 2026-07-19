@@ -1,9 +1,4 @@
-
 <?php
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
 $titulo = "Entrada de Estoque";
 
@@ -15,31 +10,13 @@ if (!isset($_GET['id']) || empty($_GET['id'])) {
     die("Produto não informado.");
 }
 
-echo "<h3>Passo 1</h3>";
-
 $produto = $controller->buscarPorProduto((int)$_GET['id']);
-
-echo "<h3>Passo 2</h3>";
-
-echo "<pre>";
-print_r($produto);
-echo "</pre>";
 
 if (!$produto) {
     die("Produto não encontrado.");
 }
 
-echo "<h3>Passo 3</h3>";
-
-echo "<pre>";
-print_r($_SESSION);
-echo "</pre>";
-
-die();
-
 require_once '../../includes/layout_inicio.php';
-
-echo "<h3>Passo 4</h3>";
 
 ?>
 
@@ -47,9 +24,7 @@ echo "<h3>Passo 4</h3>";
 
     <div class="d-flex justify-content-between align-items-center mb-4">
 
-        <h2>
-            Entrada de Estoque
-        </h2>
+        <h2>Entrada de Estoque</h2>
 
         <a href="index.php" class="btn btn-secondary">
             Voltar
@@ -57,37 +32,52 @@ echo "<h3>Passo 4</h3>";
 
     </div>
 
-    <div class="card">
+    <div class="card shadow-sm">
 
         <div class="card-body">
 
             <div class="row">
 
                 <div class="col-md-2 mb-3">
-                    <label class="form-label">Código</label>
+
+                    <label class="form-label">
+                        Código
+                    </label>
+
                     <input
                         type="text"
                         class="form-control"
                         value="<?= htmlspecialchars($produto['codigo']) ?>"
                         readonly>
+
                 </div>
 
                 <div class="col-md-6 mb-3">
-                    <label class="form-label">Produto</label>
+
+                    <label class="form-label">
+                        Produto
+                    </label>
+
                     <input
                         type="text"
                         class="form-control"
                         value="<?= htmlspecialchars($produto['nome']) ?>"
                         readonly>
+
                 </div>
 
                 <div class="col-md-2 mb-3">
-                    <label class="form-label">Estoque Atual</label>
+
+                    <label class="form-label">
+                        Estoque Atual
+                    </label>
+
                     <input
                         type="text"
                         class="form-control"
-                        value="<?= $produto['quantidade_atual'] ?>"
+                        value="<?= number_format($produto['quantidade_atual'], 3, ',', '.') ?>"
                         readonly>
+
                 </div>
 
             </div>
@@ -112,7 +102,8 @@ echo "<h3>Passo 4</h3>";
                         <input
                             type="number"
                             name="quantidade"
-                            min="1"
+                            min="0.001"
+                            step="0.001"
                             class="form-control"
                             required>
 
@@ -126,8 +117,10 @@ echo "<h3>Passo 4</h3>";
 
                         <input
                             type="number"
-                            step="0.01"
                             name="valor_unitario"
+                            step="0.01"
+                            min="0"
+                            value="0.00"
                             class="form-control">
 
                     </div>
@@ -141,6 +134,55 @@ echo "<h3>Passo 4</h3>";
                         <input
                             type="text"
                             name="documento"
+                            class="form-control"
+                            placeholder="Ex.: NF-e 12345">
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label">
+                            Fornecedor
+                        </label>
+
+                        <select
+                            name="fornecedor_id"
+                            class="form-select">
+
+                            <option value="">
+                                Selecione...
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label">
+                            Lote
+                        </label>
+
+                        <input
+                            type="text"
+                            name="lote"
+                            class="form-control">
+
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label">
+                            Número de Série
+                        </label>
+
+                        <input
+                            type="text"
+                            name="numero_serie"
                             class="form-control">
 
                     </div>
@@ -155,26 +197,31 @@ echo "<h3>Passo 4</h3>";
 
                     <textarea
                         name="observacoes"
-                        class="form-control"
-                        rows="4"></textarea>
+                        rows="4"
+                        class="form-control"></textarea>
 
                 </div>
 
-                <button
-                    type="submit"
-                    class="btn btn-success">
+                <div class="d-flex gap-2">
 
-                    Salvar Entrada
+                    <button
+                        type="submit"
+                        class="btn btn-success">
 
-                </button>
+                        <i class="fas fa-save"></i>
+                        Salvar Entrada
 
-                <a
-                    href="index.php"
-                    class="btn btn-secondary">
+                    </button>
 
-                    Cancelar
+                    <a
+                        href="index.php"
+                        class="btn btn-secondary">
 
-                </a>
+                        Cancelar
+
+                    </a>
+
+                </div>
 
             </form>
 
@@ -184,8 +231,4 @@ echo "<h3>Passo 4</h3>";
 
 </div>
 
-<?php
-
-require_once '../../includes/layout_fim.php';
-
-?>
+<?php require_once '../../includes/layout_fim.php'; ?>
