@@ -31,6 +31,12 @@ if (!$produto) {
 
 echo "<h3>Passo 3</h3>";
 
+echo "<pre>";
+print_r($_SESSION);
+echo "</pre>";
+
+die();
+
 require_once '../../includes/layout_inicio.php';
 
 echo "<h3>Passo 4</h3>";
