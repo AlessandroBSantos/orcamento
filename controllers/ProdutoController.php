@@ -1,59 +1,13 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| LLA ERP
-|--------------------------------------------------------------------------
-| ProdutoController
-|--------------------------------------------------------------------------
-|
-| Controller responsável pelo gerenciamento dos
-| produtos cadastrados no sistema.
-|
-| Segue o padrão MVC (Model-View-Controller),
-| atuando como intermediário entre as Views
-| e o Model Produto.
-|
-| Responsabilidades:
-| - Listar produtos.
-| - Cadastrar novos produtos.
-| - Atualizar produtos.
-| - Buscar produtos por ID.
-| - Listar categorias.
-| - Listar marcas.
-| - Listar unidades de medida.
-| - Listar fornecedores.
-| - Excluir produtos.
-|--------------------------------------------------------------------------
-*/
-
-//
-// Carrega a classe base dos Controllers.
-//
 require_once __DIR__ . '/BaseController.php';
-
-//
-// Carrega o Model responsável pelos produtos.
-//
 require_once __DIR__ . '/../models/Produto.php';
 
 class ProdutoController extends BaseController
 {
 
-    //
-    // Instância do Model Produto.
-    //
     private Produto $produto;
 
-    /*
-    |--------------------------------------------------------------------------
-    | Construtor
-    |--------------------------------------------------------------------------
-    |
-    | Instancia automaticamente o Model Produto
-    | sempre que o Controller é criado.
-    |--------------------------------------------------------------------------
-    */
     public function __construct()
     {
         $this->produto = new Produto();
@@ -61,9 +15,6 @@ class ProdutoController extends BaseController
 
     /**
      * Lista produtos
-     *
-     * Retorna todos os produtos cadastrados
-     * no banco de dados.
      */
     public function index()
     {
@@ -72,10 +23,6 @@ class ProdutoController extends BaseController
 
     /**
      * Salva um produto
-     *
-     * Recebe os dados do formulário e
-     * encaminha para o Model realizar
-     * o cadastro do produto.
      */
     public function salvar(array $dados)
     {
@@ -84,9 +31,6 @@ class ProdutoController extends BaseController
 
     /**
      * Atualiza um produto
-     *
-     * Recebe os dados alterados e solicita
-     * ao Model a atualização do registro.
      */
     public function atualizar(array $dados)
     {
@@ -95,9 +39,6 @@ class ProdutoController extends BaseController
 
     /**
      * Busca produto por ID
-     *
-     * Localiza um produto específico
-     * através do seu identificador.
      */
     public function buscarPorId(int $id)
     {
@@ -106,9 +47,6 @@ class ProdutoController extends BaseController
 
     /**
      * Lista categorias
-     *
-     * Retorna todas as categorias
-     * cadastradas no sistema.
      */
     public function listarCategorias()
     {
@@ -117,9 +55,6 @@ class ProdutoController extends BaseController
 
     /**
      * Lista marcas
-     *
-     * Retorna todas as marcas
-     * cadastradas.
      */
     public function listarMarcas()
     {
@@ -128,9 +63,6 @@ class ProdutoController extends BaseController
 
     /**
      * Lista unidades
-     *
-     * Retorna todas as unidades
-     * de medida disponíveis.
      */
     public function listarUnidades()
     {
@@ -139,9 +71,6 @@ class ProdutoController extends BaseController
 
     /**
      * Lista fornecedores
-     *
-     * Retorna todos os fornecedores
-     * cadastrados no sistema.
      */
     public function listarFornecedores()
     {
@@ -149,11 +78,8 @@ class ProdutoController extends BaseController
     }
 
     /**
-     * Exclui um produto
-     *
-     * Remove um produto do banco de dados
-     * através do seu identificador (ID).
-     */
+    * Exclui um produto
+    */
     public function excluir(int $id)
     {
         return $this->produto->excluir($id);

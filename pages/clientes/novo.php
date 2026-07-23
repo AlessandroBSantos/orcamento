@@ -208,7 +208,10 @@ require_once '../../includes/layout_inicio.php';
 
             <h2>Observações</h2>
 
-            <textarea name="observacoes" rows="8" style="width:100%;"></textarea>
+            <textarea
+                name="observacoes"
+                rows="8"
+                style="width:100%;"></textarea>
 
         </div>
 
