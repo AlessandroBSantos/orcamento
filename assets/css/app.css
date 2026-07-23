@@ -483,3 +483,87 @@ AÇÕES DA TABELA
     }
 
 }
+
+/* =====================================================
+   AJUSTES - FORMULÁRIO DE ENTRADA DE ESTOQUE
+===================================================== */
+
+/* Faz cada coluna utilizar toda a largura disponível */
+.row > [class*="col-"]{
+    display:flex;
+    flex-direction:column;
+}
+
+/* Labels no padrão do sistema */
+.form-label{
+    display:block;
+    margin-bottom:8px;
+    color:#CBD5E1;
+    font-weight:600;
+}
+
+/* Corrige todos os campos Bootstrap */
+.form-control,
+.form-select{
+    width:100%;
+    height:46px;
+    padding:12px 14px;
+    border:1px solid #334155;
+    border-radius:10px;
+    background:#1E293B;
+    color:#FFFFFF;
+    box-sizing:border-box;
+}
+
+/* Área de texto */
+textarea.form-control{
+    height:auto;
+    min-height:120px;
+    resize:vertical;
+}
+
+/* Campo em foco */
+.form-control:focus,
+.form-select:focus{
+    outline:none;
+    border-color:#06B6D4;
+    box-shadow:0 0 0 2px rgba(6,182,212,.15);
+}
+
+/* Campos somente leitura */
+.form-control[readonly]{
+    background:#0F172A;
+    color:#CBD5E1;
+}
+
+/* Espaçamento entre as linhas */
+.row{
+    margin-bottom:20px;
+    align-items:flex-end;
+}
+
+/* Ajusta o card */
+.card{
+    background:#111827;
+    border-radius:15px;
+    padding:25px;
+    box-shadow:0 0 20px rgba(0,0,0,.25);
+    border:1px solid #334155;
+}
+
+.card-body{
+    padding:0;
+}
+
+/* Ajusta o container da página */
+.container-fluid{
+    max-width:1300px;
+    margin:auto;
+}
+
+/* Melhora a aparência da linha */
+hr{
+    border:none;
+    border-top:1px solid #334155;
+    margin:25px 0;
+}
