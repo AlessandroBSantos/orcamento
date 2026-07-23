@@ -44,7 +44,10 @@ require_once '../../includes/layout_inicio.php';
                         Código
                     </label>
 
-                    <input type="text" class="form-control" value="<?= htmlspecialchars($produto['codigo']) ?>"
+                    <input
+                        type="text"
+                        class="form-control"
+                        value="<?= htmlspecialchars($produto['codigo']) ?>"
                         readonly>
 
                 </div>
@@ -55,7 +58,11 @@ require_once '../../includes/layout_inicio.php';
                         Produto
                     </label>
 
-                    <input type="text" class="form-control" value="<?= htmlspecialchars($produto['nome']) ?>" readonly>
+                    <input
+                        type="text"
+                        class="form-control"
+                        value="<?= htmlspecialchars($produto['nome']) ?>"
+                        readonly>
 
                 </div>
 
@@ -65,8 +72,11 @@ require_once '../../includes/layout_inicio.php';
                         Estoque Atual
                     </label>
 
-                    <input type="text" class="form-control"
-                        value="<?= number_format($produto['quantidade_atual'], 3, ',', '.') ?>" readonly>
+                    <input
+                        type="text"
+                        class="form-control"
+                        value="<?= number_format($produto['quantidade_atual'], 3, ',', '.') ?>"
+                        readonly>
 
                 </div>
 
@@ -76,7 +86,10 @@ require_once '../../includes/layout_inicio.php';
 
             <form action="salvar_entrada.php" method="POST">
 
-                <input type="hidden" name="produto_id" value="<?= $produto['produto_id'] ?>">
+                <input
+                    type="hidden"
+                    name="produto_id"
+                    value="<?= $produto['produto_id'] ?>">
 
                 <div class="row">
 
@@ -86,7 +99,13 @@ require_once '../../includes/layout_inicio.php';
                             Quantidade
                         </label>
 
-                        <input type="number" name="quantidade" min="0.001" step="0.001" class="form-control" required>
+                        <input
+                            type="number"
+                            name="quantidade"
+                            min="0.001"
+                            step="0.001"
+                            class="form-control"
+                            required>
 
                     </div>
 
@@ -96,7 +115,12 @@ require_once '../../includes/layout_inicio.php';
                             Valor Unitário
                         </label>
 
-                        <input type="number" name="valor_unitario" step="0.01" min="0" value="0.00"
+                        <input
+                            type="number"
+                            name="valor_unitario"
+                            step="0.01"
+                            min="0"
+                            value="0.00"
                             class="form-control">
 
                     </div>
@@ -107,7 +131,11 @@ require_once '../../includes/layout_inicio.php';
                             Documento
                         </label>
 
-                        <input type="text" name="documento" class="form-control" placeholder="Ex.: NF-e 12345">
+                        <input
+                            type="text"
+                            name="documento"
+                            class="form-control"
+                            placeholder="Ex.: NF-e 12345">
 
                     </div>
 
@@ -121,7 +149,9 @@ require_once '../../includes/layout_inicio.php';
                             Fornecedor
                         </label>
 
-                        <select name="fornecedor_id" class="form-select">
+                        <select
+                            name="fornecedor_id"
+                            class="form-select">
 
                             <option value="">
                                 Selecione...
@@ -137,7 +167,10 @@ require_once '../../includes/layout_inicio.php';
                             Lote
                         </label>
 
-                        <input type="text" name="lote" class="form-control">
+                        <input
+                            type="text"
+                            name="lote"
+                            class="form-control">
 
                     </div>
 
@@ -147,7 +180,10 @@ require_once '../../includes/layout_inicio.php';
                             Número de Série
                         </label>
 
-                        <input type="text" name="numero_serie" class="form-control">
+                        <input
+                            type="text"
+                            name="numero_serie"
+                            class="form-control">
 
                     </div>
 
@@ -159,20 +195,27 @@ require_once '../../includes/layout_inicio.php';
                         Observações
                     </label>
 
-                    <textarea name="observacoes" rows="4" class="form-control"></textarea>
+                    <textarea
+                        name="observacoes"
+                        rows="4"
+                        class="form-control"></textarea>
 
                 </div>
 
                 <div class="d-flex gap-2">
 
-                    <button type="submit" class="btn btn-success">
+                    <button
+                        type="submit"
+                        class="btn btn-success">
 
                         <i class="fas fa-save"></i>
                         Salvar Entrada
 
                     </button>
 
-                    <a href="index.php" class="btn btn-secondary">
+                    <a
+                        href="index.php"
+                        class="btn btn-secondary">
 
                         Cancelar
 
