@@ -1,15 +1,65 @@
 <?php
 
+/*
+|--------------------------------------------------------------------------
+| LLA ERP
+|--------------------------------------------------------------------------
+| Listagem de Clientes
+|--------------------------------------------------------------------------
+|
+| Esta página é responsável por exibir todos os
+| clientes cadastrados no sistema.
+|
+| Funcionalidades:
+|
+| • Carrega o layout padrão.
+| • Obtém a lista de clientes através do ClienteController.
+| • Exibe mensagens de sucesso.
+| • Lista todos os clientes cadastrados.
+| • Disponibiliza ações de edição e exclusão.
+|--------------------------------------------------------------------------
+*/
+
+//
+// Define o título da página.
+//
 $titulo = "Clientes";
 
+//
+// Carrega o layout inicial
+// do sistema.
+//
 require_once '../../includes/layout_inicio.php';
+
+//
+// Carrega o Controller responsável
+// pelas operações de clientes.
+//
 require_once '../../controllers/ClienteController.php';
 
+//
+// Cria uma instância do
+// ClienteController.
+//
 $controller = new ClienteController();
 
+//
+// Recupera todos os clientes
+// cadastrados.
+//
 $clientes = $controller->index();
 
 ?>
+
+<!--
+|--------------------------------------------------------------------------
+| Cabeçalho da Página
+|--------------------------------------------------------------------------
+|
+| Exibe o título da tela e o botão
+| para cadastro de um novo cliente.
+|--------------------------------------------------------------------------
+-->
 
 <div class="dashboard-header">
 
@@ -28,6 +78,16 @@ $clientes = $controller->index();
     </a>
 
 </div>
+
+<!--
+|--------------------------------------------------------------------------
+| Mensagens de Sucesso
+|--------------------------------------------------------------------------
+|
+| Exibe uma mensagem conforme
+| a operação realizada anteriormente.
+|--------------------------------------------------------------------------
+-->
 
 <?php if(isset($_GET['sucesso'])): ?>
 
@@ -63,6 +123,16 @@ switch($_GET['sucesso']){
 
 <?php endif; ?>
 
+<!--
+|--------------------------------------------------------------------------
+| Tabela de Clientes
+|--------------------------------------------------------------------------
+|
+| Exibe todos os clientes retornados
+| pelo ClienteController.
+|--------------------------------------------------------------------------
+-->
+
 <div class="panel">
 
     <table>
@@ -71,11 +141,22 @@ switch($_GET['sucesso']){
 
             <tr>
 
+                <!-- Identificador -->
                 <th>ID</th>
+
+                <!-- Nome -->
                 <th>Nome</th>
+
+                <!-- Cidade -->
                 <th>Cidade</th>
+
+                <!-- Documento -->
                 <th>CPF/CNPJ</th>
+
+                <!-- Situação -->
                 <th>Status</th>
+
+                <!-- Botões -->
                 <th>Ações</th>
 
             </tr>
@@ -84,29 +165,56 @@ switch($_GET['sucesso']){
 
         <tbody>
 
+            <!--
+            |--------------------------------------------------------------------------
+            | Verifica se existem clientes cadastrados.
+            |--------------------------------------------------------------------------
+            -->
+
             <?php if(!empty($clientes)): ?>
+
+            <!-- Percorre toda a lista de clientes -->
 
             <?php foreach($clientes as $cliente): ?>
 
             <tr>
 
+                <!-- ID -->
                 <td><?= $cliente['id'] ?></td>
 
+                <!-- Nome -->
                 <td><?= htmlspecialchars($cliente['nome']) ?></td>
 
+                <!-- Cidade -->
                 <td><?= htmlspecialchars($cliente['cidade']) ?></td>
 
+                <!-- CPF ou CNPJ -->
                 <td><?= htmlspecialchars($cliente['cpf_cnpj']) ?></td>
 
+                <!-- Status -->
                 <td><?= htmlspecialchars($cliente['status']) ?></td>
 
+                <!--
+                |--------------------------------------------------------------------------
+                | Ações disponíveis
+                |--------------------------------------------------------------------------
+                |
+                | • Editar cadastro
+                | • Excluir cliente
+                |--------------------------------------------------------------------------
+                -->
+
                 <td>
+
+                    <!-- Botão Editar -->
 
                     <a href="editar.php?id=<?= $cliente['id'] ?>" class="btn btn-primary">
 
                         Editar
 
                     </a>
+
+                    <!-- Botão Excluir -->
 
                     <a href="excluir.php?id=<?= $cliente['id'] ?>" class="btn btn-danger"
                         onclick="return confirm('Deseja realmente excluir este cliente?');">
@@ -122,6 +230,12 @@ switch($_GET['sucesso']){
             <?php endforeach; ?>
 
             <?php else: ?>
+
+            <!--
+            |--------------------------------------------------------------------------
+            | Nenhum cliente encontrado.
+            |--------------------------------------------------------------------------
+            -->
 
             <tr>
 
@@ -143,6 +257,10 @@ switch($_GET['sucesso']){
 
 <?php
 
+//
+// Carrega o encerramento do layout,
+// incluindo footer e scripts globais.
+//
 require_once '../../includes/layout_fim.php';
 
 ?>

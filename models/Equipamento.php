@@ -1,5 +1,34 @@
 <?php
 
+/*
+|--------------------------------------------------------------------------
+| LLA ERP
+|--------------------------------------------------------------------------
+| Model Equipamento
+|--------------------------------------------------------------------------
+|
+| Esta classe é responsável pelo gerenciamento dos
+| equipamentos cadastrados no sistema.
+|
+| Segue o padrão MVC (Model-View-Controller),
+| sendo responsável exclusivamente pelo acesso
+| e manipulação dos dados da tabela "equipamentos".
+|
+| Funcionalidades:
+| - Listar equipamentos ativos.
+| - Buscar equipamento por ID.
+| - Cadastrar equipamentos.
+| - Atualizar equipamentos.
+| - Realizar exclusão lógica.
+| - Consultar o total de equipamentos ativos.
+|--------------------------------------------------------------------------
+*/
+
+//
+// Carrega a classe BaseModel,
+// responsável pela conexão com o banco
+// e pelos métodos comuns de consulta.
+//
 require_once __DIR__ . '/BaseModel.php';
 
 class Equipamento extends BaseModel
@@ -7,10 +36,19 @@ class Equipamento extends BaseModel
 
     /**
      * Lista todos os equipamentos
+     *
+     * Retorna todos os equipamentos
+     * ativos cadastrados no sistema,
+     * ordenados pela descrição.
      */
     public function listar()
     {
 
+        //
+        // Consulta SQL responsável por
+        // listar todos os equipamentos
+        // ativos do sistema.
+        //
         $sql = "
 
             SELECT *
@@ -23,16 +61,28 @@ class Equipamento extends BaseModel
 
         ";
 
+        //
+        // Executa a consulta e retorna
+        // todos os registros encontrados.
+        //
         return $this->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
     }
 
     /**
      * Busca equipamento pelo ID
+     *
+     * Recebe o identificador do equipamento
+     * e retorna todas as suas informações.
      */
     public function buscarPorId(int $id)
     {
 
+        //
+        // Consulta SQL responsável por
+        // localizar um equipamento
+        // através do seu ID.
+        //
         $sql = "
 
             SELECT *
@@ -45,6 +95,11 @@ class Equipamento extends BaseModel
 
         ";
 
+        //
+        // Executa a consulta utilizando
+        // o parâmetro informado e retorna
+        // apenas um registro.
+        //
         return $this->query($sql, [
 
             'id' => $id
@@ -56,9 +111,24 @@ class Equipamento extends BaseModel
     /**
      * Cadastra equipamento
      */
+        /**
+     * Cadastra equipamento
+     *
+     * Recebe um array contendo os dados do
+     * equipamento e realiza a gravação
+     * na tabela "equipamentos".
+     *
+     * O método utiliza Prepared Statements
+     * (PDO) para garantir maior segurança
+     * contra SQL Injection.
+     */
     public function cadastrar(array $dados)
     {
 
+        //
+        // Instrução SQL responsável por inserir
+        // um novo equipamento no banco de dados.
+        //
         $sql = "
 
             INSERT INTO equipamentos (
@@ -109,25 +179,64 @@ class Equipamento extends BaseModel
 
         ";
 
+        //
+        // Executa a instrução SQL associando
+        // cada parâmetro aos dados recebidos.
+        //
         return $this->query($sql, [
 
+            // Código interno do equipamento
             'codigo' => $dados['codigo'],
+
+            // Número do patrimônio
             'patrimonio' => $dados['patrimonio'],
+
+            // Descrição do equipamento
             'descricao' => $dados['descricao'],
+
+            // Categoria
             'categoria' => $dados['categoria'],
+
+            // Fabricante
             'fabricante' => $dados['fabricante'],
+
+            // Marca
             'marca' => $dados['marca'],
+
+            // Modelo
             'modelo' => $dados['modelo'],
+
+            // Número de série
             'numero_serie' => $dados['numero_serie'],
+
+            // Número patrimonial
             'numero_patrimonio' => $dados['numero_patrimonio'],
+
+            // Localização física
             'localizacao' => $dados['localizacao'],
+
+            // Setor onde está instalado
             'setor' => $dados['setor'],
+
+            // Responsável pelo equipamento
             'responsavel' => $dados['responsavel'],
+
+            // Fornecedor relacionado
             'fornecedor_id' => $dados['fornecedor_id'],
+
+            // Data da compra
             'data_compra' => $dados['data_compra'],
+
+            // Data final da garantia
             'garantia_ate' => $dados['garantia_ate'],
+
+            // Valor de aquisição
             'valor_compra' => $dados['valor_compra'],
+
+            // Observações gerais
             'observacoes' => $dados['observacoes'],
+
+            // Situação do equipamento
             'status' => $dados['status']
 
         ]);
@@ -137,9 +246,25 @@ class Equipamento extends BaseModel
     /**
      * Atualiza equipamento
      */
+        /**
+     * Atualiza equipamento
+     *
+     * Recebe um array contendo os dados
+     * atualizados do equipamento e realiza
+     * a alteração do registro existente
+     * na tabela "equipamentos".
+     *
+     * O método utiliza Prepared Statements
+     * (PDO), garantindo maior segurança
+     * contra SQL Injection.
+     */
     public function atualizar(array $dados)
     {
 
+        //
+        // Instrução SQL responsável por atualizar
+        // os dados do equipamento.
+        //
         $sql = "
 
             UPDATE equipamentos
@@ -169,26 +294,67 @@ class Equipamento extends BaseModel
 
         ";
 
+        //
+        // Executa a atualização associando
+        // cada parâmetro aos dados recebidos.
+        //
         return $this->query($sql, [
 
+            // Identificador do equipamento
             'id' => $dados['id'],
+
+            // Código interno
             'codigo' => $dados['codigo'],
+
+            // Número do patrimônio
             'patrimonio' => $dados['patrimonio'],
+
+            // Descrição do equipamento
             'descricao' => $dados['descricao'],
+
+            // Categoria
             'categoria' => $dados['categoria'],
+
+            // Fabricante
             'fabricante' => $dados['fabricante'],
+
+            // Marca
             'marca' => $dados['marca'],
+
+            // Modelo
             'modelo' => $dados['modelo'],
+
+            // Número de série
             'numero_serie' => $dados['numero_serie'],
+
+            // Número patrimonial
             'numero_patrimonio' => $dados['numero_patrimonio'],
+
+            // Localização física
             'localizacao' => $dados['localizacao'],
+
+            // Setor responsável
             'setor' => $dados['setor'],
+
+            // Responsável pelo equipamento
             'responsavel' => $dados['responsavel'],
+
+            // Fornecedor vinculado
             'fornecedor_id' => $dados['fornecedor_id'],
+
+            // Data da compra
             'data_compra' => $dados['data_compra'],
+
+            // Data de término da garantia
             'garantia_ate' => $dados['garantia_ate'],
+
+            // Valor de aquisição
             'valor_compra' => $dados['valor_compra'],
+
+            // Observações adicionais
             'observacoes' => $dados['observacoes'],
+
+            // Situação atual do equipamento
             'status' => $dados['status']
 
         ]);
@@ -198,9 +364,26 @@ class Equipamento extends BaseModel
     /**
      * Exclusão lógica
      */
+        /**
+     * Exclusão lógica
+     *
+     * Não remove fisicamente o equipamento
+     * do banco de dados.
+     *
+     * Apenas altera o campo "ativo"
+     * para zero (0), tornando o registro
+     * invisível nas consultas do sistema.
+     *
+     * Essa abordagem preserva o histórico
+     * e mantém a integridade dos relacionamentos.
+     */
     public function excluir(int $id)
     {
 
+        //
+        // Instrução SQL responsável por realizar
+        // a exclusão lógica do equipamento.
+        //
         $sql = "
 
             UPDATE equipamentos
@@ -211,8 +394,13 @@ class Equipamento extends BaseModel
 
         ";
 
+        //
+        // Executa a atualização utilizando
+        // o ID informado.
+        //
         return $this->query($sql, [
 
+            // Identificador do equipamento.
             'id' => $id
 
         ]);
@@ -221,10 +409,18 @@ class Equipamento extends BaseModel
 
     /**
      * Total de equipamentos
+     *
+     * Retorna a quantidade total de
+     * equipamentos ativos cadastrados
+     * no sistema.
      */
     public function total()
     {
 
+        //
+        // Consulta SQL responsável por contar
+        // todos os equipamentos ativos.
+        //
         $sql = "
 
             SELECT COUNT(*) total
@@ -235,8 +431,34 @@ class Equipamento extends BaseModel
 
         ";
 
+        //
+        // Executa a consulta e retorna
+        // um único registro contendo
+        // o total de equipamentos.
+        //
         return $this->query($sql)->fetch(PDO::FETCH_ASSOC);
 
     }
 
 }
+
+/*
+|--------------------------------------------------------------------------
+| Fim da Classe Equipamento
+|--------------------------------------------------------------------------
+|
+| Este Model concentra todas as operações de acesso
+| à tabela "equipamentos", incluindo:
+|
+| • Listagem de equipamentos ativos
+| • Consulta por ID
+| • Cadastro de novos equipamentos
+| • Atualização de registros
+| • Exclusão lógica (ativo = 0)
+| • Consulta da quantidade total de equipamentos
+|
+| A classe herda BaseModel, reutilizando a conexão
+| PDO e os métodos comuns de acesso ao banco de
+| dados do LLA ERP.
+|--------------------------------------------------------------------------
+*/
