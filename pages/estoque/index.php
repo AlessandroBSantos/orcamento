@@ -191,7 +191,7 @@ require_once '../../includes/layout_inicio.php';
 
                         <td class="text-center">
 
-                            <a href="entrada.php?id=<?= $item['produto_id'] ?>" class="btn btn-success btn-sm">
+                            <a href="entrada.php?id=<?= $item['produto_id'] ?>" class="btn btn-secondary btn-sm">
 
                                 Entrada
 
