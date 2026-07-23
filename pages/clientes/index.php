@@ -33,7 +33,7 @@ $clientes = $controller->index();
 
 <div class="alert alert-success">
 
-<?php
+    <?php
 
 switch($_GET['sucesso']){
 
@@ -84,7 +84,7 @@ switch($_GET['sucesso']){
 
         <tbody>
 
-        <?php if(!empty($clientes)): ?>
+            <?php if(!empty($clientes)): ?>
 
             <?php foreach($clientes as $cliente): ?>
 
@@ -102,29 +102,26 @@ switch($_GET['sucesso']){
 
                 <td>
 
-                    <a href="editar.php?id=<?= $cliente['id'] ?>" 
-                    class="btn btn-primary">
+                    <a href="editar.php?id=<?= $cliente['id'] ?>" class="btn btn-primary">
 
                         Editar
 
                     </a>
 
-                    <a
-                        href="excluir.php?id=<?= $cliente['id'] ?>"
-                        class="btn btn-danger"
+                    <a href="excluir.php?id=<?= $cliente['id'] ?>" class="btn btn-danger"
                         onclick="return confirm('Deseja realmente excluir este cliente?');">
 
-                            Excluir
+                        Excluir
 
                     </a>
-                    
+
                 </td>
 
             </tr>
 
             <?php endforeach; ?>
 
-        <?php else: ?>
+            <?php else: ?>
 
             <tr>
 
@@ -136,7 +133,7 @@ switch($_GET['sucesso']){
 
             </tr>
 
-        <?php endif; ?>
+            <?php endif; ?>
 
         </tbody>
 

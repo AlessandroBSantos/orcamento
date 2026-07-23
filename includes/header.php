@@ -2,11 +2,7 @@
 
     <div class="topbar-left">
 
-        <button
-            id="btnMenu"
-            class="menu-button"
-            type="button"
-            aria-label="Abrir Menu">
+        <button id="btnMenu" class="menu-button" type="button" aria-label="Abrir Menu">
 
             ☰
 
@@ -22,10 +18,7 @@
 
     <div class="topbar-center">
 
-        <input
-            type="text"
-            class="search-box"
-            placeholder="Pesquisar...">
+        <input type="text" class="search-box" placeholder="Pesquisar...">
 
     </div>
 

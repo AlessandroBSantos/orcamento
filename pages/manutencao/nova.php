@@ -53,345 +53,267 @@ require_once '../../includes/layout_inicio.php';
 
 <div class="container-fluid">
 
-<div class="page-header">
+    <div class="page-header">
 
-<div>
+        <div>
 
-<h1>Nova Ordem de Manutenção</h1>
+            <h1>Nova Ordem de Manutenção</h1>
 
-<p>Abertura de Ordem de Serviço de Manutenção</p>
+            <p>Abertura de Ordem de Serviço de Manutenção</p>
 
-</div>
+        </div>
 
-<div>
+        <div>
 
-<a href="index.php" class="btn btn-secondary">
+            <a href="index.php" class="btn btn-secondary">
 
-Voltar
+                Voltar
 
-</a>
+            </a>
 
-</div>
+        </div>
 
-</div>
+    </div>
 
-<form action="salvar.php" method="POST">
+    <form action="salvar.php" method="POST">
 
-<div class="card mb-4">
+        <div class="card mb-4">
 
-<div class="card-header">
+            <div class="card-header">
 
-Dados da Ordem
+                Dados da Ordem
 
-</div>
+            </div>
 
-<div class="card-body">
+            <div class="card-body">
 
-<div class="row">
+                <div class="row">
 
-<div class="col-md-6">
+                    <div class="col-md-6">
 
-<label>Equipamento</label>
+                        <label>Equipamento</label>
 
-<select
-name="equipamento_id"
-class="form-control"
-required>
+                        <select name="equipamento_id" class="form-control" required>
 
-<option value="">Selecione...</option>
+                            <option value="">Selecione...</option>
 
-<?php foreach($equipamentos as $eq): ?>
+                            <?php foreach($equipamentos as $eq): ?>
 
-<option value="<?= $eq['id'] ?>">
+                            <option value="<?= $eq['id'] ?>">
 
-<?= $eq['codigo'] ?>
+                                <?= $eq['codigo'] ?>
 
--
+                                -
 
-<?= $eq['descricao'] ?>
+                                <?= $eq['descricao'] ?>
 
-</option>
+                            </option>
 
-<?php endforeach; ?>
+                            <?php endforeach; ?>
 
-</select>
+                        </select>
 
-</div>
+                    </div>
 
-<div class="col-md-3">
+                    <div class="col-md-3">
 
-<label>Tipo</label>
+                        <label>Tipo</label>
 
-<select
-name="tipo"
-class="form-control">
+                        <select name="tipo" class="form-control">
 
-<option value="CORRETIVA">Corretiva</option>
+                            <option value="CORRETIVA">Corretiva</option>
 
-<option value="PREVENTIVA">Preventiva</option>
+                            <option value="PREVENTIVA">Preventiva</option>
 
-<option value="GARANTIA">Garantia</option>
+                            <option value="GARANTIA">Garantia</option>
 
-<option value="INSTALACAO">Instalação</option>
+                            <option value="INSTALACAO">Instalação</option>
 
-<option value="CALIBRACAO">Calibração</option>
+                            <option value="CALIBRACAO">Calibração</option>
 
-<option value="OUTROS">Outros</option>
+                            <option value="OUTROS">Outros</option>
 
-</select>
+                        </select>
 
-</div>
+                    </div>
 
-<div class="col-md-3">
+                    <div class="col-md-3">
 
-<label>Prioridade</label>
+                        <label>Prioridade</label>
 
-<select
-name="prioridade"
-class="form-control">
+                        <select name="prioridade" class="form-control">
 
-<option value="BAIXA">Baixa</option>
+                            <option value="BAIXA">Baixa</option>
 
-<option value="MEDIA" selected>Média</option>
+                            <option value="MEDIA" selected>Média</option>
 
-<option value="ALTA">Alta</option>
+                            <option value="ALTA">Alta</option>
 
-<option value="URGENTE">Urgente</option>
+                            <option value="URGENTE">Urgente</option>
 
-</select>
+                        </select>
 
-</div>
+                    </div>
 
-</div>
+                </div>
 
-<br>
+                <br>
 
-<div class="row">
+                <div class="row">
 
-<div class="col-md-6">
+                    <div class="col-md-6">
 
-<label>Técnico Responsável</label>
+                        <label>Técnico Responsável</label>
 
-<select
-name="tecnico_id"
-class="form-control">
+                        <select name="tecnico_id" class="form-control">
 
-<option value="">Selecione...</option>
+                            <option value="">Selecione...</option>
 
-<?php foreach($tecnicos as $tec): ?>
+                            <?php foreach($tecnicos as $tec): ?>
 
-<option value="<?= $tec['id'] ?>">
+                            <option value="<?= $tec['id'] ?>">
 
-<?= $tec['nome'] ?>
+                                <?= $tec['nome'] ?>
 
-</option>
+                            </option>
 
-<?php endforeach; ?>
+                            <?php endforeach; ?>
 
-</select>
+                        </select>
 
-</div>
+                    </div>
 
-<div class="col-md-6">
+                    <div class="col-md-6">
 
-<label>Fornecedor (Opcional)</label>
+                        <label>Fornecedor (Opcional)</label>
 
-<input
-type="text"
-name="fornecedor"
-class="form-control">
+                        <input type="text" name="fornecedor" class="form-control">
 
-</div>
+                    </div>
 
-</div>
+                </div>
 
-</div>
+            </div>
 
-</div>
+        </div>
 
-<div class="card mb-4">
+        <div class="card mb-4">
 
-<div class="card-header">
+            <div class="card-header">
 
-Defeito Informado
+                Defeito Informado
 
-</div>
+            </div>
 
-<div class="card-body">
+            <div class="card-body">
 
-<textarea
+                <textarea name="defeito_informado" rows="5" class="form-control" required></textarea>
 
-name="defeito_informado"
+            </div>
 
-rows="5"
+        </div>
 
-class="form-control"
+        <div class="card mb-4">
 
-required
+            <div class="card-header">
 
-></textarea>
+                Diagnóstico Inicial
 
-</div>
+            </div>
 
-</div>
+            <div class="card-body">
 
-<div class="card mb-4">
+                <textarea name="diagnostico" rows="5" class="form-control"></textarea>
 
-<div class="card-header">
+            </div>
 
-Diagnóstico Inicial
+        </div>
 
-</div>
+        <div class="card mb-4">
 
-<div class="card-body">
+            <div class="card-header">
 
-<textarea
+                Serviço Executado
 
-name="diagnostico"
+            </div>
 
-rows="5"
+            <div class="card-body">
 
-class="form-control"
+                <textarea name="servico_executado" rows="5" class="form-control"></textarea>
 
-></textarea>
+            </div>
 
-</div>
+        </div>
 
-</div>
+        <div class="card mb-4">
 
-<div class="card mb-4">
+            <div class="card-header">
 
-<div class="card-header">
+                Custos
 
-Serviço Executado
+            </div>
 
-</div>
+            <div class="card-body">
 
-<div class="card-body">
+                <div class="row">
 
-<textarea
+                    <div class="col-md-4">
 
-name="servico_executado"
+                        <label>Peças</label>
 
-rows="5"
+                        <input type="number" step="0.01" value="0" name="valor_pecas" class="form-control">
 
-class="form-control"
+                    </div>
 
-></textarea>
+                    <div class="col-md-4">
 
-</div>
+                        <label>Mão de Obra</label>
 
-</div>
+                        <input type="number" step="0.01" value="0" name="valor_mao_obra" class="form-control">
 
-<div class="card mb-4">
+                    </div>
 
-<div class="card-header">
+                    <div class="col-md-4">
 
-Custos
+                        <label>Total</label>
 
-</div>
+                        <input type="number" step="0.01" value="0" name="valor_total" class="form-control">
 
-<div class="card-body">
+                    </div>
 
-<div class="row">
+                </div>
 
-<div class="col-md-4">
+            </div>
 
-<label>Peças</label>
+        </div>
 
-<input
+        <div class="card mb-4">
 
-type="number"
+            <div class="card-header">
 
-step="0.01"
+                Observações
 
-value="0"
+            </div>
 
-name="valor_pecas"
+            <div class="card-body">
 
-class="form-control">
+                <textarea name="observacoes" rows="5" class="form-control"></textarea>
 
-</div>
+            </div>
 
-<div class="col-md-4">
+        </div>
 
-<label>Mão de Obra</label>
+        <div class="text-end">
 
-<input
+            <button type="submit" class="btn btn-success btn-lg">
 
-type="number"
+                Abrir Ordem de Manutenção
 
-step="0.01"
+            </button>
 
-value="0"
+        </div>
 
-name="valor_mao_obra"
-
-class="form-control">
-
-</div>
-
-<div class="col-md-4">
-
-<label>Total</label>
-
-<input
-
-type="number"
-
-step="0.01"
-
-value="0"
-
-name="valor_total"
-
-class="form-control">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="card mb-4">
-
-<div class="card-header">
-
-Observações
-
-</div>
-
-<div class="card-body">
-
-<textarea
-
-name="observacoes"
-
-rows="5"
-
-class="form-control"
-
-></textarea>
-
-</div>
-
-</div>
-
-<div class="text-end">
-
-<button
-type="submit"
-class="btn btn-success btn-lg">
-
-Abrir Ordem de Manutenção
-
-</button>
-
-</div>
-
-</form>
+    </form>
 
 </div>
 

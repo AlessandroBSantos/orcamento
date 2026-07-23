@@ -80,7 +80,7 @@ require_once '../../includes/layout_inicio.php';
 
                 <tbody>
 
-                <?php if(empty($movimentacoes)): ?>
+                    <?php if(empty($movimentacoes)): ?>
 
                     <tr>
 
@@ -92,115 +92,115 @@ require_once '../../includes/layout_inicio.php';
 
                     </tr>
 
-                <?php else: ?>
+                    <?php else: ?>
 
                     <?php foreach($movimentacoes as $item): ?>
 
-                        <tr>
+                    <tr>
 
-                            <td>
+                        <td>
 
-                                <?= date(
+                            <?= date(
                                     'd/m/Y H:i',
                                     strtotime($item['data_movimentacao'])
                                 ) ?>
 
-                            </td>
+                        </td>
 
-                            <td>
+                        <td>
 
-                                <?php if($item['tipo'] == 'ENTRADA'): ?>
+                            <?php if($item['tipo'] == 'ENTRADA'): ?>
 
-                                    <span class="badge bg-success">
-                                        Entrada
-                                    </span>
+                            <span class="badge bg-success">
+                                Entrada
+                            </span>
 
-                                <?php else: ?>
+                            <?php else: ?>
 
-                                    <span class="badge bg-danger">
-                                        Saída
-                                    </span>
+                            <span class="badge bg-danger">
+                                Saída
+                            </span>
 
-                                <?php endif; ?>
+                            <?php endif; ?>
 
-                            </td>
+                        </td>
 
-                            <td>
+                        <td>
 
-                                <?= htmlspecialchars($item['codigo']) ?>
+                            <?= htmlspecialchars($item['codigo']) ?>
 
-                            </td>
+                        </td>
 
-                            <td>
+                        <td>
 
-                                <?= htmlspecialchars($item['nome']) ?>
+                            <?= htmlspecialchars($item['nome']) ?>
 
-                            </td>
+                        </td>
 
-                            <td class="text-center">
+                        <td class="text-center">
 
-                                <?= number_format(
+                            <?= number_format(
                                     $item['quantidade'],
                                     3,
                                     ',',
                                     '.'
                                 ) ?>
 
-                            </td>
+                        </td>
 
-                            <td class="text-end">
+                        <td class="text-end">
 
-                                R$
-                                <?= number_format(
+                            R$
+                            <?= number_format(
                                     $item['valor_unitario'],
                                     2,
                                     ',',
                                     '.'
                                 ) ?>
 
-                            </td>
+                        </td>
 
-                            <td class="text-end">
+                        <td class="text-end">
 
-                                R$
-                                <?= number_format(
+                            R$
+                            <?= number_format(
                                     $item['valor_total'],
                                     2,
                                     ',',
                                     '.'
                                 ) ?>
 
-                            </td>
+                        </td>
 
-                            <td>
+                        <td>
 
-                                <?= htmlspecialchars(
+                            <?= htmlspecialchars(
                                     $item['documento']
                                 ) ?>
 
-                            </td>
+                        </td>
 
-                            <td>
+                        <td>
 
-                                <?= htmlspecialchars(
+                            <?= htmlspecialchars(
                                     $item['fornecedor'] ?? '-'
                                 ) ?>
 
-                            </td>
+                        </td>
 
-                            <td>
+                        <td>
 
-                                <?= htmlspecialchars(
+                            <?= htmlspecialchars(
                                     $item['usuario'] ?? '-'
                                 ) ?>
 
-                            </td>
+                        </td>
 
-                        </tr>
+                    </tr>
 
                     <?php endforeach; ?>
 
-                <?php endif; ?>
+                    <?php endif; ?>
 
                 </tbody>
 

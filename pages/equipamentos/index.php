@@ -69,7 +69,7 @@ require_once '../../includes/layout_inicio.php';
 
                 <tbody>
 
-                <?php if(empty($equipamentos)): ?>
+                    <?php if(empty($equipamentos)): ?>
 
                     <tr>
 
@@ -81,51 +81,51 @@ require_once '../../includes/layout_inicio.php';
 
                     </tr>
 
-                <?php else: ?>
+                    <?php else: ?>
 
                     <?php foreach($equipamentos as $equipamento): ?>
 
-                        <tr>
+                    <tr>
 
-                            <td>
+                        <td>
 
-                                <?= htmlspecialchars($equipamento['codigo']) ?>
+                            <?= htmlspecialchars($equipamento['codigo']) ?>
 
-                            </td>
+                        </td>
 
-                            <td>
+                        <td>
 
-                                <?= htmlspecialchars($equipamento['patrimonio']) ?>
+                            <?= htmlspecialchars($equipamento['patrimonio']) ?>
 
-                            </td>
+                        </td>
 
-                            <td>
+                        <td>
 
-                                <?= htmlspecialchars($equipamento['descricao']) ?>
+                            <?= htmlspecialchars($equipamento['descricao']) ?>
 
-                            </td>
+                        </td>
 
-                            <td>
+                        <td>
 
-                                <?= htmlspecialchars($equipamento['categoria']) ?>
+                            <?= htmlspecialchars($equipamento['categoria']) ?>
 
-                            </td>
+                        </td>
 
-                            <td>
+                        <td>
 
-                                <?= htmlspecialchars($equipamento['marca']) ?>
+                            <?= htmlspecialchars($equipamento['marca']) ?>
 
-                            </td>
+                        </td>
 
-                            <td>
+                        <td>
 
-                                <?= htmlspecialchars($equipamento['modelo']) ?>
+                            <?= htmlspecialchars($equipamento['modelo']) ?>
 
-                            </td>
+                        </td>
 
-                            <td>
+                        <td>
 
-                                <?php
+                            <?php
 
                                 switch($equipamento['status']){
 
@@ -156,48 +156,43 @@ require_once '../../includes/layout_inicio.php';
 
                                 ?>
 
-                            </td>
+                        </td>
 
-                            <td>
+                        <td>
 
-                                <?= htmlspecialchars($equipamento['responsavel']) ?>
+                            <?= htmlspecialchars($equipamento['responsavel']) ?>
 
-                            </td>
+                        </td>
 
-                            <td>
+                        <td>
 
-                                <a
-                                    href="form.php?id=<?= $equipamento['id'] ?>"
-                                    class="btn btn-sm btn-primary">
+                            <a href="form.php?id=<?= $equipamento['id'] ?>" class="btn btn-sm btn-primary">
 
-                                    Editar
+                                Editar
 
-                                </a>
+                            </a>
 
-                                <a
-                                    href="excluir.php?id=<?= $equipamento['id'] ?>"
-                                    class="btn btn-sm btn-danger"
-                                    onclick="return confirm('Deseja excluir este equipamento?')">
+                            <a href="excluir.php?id=<?= $equipamento['id'] ?>" class="btn btn-sm btn-danger"
+                                onclick="return confirm('Deseja excluir este equipamento?')">
 
-                                    Excluir
+                                Excluir
 
-                                </a>
+                            </a>
 
-                                <a
-                                    href="../manutencao/nova.php?equipamento=<?= $equipamento['id'] ?>"
-                                    class="btn btn-sm btn-warning">
+                            <a href="../manutencao/nova.php?equipamento=<?= $equipamento['id'] ?>"
+                                class="btn btn-sm btn-warning">
 
-                                    Manutenção
+                                Manutenção
 
-                                </a>
+                            </a>
 
-                            </td>
+                        </td>
 
-                        </tr>
+                    </tr>
 
                     <?php endforeach; ?>
 
-                <?php endif; ?>
+                    <?php endif; ?>
 
                 </tbody>
 

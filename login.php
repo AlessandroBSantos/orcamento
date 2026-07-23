@@ -75,31 +75,31 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>LLA ERP - Login</title>
+    <title>LLA ERP - Login</title>
 
-<link rel="stylesheet" href="assets/css/reset.css?v=<?= filemtime(__DIR__.'/assets/css/reset.css') ?>">
-<link rel="stylesheet" href="assets/css/variables.css?v=<?= filemtime(__DIR__.'/assets/css/variables.css') ?>">
-<link rel="stylesheet" href="assets/css/login.css?v=<?= filemtime(__DIR__.'/assets/css/login.css') ?>">
+    <link rel="stylesheet" href="assets/css/reset.css?v=<?= filemtime(__DIR__.'/assets/css/reset.css') ?>">
+    <link rel="stylesheet" href="assets/css/variables.css?v=<?= filemtime(__DIR__.'/assets/css/variables.css') ?>">
+    <link rel="stylesheet" href="assets/css/login.css?v=<?= filemtime(__DIR__.'/assets/css/login.css') ?>">
 
 </head>
 
 <body>
 
-<div class="login">
+    <div class="login">
 
-    <div class="login-box">
+        <div class="login-box">
 
-        <img src="assets/img/logo.png" class="logo" alt="LLA ERP">
+            <img src="assets/img/logo.png" class="logo" alt="LLA ERP">
 
-        <h1>LLA ERP</h1>
+            <h1>LLA ERP</h1>
 
-        <p>Sistema de Gestão Comercial</p>
+            <p>Sistema de Gestão Comercial</p>
 
-        <?php if ($erro): ?>
+            <?php if ($erro): ?>
 
             <div class="erro">
 
@@ -107,37 +107,27 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             </div>
 
-        <?php endif; ?>
+            <?php endif; ?>
 
-        <form method="POST">
+            <form method="POST">
 
-            <input
-                type="email"
-                name="email"
-                placeholder="E-mail"
-                required
-            >
+                <input type="email" name="email" placeholder="E-mail" required>
 
-            <input
-                type="password"
-                name="senha"
-                placeholder="Senha"
-                required
-            >
+                <input type="password" name="senha" placeholder="Senha" required>
 
-            <button type="submit">
+                <button type="submit">
 
-                Entrar
+                    Entrar
 
-            </button>
+                </button>
 
-        </form>
+            </form>
+
+        </div>
 
     </div>
 
-</div>
-
-<script src="assets/js/login.js?v=<?= filemtime(__DIR__.'/assets/js/login.js') ?>"></script>
+    <script src="assets/js/login.js?v=<?= filemtime(__DIR__.'/assets/js/login.js') ?>"></script>
 
 </body>
 

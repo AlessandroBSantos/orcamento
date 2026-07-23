@@ -61,149 +61,114 @@ require_once "form.php";
 
 </div>
 
-    <!-- ==========================================
+<!-- ==========================================
          ABAS
     =========================================== -->
 
 
 
-    <div class="tabs">
+<div class="tabs">
 
-        <button
-            type="button"
-            class="tab-button active"
-            data-tab="dados">
+    <button type="button" class="tab-button active" data-tab="dados">
 
-            📦 Dados Gerais
+        📦 Dados Gerais
 
-        </button>
+    </button>
 
-        <button
-            type="button"
-            class="tab-button"
-            data-tab="classificacao">
+    <button type="button" class="tab-button" data-tab="classificacao">
 
-            🏷️ Classificação
+        🏷️ Classificação
 
-        </button>
+    </button>
 
-        <button
-            type="button"
-            class="tab-button"
-            data-tab="fiscal">
+    <button type="button" class="tab-button" data-tab="fiscal">
 
-            📄 Fiscal
+        📄 Fiscal
 
-        </button>
+    </button>
 
-        <button
-            type="button"
-            class="tab-button"
-            data-tab="comercial">
+    <button type="button" class="tab-button" data-tab="comercial">
 
-            💰 Comercial
+        💰 Comercial
 
-        </button>
+    </button>
 
-        <button
-            type="button"
-            class="tab-button"
-            data-tab="estoque">
+    <button type="button" class="tab-button" data-tab="estoque">
 
-            📦 Estoque
+        📦 Estoque
 
-        </button>
+    </button>
 
-        <button
-            type="button"
-            class="tab-button"
-            data-tab="observacoes">
+    <button type="button" class="tab-button" data-tab="observacoes">
 
-            📝 Observações
+        📝 Observações
 
-        </button>
+    </button>
 
-    </div>
+</div>
 
-    <!-- ==========================================
+<!-- ==========================================
          DADOS GERAIS
     =========================================== -->
 
-    <div
-        class="tab-content active"
-        id="dados">
+<div class="tab-content active" id="dados">
 
-        <div class="panel">
+    <div class="panel">
 
-            <h2>Dados Gerais</h2>
+        <h2>Dados Gerais</h2>
 
-            <div class="form-grid">
+        <div class="form-grid">
 
-                <div class="form-group">
+            <div class="form-group">
 
-                    <label>Nome do Produto</label>
+                <label>Nome do Produto</label>
 
-                    <input
-                        type="text"
-                        name="nome"
-                        required>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label>SKU</label>
-
-                    <input
-                        type="text"
-                        name="sku">
-
-                </div>
-
-                <div class="form-group">
-
-                    <label>Código</label>
-
-                    <input
-                        type="text"
-                        name="codigo">
-
-                </div>
-
-                <div class="form-group">
-
-                    <label>Código de Barras</label>
-
-                    <input
-                        type="text"
-                        name="codigo_barras">
-
-                </div>
-
-                <div
-                    class="form-group"
-                    style="grid-column:1/-1;">
-
-                    <label>Descrição</label>
-
-                    <textarea
-                        name="descricao"
-                        rows="5"></textarea>
-
-                </div>
+                <input type="text" name="nome" required>
 
             </div>
-        </div>
 
+            <div class="form-group">
+
+                <label>SKU</label>
+
+                <input type="text" name="sku">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Código</label>
+
+                <input type="text" name="codigo">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Código de Barras</label>
+
+                <input type="text" name="codigo_barras">
+
+            </div>
+
+            <div class="form-group" style="grid-column:1/-1;">
+
+                <label>Descrição</label>
+
+                <textarea name="descricao" rows="5"></textarea>
+
+            </div>
+
+        </div>
     </div>
+
+</div>
 
 <!-- ==========================================
      CLASSIFICAÇÃO
 =========================================== -->
 
-<div
-    class="tab-content"
-    id="classificacao">
+<div class="tab-content" id="classificacao">
 
     <div class="panel">
 
@@ -211,104 +176,97 @@ require_once "form.php";
 
         <div class="form-grid">
 
-<div class="form-group">
+            <div class="form-group">
 
-    <label>Categoria</label>
+                <label>Categoria</label>
 
-    <select
-        name="categoria_id"
-        required>
+                <select name="categoria_id" required>
 
-        <option value="">Selecione uma categoria</option>
+                    <option value="">Selecione uma categoria</option>
 
-        <?php foreach ($categorias as $categoria): ?>
+                    <?php foreach ($categorias as $categoria): ?>
 
-            <option value="<?= $categoria['id']; ?>">
+                    <option value="<?= $categoria['id']; ?>">
 
-                <?= htmlspecialchars($categoria['nome']); ?>
+                        <?= htmlspecialchars($categoria['nome']); ?>
 
-            </option>
+                    </option>
 
-        <?php endforeach; ?>
+                    <?php endforeach; ?>
 
-    </select>
+                </select>
 
-</div>
+            </div>
 
-<div class="form-group">
+            <div class="form-group">
 
-    <label>Marca</label>
+                <label>Marca</label>
 
-    <select
-        name="marca_id">
+                <select name="marca_id">
 
-        <option value="">Selecione uma marca</option>
+                    <option value="">Selecione uma marca</option>
 
-        <?php foreach ($marcas as $marca): ?>
+                    <?php foreach ($marcas as $marca): ?>
 
-            <option value="<?= $marca['id']; ?>">
+                    <option value="<?= $marca['id']; ?>">
 
-                <?= htmlspecialchars($marca['nome']); ?>
+                        <?= htmlspecialchars($marca['nome']); ?>
 
-            </option>
+                    </option>
 
-        <?php endforeach; ?>
+                    <?php endforeach; ?>
 
-    </select>
+                </select>
 
-</div>
+            </div>
 
-<div class="form-group">
+            <div class="form-group">
 
-    <label>Unidade de Medida</label>
+                <label>Unidade de Medida</label>
 
-    <select
-        name="unidade_id"
-        required>
+                <select name="unidade_id" required>
 
-        <option value="">Selecione uma unidade</option>
+                    <option value="">Selecione uma unidade</option>
 
-        <?php foreach ($unidades as $unidade): ?>
+                    <?php foreach ($unidades as $unidade): ?>
 
-            <option value="<?= $unidade['id']; ?>">
+                    <option value="<?= $unidade['id']; ?>">
 
-                <?= htmlspecialchars($unidade['sigla']); ?>
-                -
-                <?= htmlspecialchars($unidade['descricao']); ?>
+                        <?= htmlspecialchars($unidade['sigla']); ?>
+                        -
+                        <?= htmlspecialchars($unidade['descricao']); ?>
 
-            </option>
+                    </option>
 
-        <?php endforeach; ?>
+                    <?php endforeach; ?>
 
-    </select>
+                </select>
 
-</div>
+            </div>
 
-<div class="form-group">
+            <div class="form-group">
 
-    <label>Unidade de Medida</label>
+                <label>Unidade de Medida</label>
 
-    <select
-        name="unidade_id"
-        required>
+                <select name="unidade_id" required>
 
-        <option value="">Selecione uma unidade</option>
+                    <option value="">Selecione uma unidade</option>
 
-        <?php foreach ($unidades as $unidade): ?>
+                    <?php foreach ($unidades as $unidade): ?>
 
-            <option value="<?= $unidade['id']; ?>">
+                    <option value="<?= $unidade['id']; ?>">
 
-                <?= htmlspecialchars($unidade['sigla']); ?>
-                -
-                <?= htmlspecialchars($unidade['descricao']); ?>
+                        <?= htmlspecialchars($unidade['sigla']); ?>
+                        -
+                        <?= htmlspecialchars($unidade['descricao']); ?>
 
-            </option>
+                    </option>
 
-        <?php endforeach; ?>
+                    <?php endforeach; ?>
 
-    </select>
+                </select>
 
-</div>
+            </div>
 
         </div>
 
@@ -320,9 +278,7 @@ require_once "form.php";
      FISCAL
 =========================================== -->
 
-<div
-    class="tab-content"
-    id="fiscal">
+<div class="tab-content" id="fiscal">
 
     <div class="panel">
 
@@ -334,10 +290,7 @@ require_once "form.php";
 
                 <label>NCM</label>
 
-                <input
-                    type="text"
-                    name="ncm"
-                    maxlength="8">
+                <input type="text" name="ncm" maxlength="8">
 
             </div>
 
@@ -345,10 +298,7 @@ require_once "form.php";
 
                 <label>CFOP</label>
 
-                <input
-                    type="text"
-                    name="cfop"
-                    maxlength="4">
+                <input type="text" name="cfop" maxlength="4">
 
             </div>
 
@@ -356,9 +306,7 @@ require_once "form.php";
 
                 <label>CEST</label>
 
-                <input
-                    type="text"
-                    name="cest">
+                <input type="text" name="cest">
 
             </div>
 
@@ -402,9 +350,7 @@ require_once "form.php";
      COMERCIAL
 =========================================== -->
 
-<div
-    class="tab-content"
-    id="comercial">
+<div class="tab-content" id="comercial">
 
     <div class="panel">
 
@@ -416,13 +362,7 @@ require_once "form.php";
 
                 <label>Custo (R$)</label>
 
-                <input
-                    type="number"
-                    step="0.01"
-                    min="0"
-                    id="custo"
-                    name="custo"
-                    value="0.00">
+                <input type="number" step="0.01" min="0" id="custo" name="custo" value="0.00">
 
             </div>
 
@@ -430,13 +370,7 @@ require_once "form.php";
 
                 <label>Percentual de Lucro (%)</label>
 
-                <input
-                    type="number"
-                    step="0.01"
-                    min="0"
-                    id="percentual_lucro"
-                    name="percentual_lucro"
-                    value="0.00">
+                <input type="number" step="0.01" min="0" id="percentual_lucro" name="percentual_lucro" value="0.00">
 
             </div>
 
@@ -444,13 +378,7 @@ require_once "form.php";
 
                 <label>Preço de Venda (R$)</label>
 
-                <input
-                    type="number"
-                    step="0.01"
-                    min="0"
-                    id="preco_venda"
-                    name="preco_venda"
-                    value="0.00">
+                <input type="number" step="0.01" min="0" id="preco_venda" name="preco_venda" value="0.00">
 
             </div>
 
@@ -464,9 +392,7 @@ require_once "form.php";
      ESTOQUE
 =========================================== -->
 
-<div
-    class="tab-content"
-    id="estoque">
+<div class="tab-content" id="estoque">
 
     <div class="panel">
 
@@ -478,10 +404,7 @@ require_once "form.php";
 
                 <label>Localização</label>
 
-                <input
-                    type="text"
-                    name="localizacao"
-                    placeholder="Ex.: Prateleira A01">
+                <input type="text" name="localizacao" placeholder="Ex.: Prateleira A01">
 
             </div>
 
@@ -493,11 +416,7 @@ require_once "form.php";
 
             <label>
 
-                <input
-                    type="checkbox"
-                    name="controla_estoque"
-                    value="1"
-                    checked>
+                <input type="checkbox" name="controla_estoque" value="1" checked>
 
                 Controlar Estoque
 
@@ -509,11 +428,7 @@ require_once "form.php";
 
             <label>
 
-                <input
-                    type="checkbox"
-                    name="vende"
-                    value="1"
-                    checked>
+                <input type="checkbox" name="vende" value="1" checked>
 
                 Produto disponível para Venda
 
@@ -525,11 +440,7 @@ require_once "form.php";
 
             <label>
 
-                <input
-                    type="checkbox"
-                    name="compra"
-                    value="1"
-                    checked>
+                <input type="checkbox" name="compra" value="1" checked>
 
                 Produto disponível para Compra
 
@@ -541,11 +452,7 @@ require_once "form.php";
 
             <label>
 
-                <input
-                    type="checkbox"
-                    name="ativo"
-                    value="1"
-                    checked>
+                <input type="checkbox" name="ativo" value="1" checked>
 
                 Produto Ativo
 
@@ -561,9 +468,7 @@ require_once "form.php";
      OBSERVAÇÕES
 =========================================== -->
 
-<div
-    class="tab-content"
-    id="observacoes">
+<div class="tab-content" id="observacoes">
 
     <div class="panel">
 
@@ -573,9 +478,7 @@ require_once "form.php";
 
             <label>Observações Internas</label>
 
-            <textarea
-                name="observacoes"
-                rows="8"
+            <textarea name="observacoes" rows="8"
                 placeholder="Digite informações importantes sobre o produto..."></textarea>
 
         </div>
@@ -584,15 +487,13 @@ require_once "form.php";
 
 </div>
 
-    <br>
+<br>
 
-    <button
-        type="submit"
-        class="btn btn-primary">
+<button type="submit" class="btn btn-primary">
 
-        💾 Salvar Produto
+    💾 Salvar Produto
 
-    </button>
+</button>
 
 </form>
 

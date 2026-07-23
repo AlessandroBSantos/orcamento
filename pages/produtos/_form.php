@@ -2,10 +2,7 @@
 
     <?php if (!empty($produto['id'])): ?>
 
-        <input
-            type="hidden"
-            name="id"
-            value="<?= $produto['id'] ?>">
+    <input type="hidden" name="id" value="<?= $produto['id'] ?>">
 
     <?php endif; ?>
 
@@ -15,10 +12,7 @@
 
     <div class="tabs">
 
-        <button
-            type="button"
-            class="tab-button active"
-            data-tab="dados">
+        <button type="button" class="tab-button active" data-tab="dados">
 
             📦 Dados Gerais
 
@@ -30,9 +24,7 @@
          DADOS GERAIS
     =========================================== -->
 
-    <div
-        class="tab-content active"
-        id="dados">
+    <div class="tab-content active" id="dados">
 
         <div class="panel">
 
@@ -44,10 +36,7 @@
 
                     <label>Código</label>
 
-                    <input
-                        type="text"
-                        name="codigo"
-                        value="<?= htmlspecialchars($produto['codigo'] ?? '') ?>">
+                    <input type="text" name="codigo" value="<?= htmlspecialchars($produto['codigo'] ?? '') ?>">
 
                 </div>
 
@@ -55,9 +44,7 @@
 
                     <label>Código de Barras</label>
 
-                    <input
-                        type="text"
-                        name="codigo_barras"
+                    <input type="text" name="codigo_barras"
                         value="<?= htmlspecialchars($produto['codigo_barras'] ?? '') ?>">
 
                 </div>
@@ -66,10 +53,7 @@
 
                     <label>SKU</label>
 
-                    <input
-                        type="text"
-                        name="sku"
-                        value="<?= htmlspecialchars($produto['sku'] ?? '') ?>">
+                    <input type="text" name="sku" value="<?= htmlspecialchars($produto['sku'] ?? '') ?>">
 
                 </div>
 
@@ -77,23 +61,15 @@
 
                     <label>Nome do Produto</label>
 
-                    <input
-                        type="text"
-                        name="nome"
-                        required
-                        value="<?= htmlspecialchars($produto['nome'] ?? '') ?>">
+                    <input type="text" name="nome" required value="<?= htmlspecialchars($produto['nome'] ?? '') ?>">
 
                 </div>
 
-                <div
-                    class="form-group"
-                    style="grid-column:1/-1;">
+                <div class="form-group" style="grid-column:1/-1;">
 
                     <label>Descrição</label>
 
-                    <textarea
-                        name="descricao"
-                        rows="5"><?= htmlspecialchars($produto['descricao'] ?? '') ?></textarea>
+                    <textarea name="descricao" rows="5"><?= htmlspecialchars($produto['descricao'] ?? '') ?></textarea>
 
                 </div>
 
@@ -105,9 +81,7 @@
 
     <br>
 
-    <button
-        type="submit"
-        class="btn btn-primary">
+    <button type="submit" class="btn btn-primary">
 
         💾 Salvar Produto
 

@@ -40,26 +40,18 @@ require_once '../../includes/layout_inicio.php';
 
                 <div class="col-md-2 mb-3">
                     <label class="form-label">Código</label>
-                    <input type="text"
-                           class="form-control"
-                           value="<?= htmlspecialchars($produto['codigo']) ?>"
-                           readonly>
+                    <input type="text" class="form-control" value="<?= htmlspecialchars($produto['codigo']) ?>"
+                        readonly>
                 </div>
 
                 <div class="col-md-6 mb-3">
                     <label class="form-label">Produto</label>
-                    <input type="text"
-                           class="form-control"
-                           value="<?= htmlspecialchars($produto['nome']) ?>"
-                           readonly>
+                    <input type="text" class="form-control" value="<?= htmlspecialchars($produto['nome']) ?>" readonly>
                 </div>
 
                 <div class="col-md-2 mb-3">
                     <label class="form-label">Estoque Atual</label>
-                    <input type="text"
-                           class="form-control"
-                           value="<?= $produto['quantidade_atual'] ?>"
-                           readonly>
+                    <input type="text" class="form-control" value="<?= $produto['quantidade_atual'] ?>" readonly>
                 </div>
 
             </div>
@@ -68,9 +60,7 @@ require_once '../../includes/layout_inicio.php';
 
             <form action="salvar_saida.php" method="POST">
 
-                <input type="hidden"
-                       name="produto_id"
-                       value="<?= $produto['produto_id'] ?>">
+                <input type="hidden" name="produto_id" value="<?= $produto['produto_id'] ?>">
 
                 <div class="row">
 
@@ -80,11 +70,7 @@ require_once '../../includes/layout_inicio.php';
                             Quantidade
                         </label>
 
-                        <input type="number"
-                               class="form-control"
-                               name="quantidade"
-                               min="1"
-                               required>
+                        <input type="number" class="form-control" name="quantidade" min="1" required>
 
                     </div>
 
@@ -94,9 +80,7 @@ require_once '../../includes/layout_inicio.php';
                             Documento
                         </label>
 
-                        <input type="text"
-                               class="form-control"
-                               name="documento">
+                        <input type="text" class="form-control" name="documento">
 
                     </div>
 
@@ -106,10 +90,7 @@ require_once '../../includes/layout_inicio.php';
                             Valor Unitário
                         </label>
 
-                        <input type="number"
-                               step="0.01"
-                               class="form-control"
-                               name="valor_unitario">
+                        <input type="number" step="0.01" class="form-control" name="valor_unitario">
 
                     </div>
 
@@ -121,9 +102,7 @@ require_once '../../includes/layout_inicio.php';
                         Observações
                     </label>
 
-                    <textarea class="form-control"
-                              rows="4"
-                              name="observacoes"></textarea>
+                    <textarea class="form-control" rows="4" name="observacoes"></textarea>
 
                 </div>
 
@@ -133,8 +112,7 @@ require_once '../../includes/layout_inicio.php';
 
                 </button>
 
-                <a href="index.php"
-                   class="btn btn-secondary">
+                <a href="index.php" class="btn btn-secondary">
 
                     Cancelar
 

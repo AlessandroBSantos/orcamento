@@ -43,7 +43,7 @@ $produtos = $controller->index();
 
 <div class="alert alert-success">
 
-<?php
+    <?php
 
 switch ($_GET['sucesso']) {
 
@@ -88,7 +88,7 @@ switch ($_GET['sucesso']) {
 
         <tbody>
 
-        <?php if (empty($produtos)): ?>
+            <?php if (empty($produtos)): ?>
 
             <tr>
 
@@ -100,7 +100,7 @@ switch ($_GET['sucesso']) {
 
             </tr>
 
-        <?php else: ?>
+            <?php else: ?>
 
             <?php foreach ($produtos as $produto): ?>
 
@@ -128,17 +128,13 @@ switch ($_GET['sucesso']) {
 
                 <td class="acoes">
 
-                    <a
-                        href="editar.php?id=<?= $produto['id'] ?>"
-                        class="btn btn-primary">
+                    <a href="editar.php?id=<?= $produto['id'] ?>" class="btn btn-primary">
 
                         Editar
 
                     </a>
 
-                    <a
-                        href="excluir.php?id=<?= $produto['id'] ?>"
-                        class="btn btn-danger"
+                    <a href="excluir.php?id=<?= $produto['id'] ?>" class="btn btn-danger"
                         onclick="return confirm('Deseja realmente excluir este produto?')">
 
                         Excluir
@@ -151,7 +147,7 @@ switch ($_GET['sucesso']) {
 
             <?php endforeach; ?>
 
-        <?php endif; ?>
+            <?php endif; ?>
 
         </tbody>
 

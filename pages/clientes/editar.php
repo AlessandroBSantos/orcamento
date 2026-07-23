@@ -45,118 +45,101 @@ if (!$cliente) {
 
 <form action="atualizar.php" method="POST">
 
-<input
-    type="hidden"
-    name="id"
-    value="<?= $cliente['id'] ?>">
+    <input type="hidden" name="id" value="<?= $cliente['id'] ?>">
 
-<div class="panel">
+    <div class="panel">
 
-<h2>Dados Gerais</h2>
+        <h2>Dados Gerais</h2>
 
-<div class="form-grid">
+        <div class="form-grid">
 
-<div class="form-group">
+            <div class="form-group">
 
-<label>Tipo</label>
+                <label>Tipo</label>
 
-<select name="tipo">
+                <select name="tipo">
 
-<option value="PF" <?= $cliente['tipo']=="PF"?"selected":"" ?>>
+                    <option value="PF" <?= $cliente['tipo']=="PF"?"selected":"" ?>>
 
-Pessoa Física
+                        Pessoa Física
 
-</option>
+                    </option>
 
-<option value="PJ" <?= $cliente['tipo']=="PJ"?"selected":"" ?>>
+                    <option value="PJ" <?= $cliente['tipo']=="PJ"?"selected":"" ?>>
 
-Pessoa Jurídica
+                        Pessoa Jurídica
 
-</option>
+                    </option>
 
-</select>
+                </select>
 
-</div>
+            </div>
 
-<div class="form-group">
+            <div class="form-group">
 
-<label>Status</label>
+                <label>Status</label>
 
-<select name="status">
+                <select name="status">
 
-<option value="Ativo" <?= $cliente['status']=="Ativo"?"selected":"" ?>>
+                    <option value="Ativo" <?= $cliente['status']=="Ativo"?"selected":"" ?>>
 
-Ativo
+                        Ativo
 
-</option>
+                    </option>
 
-<option value="Inativo" <?= $cliente['status']=="Inativo"?"selected":"" ?>>
+                    <option value="Inativo" <?= $cliente['status']=="Inativo"?"selected":"" ?>>
 
-Inativo
+                        Inativo
 
-</option>
+                    </option>
 
-</select>
+                </select>
 
-</div>
+            </div>
 
-<div class="form-group">
+            <div class="form-group">
 
-<label>Nome</label>
+                <label>Nome</label>
 
-<input
-type="text"
-name="nome"
-value="<?= htmlspecialchars($cliente['nome']) ?>">
+                <input type="text" name="nome" value="<?= htmlspecialchars($cliente['nome']) ?>">
 
-</div>
+            </div>
 
-<div class="form-group">
+            <div class="form-group">
 
-<label>Nome Fantasia</label>
+                <label>Nome Fantasia</label>
 
-<input
-type="text"
-name="nome_fantasia"
-value="<?= htmlspecialchars($cliente['nome_fantasia']) ?>">
+                <input type="text" name="nome_fantasia" value="<?= htmlspecialchars($cliente['nome_fantasia']) ?>">
 
-</div>
+            </div>
 
-<div class="form-group">
+            <div class="form-group">
 
-<label>CPF/CNPJ</label>
+                <label>CPF/CNPJ</label>
 
-<input
-type="text"
-name="cpf_cnpj"
-value="<?= htmlspecialchars($cliente['cpf_cnpj']) ?>">
+                <input type="text" name="cpf_cnpj" value="<?= htmlspecialchars($cliente['cpf_cnpj']) ?>">
 
-</div>
+            </div>
 
-<div class="form-group">
+            <div class="form-group">
 
-<label>RG / IE</label>
+                <label>RG / IE</label>
 
-<input
-type="text"
-name="rg_ie"
-value="<?= htmlspecialchars($cliente['rg_ie']) ?>">
+                <input type="text" name="rg_ie" value="<?= htmlspecialchars($cliente['rg_ie']) ?>">
 
-</div>
+            </div>
 
-</div>
+        </div>
 
-</div>
+    </div>
 
-<br>
+    <br>
 
-<button
-type="submit"
-class="btn">
+    <button type="submit" class="btn">
 
-💾 Salvar Alterações
+        💾 Salvar Alterações
 
-</button>
+    </button>
 
 </form>
 

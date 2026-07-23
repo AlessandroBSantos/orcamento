@@ -88,267 +88,265 @@ require_once '../../includes/layout_inicio.php';
 
 <div class="container-fluid">
 
-<div class="page-header">
+    <div class="page-header">
 
-<div>
+        <div>
 
-<h1>Dashboard da Manutenção</h1>
+            <h1>Dashboard da Manutenção</h1>
 
-<p>Controle das Ordens de Manutenção</p>
+            <p>Controle das Ordens de Manutenção</p>
 
-</div>
+        </div>
 
-<div>
+        <div>
 
-<a href="nova.php" class="btn btn-primary">
+            <a href="nova.php" class="btn btn-primary">
 
-Nova Manutenção
+                Nova Manutenção
 
-</a>
+            </a>
 
-</div>
+        </div>
 
-</div>
+    </div>
 
-<div class="row">
+    <div class="row">
 
-<div class="col-md-3">
+        <div class="col-md-3">
 
-<div class="card">
+            <div class="card">
 
-<div class="card-body">
+                <div class="card-body">
 
-<h6>Equipamentos</h6>
+                    <h6>Equipamentos</h6>
 
-<h2><?= $totalEquipamentos ?></h2>
+                    <h2><?= $totalEquipamentos ?></h2>
 
-</div>
+                </div>
 
-</div>
+            </div>
 
-</div>
+        </div>
 
-<div class="col-md-3">
+        <div class="col-md-3">
 
-<div class="card">
+            <div class="card">
 
-<div class="card-body">
+                <div class="card-body">
 
-<h6>Total OS</h6>
+                    <h6>Total OS</h6>
 
-<h2><?= $totalManutencoes ?></h2>
+                    <h2><?= $totalManutencoes ?></h2>
 
-</div>
+                </div>
 
-</div>
+            </div>
 
-</div>
+        </div>
 
-<div class="col-md-2">
+        <div class="col-md-2">
 
-<div class="card">
+            <div class="card">
 
-<div class="card-body">
+                <div class="card-body">
 
-<h6>Abertas</h6>
+                    <h6>Abertas</h6>
 
-<h2><?= $abertas ?></h2>
+                    <h2><?= $abertas ?></h2>
 
-</div>
+                </div>
 
-</div>
+            </div>
 
-</div>
+        </div>
 
-<div class="col-md-2">
+        <div class="col-md-2">
 
-<div class="card">
+            <div class="card">
 
-<div class="card-body">
+                <div class="card-body">
 
-<h6>Em análise</h6>
+                    <h6>Em análise</h6>
 
-<h2><?= $analise ?></h2>
+                    <h2><?= $analise ?></h2>
 
-</div>
+                </div>
 
-</div>
+            </div>
 
-</div>
+        </div>
 
-<div class="col-md-2">
+        <div class="col-md-2">
 
-<div class="card">
+            <div class="card">
 
-<div class="card-body">
+                <div class="card-body">
 
-<h6>Aguardando peças</h6>
+                    <h6>Aguardando peças</h6>
 
-<h2><?= $pecas ?></h2>
+                    <h2><?= $pecas ?></h2>
 
-</div>
+                </div>
 
-</div>
+            </div>
 
-</div>
+        </div>
 
-</div>
+    </div>
 
-<br>
+    <br>
 
-<div class="row">
+    <div class="row">
 
-<div class="col-md-4">
+        <div class="col-md-4">
 
-<div class="card">
+            <div class="card">
 
-<div class="card-body">
+                <div class="card-body">
 
-<h6>Em manutenção</h6>
+                    <h6>Em manutenção</h6>
 
-<h2><?= $execucao ?></h2>
+                    <h2><?= $execucao ?></h2>
 
-</div>
+                </div>
 
-</div>
+            </div>
 
-</div>
+        </div>
 
-<div class="col-md-4">
+        <div class="col-md-4">
 
-<div class="card">
+            <div class="card">
 
-<div class="card-body">
+                <div class="card-body">
 
-<h6>Em teste</h6>
+                    <h6>Em teste</h6>
 
-<h2><?= $teste ?></h2>
+                    <h2><?= $teste ?></h2>
 
-</div>
+                </div>
 
-</div>
+            </div>
 
-</div>
+        </div>
 
-<div class="col-md-4">
+        <div class="col-md-4">
 
-<div class="card">
+            <div class="card">
 
-<div class="card-body">
+                <div class="card-body">
 
-<h6>Finalizadas</h6>
+                    <h6>Finalizadas</h6>
 
-<h2><?= $finalizadas ?></h2>
+                    <h2><?= $finalizadas ?></h2>
 
-</div>
+                </div>
 
-</div>
+            </div>
 
-</div>
+        </div>
 
-</div>
+    </div>
 
-<br>
+    <br>
 
-<div class="card">
+    <div class="card">
 
-<div class="card-header">
+        <div class="card-header">
 
-Últimas Ordens de Manutenção
+            Últimas Ordens de Manutenção
 
-</div>
+        </div>
 
-<div class="card-body">
+        <div class="card-body">
 
-<table class="table table-hover">
+            <table class="table table-hover">
 
-<thead>
+                <thead>
 
-<tr>
+                    <tr>
 
-<th>OS</th>
+                        <th>OS</th>
 
-<th>Equipamento</th>
+                        <th>Equipamento</th>
 
-<th>Descrição</th>
+                        <th>Descrição</th>
 
-<th>Prioridade</th>
+                        <th>Prioridade</th>
 
-<th>Status</th>
+                        <th>Status</th>
 
-<th>Data</th>
+                        <th>Data</th>
 
-<th>Ações</th>
+                        <th>Ações</th>
 
-</tr>
+                    </tr>
 
-</thead>
+                </thead>
 
-<tbody>
+                <tbody>
 
-<?php foreach($ultimas as $os): ?>
+                    <?php foreach($ultimas as $os): ?>
 
-<tr>
+                    <tr>
 
-<td>
+                        <td>
 
-<?= $os['numero_os'] ?>
+                            <?= $os['numero_os'] ?>
 
-</td>
+                        </td>
 
-<td>
+                        <td>
 
-<?= $os['codigo'] ?>
+                            <?= $os['codigo'] ?>
 
-</td>
+                        </td>
 
-<td>
+                        <td>
 
-<?= $os['descricao'] ?>
+                            <?= $os['descricao'] ?>
 
-</td>
+                        </td>
 
-<td>
+                        <td>
 
-<?= $os['prioridade'] ?>
+                            <?= $os['prioridade'] ?>
 
-</td>
+                        </td>
 
-<td>
+                        <td>
 
-<?= $os['status'] ?>
+                            <?= $os['status'] ?>
 
-</td>
+                        </td>
 
-<td>
+                        <td>
 
-<?= date('d/m/Y',strtotime($os['data_abertura'])) ?>
+                            <?= date('d/m/Y',strtotime($os['data_abertura'])) ?>
 
-</td>
+                        </td>
 
-<td>
+                        <td>
 
-<a
-href="visualizar.php?id=<?= $os['id'] ?>"
-class="btn btn-sm btn-primary">
+                            <a href="visualizar.php?id=<?= $os['id'] ?>" class="btn btn-sm btn-primary">
 
-Abrir
+                                Abrir
 
-</a>
+                            </a>
 
-</td>
+                        </td>
 
-</tr>
+                    </tr>
 
-<?php endforeach; ?>
+                    <?php endforeach; ?>
 
-</tbody>
+                </tbody>
 
-</table>
+            </table>
 
-</div>
+        </div>
 
-</div>
+    </div>
 
 </div>
 

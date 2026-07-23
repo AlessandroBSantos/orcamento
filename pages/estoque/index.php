@@ -90,7 +90,7 @@ require_once '../../includes/layout_inicio.php';
 
                 <tbody>
 
-                <?php if (empty($estoque)): ?>
+                    <?php if (empty($estoque)): ?>
 
                     <tr>
 
@@ -102,11 +102,11 @@ require_once '../../includes/layout_inicio.php';
 
                     </tr>
 
-                <?php else: ?>
+                    <?php else: ?>
 
                     <?php foreach ($estoque as $item): ?>
 
-                        <?php
+                    <?php
 
                         if ($item['quantidade_atual'] <= 0) {
 
@@ -133,87 +133,83 @@ require_once '../../includes/layout_inicio.php';
 
                         ?>
 
-                        <tr>
+                    <tr>
 
-                            <td>
+                        <td>
 
-                                <?= htmlspecialchars($item['codigo']) ?>
+                            <?= htmlspecialchars($item['codigo']) ?>
 
-                            </td>
+                        </td>
 
-                            <td>
+                        <td>
 
-                                <?= htmlspecialchars($item['nome']) ?>
+                            <?= htmlspecialchars($item['nome']) ?>
 
-                            </td>
+                        </td>
 
-                            <td class="text-center">
+                        <td class="text-center">
 
-                                <?= number_format($item['quantidade_atual'],3,',','.') ?>
+                            <?= number_format($item['quantidade_atual'],3,',','.') ?>
 
-                            </td>
+                        </td>
 
-                            <td class="text-center">
+                        <td class="text-center">
 
-                                <?= number_format($item['quantidade_reservada'],3,',','.') ?>
+                            <?= number_format($item['quantidade_reservada'],3,',','.') ?>
 
-                            </td>
+                        </td>
 
-                            <td class="text-center">
+                        <td class="text-center">
 
-                                <?= number_format($item['disponivel'],3,',','.') ?>
+                            <?= number_format($item['disponivel'],3,',','.') ?>
 
-                            </td>
+                        </td>
 
-                            <td class="text-center">
+                        <td class="text-center">
 
-                                <?= number_format($item['estoque_minimo'],3,',','.') ?>
+                            <?= number_format($item['estoque_minimo'],3,',','.') ?>
 
-                            </td>
+                        </td>
 
-                            <td class="text-center">
+                        <td class="text-center">
 
-                                <?= number_format($item['estoque_maximo'],3,',','.') ?>
+                            <?= number_format($item['estoque_maximo'],3,',','.') ?>
 
-                            </td>
+                        </td>
 
-                            <td>
+                        <td>
 
-                                <?= htmlspecialchars($item['localizacao'] ?? '') ?>
+                            <?= htmlspecialchars($item['localizacao'] ?? '') ?>
 
-                            </td>
+                        </td>
 
-                            <td class="text-center">
+                        <td class="text-center">
 
-                                <?= $status ?>
+                            <?= $status ?>
 
-                            </td>
+                        </td>
 
-                            <td class="text-center">
+                        <td class="text-center">
 
-                                <a
-                                    href="entrada.php?id=<?= $item['produto_id'] ?>"
-                                    class="btn btn-success btn-sm">
+                            <a href="entrada.php?id=<?= $item['produto_id'] ?>" class="btn btn-success btn-sm">
 
-                                    Entrada
+                                Entrada
 
-                                </a>
+                            </a>
 
-                                <a
-                                    href="saida.php?id=<?= $item['produto_id'] ?>"
-                                    class="btn btn-danger btn-sm">
+                            <a href="saida.php?id=<?= $item['produto_id'] ?>" class="btn btn-danger btn-sm">
 
-                                    Saída
+                                Saída
 
-                                </a>
+                            </a>
 
-                            </td>
+                        </td>
 
-                        </tr>
+                    </tr>
 
                     <?php endforeach; ?>
 
-                <?php endif; ?>
+                    <?php endif; ?>
 
                 </tbody>
 

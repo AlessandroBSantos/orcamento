@@ -16,7 +16,9 @@
 
 <?php foreach ($scripts as $script): ?>
 
-<script src="<?= BASE_URL ?>/assets/js/<?= htmlspecialchars($script) ?>?v=<?= filemtime(__DIR__ . '/../assets/js/' . $script) ?>"></script>
+<script
+    src="<?= BASE_URL ?>/assets/js/<?= htmlspecialchars($script) ?>?v=<?= filemtime(__DIR__ . '/../assets/js/' . $script) ?>">
+</script>
 
 <?php endforeach; ?>
 

@@ -79,9 +79,7 @@ $acao = "atualizar.php";
 
     </div>
 
-    <a
-        href="index.php"
-        class="btn btn-primary">
+    <a href="index.php" class="btn btn-primary">
 
         ← Voltar
 
