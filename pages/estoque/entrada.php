@@ -109,7 +109,7 @@ require_once '../../includes/layout_inicio.php';
 
                     </div>
 
-                    <div class="form-group label">
+                    <div class="col-md-3 mb-3">
 
                         <label class="form-label">
                             Valor Unitário
