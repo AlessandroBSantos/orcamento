@@ -6,41 +6,41 @@ echo "<!-- SIDEBAR CARREGADA -->";
     <nav class="sidebar-menu">
 
         <a href="<?= BASE_URL ?>/dashboard.php">
-            🏠 Dashboard
+            Dashboard
         </a>
 
         <a href="<?= BASE_URL ?>/pages/clientes/index.php">
-            👥 Clientes
+            Clientes
         </a>
 
         <a href="<?= BASE_URL ?>/pages/fornecedores/index.php">
-            🚚 Fornecedores
+            Fornecedores
         </a>
 
         <a href="<?= BASE_URL ?>/pages/produtos/index.php">
-            📦 Produtos
+            Produtos
         </a>
 
         <a href="<?= BASE_URL ?>/pages/estoque/index.php">
-            📋 Estoque
+            Estoque
         </a>
 
         <a href="<?= BASE_URL ?>/pages/propostas/index.php">
-            📑 Propostas
+            Propostas
         </a>
 
         <a href="<?= BASE_URL ?>/pages/financeiro/index.php">
-            💰 Financeiro
+            Financeiro
         </a>
 
         <a href="<?= BASE_URL ?>/pages/configuracoes/index.php">
-            ⚙️ Configurações
+            Configurações
         </a>
 
         <hr>
 
         <a href="<?= BASE_URL ?>/logout.php">
-            🚪 Sair
+            Sair
         </a>
 
     </nav>
