@@ -386,6 +386,13 @@ BOTÕES
     color:#FFF;
 }
 
+
+/* Botão azul (Secundario) */
+.btn-secondary{
+    background:#0EA5E9;
+    color:#FFF;
+}
+
 /* Hover do botão principal */
 .btn-primary:hover{
     background:#0284C7;
