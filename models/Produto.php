@@ -1,37 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| LLA ERP
-|--------------------------------------------------------------------------
-| Model Produto
-|--------------------------------------------------------------------------
-|
-| Esta classe é responsável pelo gerenciamento dos
-| produtos cadastrados no sistema.
-|
-| Segue o padrão MVC (Model-View-Controller),
-| sendo responsável exclusivamente pelo acesso
-| e manipulação da tabela "produtos".
-|
-| Funcionalidades:
-| - Listar produtos.
-| - Cadastrar produtos.
-| - Atualizar produtos.
-| - Excluir produtos.
-| - Buscar produto por ID.
-| - Listar categorias.
-| - Listar marcas.
-| - Listar unidades de medida.
-| - Listar fornecedores.
-|--------------------------------------------------------------------------
-*/
-
-//
-// Carrega a classe BaseModel,
-// responsável pela conexão com o banco
-// e pelos métodos comuns de acesso aos dados.
-//
 require_once __DIR__ . '/BaseModel.php';
 
 class Produto extends BaseModel
@@ -39,19 +7,10 @@ class Produto extends BaseModel
 
     /**
      * Lista todos os produtos
-     *
-     * Retorna os principais dados dos
-     * produtos cadastrados no sistema,
-     * ordenados pelo nome.
      */
     public function listar()
-    {
-
-        //
-        // Consulta SQL responsável por listar
-        // os produtos cadastrados.
-        //
-        $sql = "
+{
+    $sql = "
         SELECT
             id,
             codigo,
@@ -62,33 +21,15 @@ class Produto extends BaseModel
         ORDER BY nome
     ";
 
-        //
-        // Executa a consulta e retorna
-        // todos os registros encontrados.
-        //
-        return $this->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    return $this->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+}
+/**
+ * Salva um novo produto
+ */
+public function salvar(array $dados)
+{
 
-    }
-
-    /**
-     * Salva um novo produto
-     *
-     * Recebe um array contendo todas as
-     * informações do produto e realiza
-     * sua gravação na tabela "produtos".
-     *
-     * O método utiliza Prepared Statements
-     * (PDO) para garantir maior segurança
-     * contra SQL Injection.
-     */
-    public function salvar(array $dados)
-    {
-
-        //
-        // Instrução SQL responsável por inserir
-        // um novo produto no banco de dados.
-        //
-        $sql = "
+    $sql = "
         INSERT INTO produtos (
 
             codigo,
@@ -150,127 +91,52 @@ class Produto extends BaseModel
         )
     ";
 
-        //
-        // Prepara a instrução SQL.
-        //
-        $stmt = $this->db->prepare($sql);
+$stmt = $this->db->prepare($sql);
 
-        //
-        // Associação dos parâmetros
-        // aos dados recebidos.
-        //
+$stmt->bindValue(':codigo', $dados['codigo']);
+$stmt->bindValue(':codigo_barras', $dados['codigo_barras']);
+$stmt->bindValue(':sku', $dados['sku']);
+$stmt->bindValue(':nome', $dados['nome']);
+$stmt->bindValue(':descricao', $dados['descricao']);
 
-        // Código interno do produto.
-        $stmt->bindValue(':codigo', $dados['codigo']);
+$stmt->bindValue(':categoria_id', $dados['categoria_id'], PDO::PARAM_INT);
+$stmt->bindValue(':marca_id', $dados['marca_id'], $dados['marca_id'] === null ? PDO::PARAM_NULL : PDO::PARAM_INT);
+$stmt->bindValue(':unidade_id', $dados['unidade_id'], PDO::PARAM_INT);
+$stmt->bindValue(':fornecedor_id', $dados['fornecedor_id'], $dados['fornecedor_id'] === null ? PDO::PARAM_NULL : PDO::PARAM_INT);
 
-        // Código de barras.
-        $stmt->bindValue(':codigo_barras', $dados['codigo_barras']);
+$stmt->bindValue(':ncm', $dados['ncm']);
+$stmt->bindValue(':cfop', $dados['cfop']);
+$stmt->bindValue(':cest', $dados['cest']);
+$stmt->bindValue(':origem', $dados['origem']);
 
-        // SKU do produto.
-        $stmt->bindValue(':sku', $dados['sku']);
+$stmt->bindValue(':peso', $dados['peso']);
+$stmt->bindValue(':largura', $dados['largura']);
+$stmt->bindValue(':altura', $dados['altura']);
+$stmt->bindValue(':comprimento', $dados['comprimento']);
 
-        // Nome do produto.
-        $stmt->bindValue(':nome', $dados['nome']);
+$stmt->bindValue(':custo', $dados['custo']);
+$stmt->bindValue(':percentual_lucro', $dados['percentual_lucro']);
+$stmt->bindValue(':preco_venda', $dados['preco_venda']);
 
-        // Descrição detalhada.
-        $stmt->bindValue(':descricao', $dados['descricao']);
+$stmt->bindValue(':localizacao', $dados['localizacao']);
 
-        // Categoria do produto.
-        $stmt->bindValue(':categoria_id', $dados['categoria_id'], PDO::PARAM_INT);
+$stmt->bindValue(':controla_estoque', $dados['controla_estoque'], PDO::PARAM_INT);
+$stmt->bindValue(':vende', $dados['vende'], PDO::PARAM_INT);
+$stmt->bindValue(':compra', $dados['compra'], PDO::PARAM_INT);
+$stmt->bindValue(':ativo', $dados['ativo'], PDO::PARAM_INT);
 
-        // Marca do produto.
-        $stmt->bindValue(
-            ':marca_id',
-            $dados['marca_id'],
-            $dados['marca_id'] === null ? PDO::PARAM_NULL : PDO::PARAM_INT
-        );
+$stmt->bindValue(':observacoes', $dados['observacoes']);
 
-        // Unidade de medida.
-        $stmt->bindValue(':unidade_id', $dados['unidade_id'], PDO::PARAM_INT);
+return $stmt->execute();
 
-        // Fornecedor.
-        $stmt->bindValue(
-            ':fornecedor_id',
-            $dados['fornecedor_id'],
-            $dados['fornecedor_id'] === null ? PDO::PARAM_NULL : PDO::PARAM_INT
-        );
+}
+/**
+ * Lista categorias
+ */
+public function listarCategorias()
+{
 
-        // Código NCM.
-        $stmt->bindValue(':ncm', $dados['ncm']);
-
-        // Código CFOP.
-        $stmt->bindValue(':cfop', $dados['cfop']);
-
-        // Código CEST.
-        $stmt->bindValue(':cest', $dados['cest']);
-
-        // Origem fiscal.
-        $stmt->bindValue(':origem', $dados['origem']);
-
-        // Peso.
-        $stmt->bindValue(':peso', $dados['peso']);
-
-        // Largura.
-        $stmt->bindValue(':largura', $dados['largura']);
-
-        // Altura.
-        $stmt->bindValue(':altura', $dados['altura']);
-
-        // Comprimento.
-        $stmt->bindValue(':comprimento', $dados['comprimento']);
-
-        // Custo de aquisição.
-        $stmt->bindValue(':custo', $dados['custo']);
-
-        // Percentual de lucro.
-        $stmt->bindValue(':percentual_lucro', $dados['percentual_lucro']);
-
-        // Preço de venda.
-        $stmt->bindValue(':preco_venda', $dados['preco_venda']);
-
-        // Localização física.
-        $stmt->bindValue(':localizacao', $dados['localizacao']);
-
-        // Controla estoque.
-        $stmt->bindValue(':controla_estoque', $dados['controla_estoque'], PDO::PARAM_INT);
-
-        // Produto disponível para venda.
-        $stmt->bindValue(':vende', $dados['vende'], PDO::PARAM_INT);
-
-        // Produto disponível para compra.
-        $stmt->bindValue(':compra', $dados['compra'], PDO::PARAM_INT);
-
-        // Produto ativo.
-        $stmt->bindValue(':ativo', $dados['ativo'], PDO::PARAM_INT);
-
-        // Observações gerais.
-        $stmt->bindValue(':observacoes', $dados['observacoes']);
-
-        //
-        // Executa a gravação do produto.
-        //
-        return $stmt->execute();
-
-    }
-
-    /**
-     * Lista categorias
-     */
-        /**
-     * Lista categorias
-     *
-     * Retorna todas as categorias
-     * de produtos cadastradas e
-     * ativas no sistema.
-     */
-    public function listarCategorias()
-    {
-
-        //
-        // Consulta SQL responsável por listar
-        // todas as categorias ativas.
-        //
-        $sql = "
+    $sql = "
         SELECT
             id,
             nome
@@ -279,29 +145,17 @@ class Produto extends BaseModel
         ORDER BY nome
     ";
 
-        //
-        // Executa a consulta e retorna
-        // todas as categorias encontradas.
-        //
-        return $this->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    return $this->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
-    }
+}
 
-    /**
-     * Lista as marcas
-     *
-     * Retorna todas as marcas
-     * cadastradas e ativas
-     * no sistema.
-     */
-    public function listarMarcas()
-    {
+/**
+ * Lista as marcas
+ */
+public function listarMarcas()
+{
 
-        //
-        // Consulta SQL responsável por listar
-        // todas as marcas ativas.
-        //
-        $sql = "
+    $sql = "
         SELECT
             id,
             nome
@@ -310,29 +164,17 @@ class Produto extends BaseModel
         ORDER BY nome
     ";
 
-        //
-        // Executa a consulta e retorna
-        // todas as marcas encontradas.
-        //
-        return $this->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    return $this->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
-    }
+}
 
-    /**
-     * Lista as unidades de medida
-     *
-     * Retorna todas as unidades
-     * de medida ativas cadastradas
-     * no sistema.
-     */
-    public function listarUnidades()
-    {
+/**
+ * Lista as unidades de medida
+ */
+public function listarUnidades()
+{
 
-        //
-        // Consulta SQL responsável por listar
-        // todas as unidades de medida ativas.
-        //
-        $sql = "
+    $sql = "
         SELECT
             id,
             sigla,
@@ -342,29 +184,17 @@ class Produto extends BaseModel
         ORDER BY descricao
     ";
 
-        //
-        // Executa a consulta e retorna
-        // todas as unidades encontradas.
-        //
-        return $this->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    return $this->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
-    }
+}
 
-    /**
-     * Lista os fornecedores
-     *
-     * Retorna todos os fornecedores
-     * ativos disponíveis para
-     * seleção no cadastro de produtos.
-     */
-    public function listarFornecedores()
-    {
+/**
+ * Lista os fornecedores
+ */
+public function listarFornecedores()
+{
 
-        //
-        // Consulta SQL responsável por listar
-        // todos os fornecedores ativos.
-        //
-        $sql = "
+    $sql = "
         SELECT
             id,
             nome_fantasia
@@ -373,83 +203,40 @@ class Produto extends BaseModel
         ORDER BY nome_fantasia
     ";
 
-        //
-        // Executa a consulta e retorna
-        // todos os fornecedores encontrados.
-        //
-        return $this->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    return $this->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
-    }
+}
 
-    /**
-     * Busca um produto pelo ID
-     */
-        /**
-     * Busca um produto pelo ID
-     *
-     * Localiza um produto específico
-     * através do seu identificador
-     * único (ID).
-     *
-     * Retorna todos os campos do
-     * cadastro do produto.
-     */
-    public function buscarPorId(int $id)
-    {
+/**
+ * Busca um produto pelo ID
+ */
+public function buscarPorId(int $id)
+{
 
-        //
-        // Consulta SQL responsável por localizar
-        // um produto pelo seu identificador.
-        //
-        $sql = "
+    $sql = "
         SELECT *
         FROM produtos
         WHERE id = :id
         LIMIT 1
     ";
 
-        //
-        // Prepara a instrução SQL.
-        //
-        $stmt = $this->db->prepare($sql);
+    $stmt = $this->db->prepare($sql);
 
-        //
-        // Associa o parâmetro ID
-        // informado à consulta.
-        //
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
-        //
-        // Executa a consulta.
-        //
-        $stmt->execute();
+    $stmt->execute();
 
-        //
-        // Retorna os dados do produto.
-        //
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
 
-    }
+}
 
-    /**
-     * Atualiza um produto
-     *
-     * Atualiza todas as informações
-     * de um produto previamente
-     * cadastrado no sistema.
-     *
-     * O método utiliza Prepared Statements
-     * (PDO) para garantir maior segurança
-     * durante a atualização.
-     */
-    public function atualizar(array $dados)
-    {
+/**
+ * Atualiza um produto
+ */
+public function atualizar(array $dados)
+{
 
-        //
-        // Instrução SQL responsável por atualizar
-        // os dados do produto.
-        //
-        $sql = "
+    $sql = "
 
         UPDATE produtos SET
 
@@ -491,175 +278,69 @@ class Produto extends BaseModel
 
     ";
 
-        //
-        // Prepara a instrução SQL.
-        //
-        $stmt = $this->db->prepare($sql);
+    $stmt = $this->db->prepare($sql);
 
-        //
-        // Executa a atualização associando
-        // cada parâmetro aos dados recebidos.
-        //
-        return $stmt->execute([
+    return $stmt->execute([
 
-            // Identificador do produto.
-            ':id'                 => $dados['id'],
+        ':id'                 => $dados['id'],
 
-            // Código interno.
-            ':codigo'             => $dados['codigo'],
+        ':codigo'             => $dados['codigo'],
+        ':codigo_barras'      => $dados['codigo_barras'],
+        ':sku'                => $dados['sku'],
+        ':nome'               => $dados['nome'],
+        ':descricao'          => $dados['descricao'],
 
-            // Código de barras.
-            ':codigo_barras'      => $dados['codigo_barras'],
+        ':categoria_id'       => $dados['categoria_id'],
+        ':marca_id'           => $dados['marca_id'],
+        ':unidade_id'         => $dados['unidade_id'],
+        ':fornecedor_id'      => $dados['fornecedor_id'],
 
-            // SKU.
-            ':sku'                => $dados['sku'],
+        ':ncm'                => $dados['ncm'],
+        ':cfop'               => $dados['cfop'],
+        ':cest'               => $dados['cest'],
+        ':origem'             => $dados['origem'],
 
-            // Nome do produto.
-            ':nome'               => $dados['nome'],
+        ':peso'               => $dados['peso'],
+        ':largura'            => $dados['largura'],
+        ':altura'             => $dados['altura'],
+        ':comprimento'        => $dados['comprimento'],
 
-            // Descrição.
-            ':descricao'          => $dados['descricao'],
+        ':custo'              => $dados['custo'],
+        ':percentual_lucro'   => $dados['percentual_lucro'],
+        ':preco_venda'        => $dados['preco_venda'],
 
-            // Categoria.
-            ':categoria_id'       => $dados['categoria_id'],
+        ':localizacao'        => $dados['localizacao'],
 
-            // Marca.
-            ':marca_id'           => $dados['marca_id'],
+        ':controla_estoque'   => $dados['controla_estoque'],
+        ':vende'              => $dados['vende'],
+        ':compra'             => $dados['compra'],
+        ':ativo'              => $dados['ativo'],
 
-            // Unidade de medida.
-            ':unidade_id'         => $dados['unidade_id'],
+        ':observacoes'        => $dados['observacoes']
 
-            // Fornecedor.
-            ':fornecedor_id'      => $dados['fornecedor_id'],
+    ]);
 
-            // Código NCM.
-            ':ncm'                => $dados['ncm'],
+}
 
-            // Código CFOP.
-            ':cfop'               => $dados['cfop'],
+/**
+ * Exclui um produto
+ */
+public function excluir(int $id)
+{
 
-            // Código CEST.
-            ':cest'               => $dados['cest'],
-
-            // Origem fiscal.
-            ':origem'             => $dados['origem'],
-
-            // Peso.
-            ':peso'               => $dados['peso'],
-
-            // Largura.
-            ':largura'            => $dados['largura'],
-
-            // Altura.
-            ':altura'             => $dados['altura'],
-
-            // Comprimento.
-            ':comprimento'        => $dados['comprimento'],
-
-            // Custo de aquisição.
-            ':custo'              => $dados['custo'],
-
-            // Percentual de lucro.
-            ':percentual_lucro'   => $dados['percentual_lucro'],
-
-            // Preço de venda.
-            ':preco_venda'        => $dados['preco_venda'],
-
-            // Localização física.
-            ':localizacao'        => $dados['localizacao'],
-
-            // Controle de estoque.
-            ':controla_estoque'   => $dados['controla_estoque'],
-
-            // Disponível para venda.
-            ':vende'              => $dados['vende'],
-
-            // Disponível para compra.
-            ':compra'             => $dados['compra'],
-
-            // Situação do produto.
-            ':ativo'              => $dados['ativo'],
-
-            // Observações.
-            ':observacoes'        => $dados['observacoes']
-
-        ]);
-
-    }
-
-    /**
-     * Exclui um produto
-     */
-        /**
-     * Exclui um produto
-     *
-     * Remove um produto da tabela
-     * "produtos" utilizando seu ID.
-     *
-     * Observação:
-     * Este método realiza uma exclusão física
-     * (DELETE). Caso o sistema utilize
-     * exclusão lógica, este método deverá
-     * ser adaptado futuramente para atualizar
-     * apenas o campo "ativo".
-     */
-    public function excluir(int $id)
-    {
-
-        //
-        // Consulta SQL responsável por remover
-        // o produto do banco de dados.
-        //
-        $sql = "
+    $sql = "
         DELETE FROM produtos
         WHERE id = :id
     ";
 
-        //
-        // Prepara a instrução SQL.
-        //
-        $stmt = $this->db->prepare($sql);
+    $stmt = $this->db->prepare($sql);
 
-        //
-        // Executa a exclusão utilizando
-        // o identificador informado.
-        //
-        return $stmt->execute([
+    return $stmt->execute([
 
-            // Identificador do produto.
-            ':id' => $id
+        ':id' => $id
 
-        ]);
-
-    }
+    ]);
 
 }
 
-/*
-|--------------------------------------------------------------------------
-| Fim da Classe Produto
-|--------------------------------------------------------------------------
-|
-| Este Model concentra todas as operações relacionadas
-| ao cadastro de produtos do LLA ERP, incluindo:
-|
-| • Listagem de produtos
-| • Cadastro de novos produtos
-| • Atualização de produtos
-| • Exclusão de produtos
-| • Consulta de produto por ID
-| • Listagem de categorias
-| • Listagem de marcas
-| • Listagem de unidades de medida
-| • Listagem de fornecedores
-|
-| O cadastro contempla informações comerciais,
-| fiscais, logísticas e de controle de estoque,
-| permitindo o gerenciamento completo do ciclo
-| de vida dos produtos.
-|
-| A classe herda BaseModel, reutilizando a
-| conexão PDO e os métodos comuns de acesso
-| ao banco de dados do LLA ERP.
-|--------------------------------------------------------------------------
-*/
+}
