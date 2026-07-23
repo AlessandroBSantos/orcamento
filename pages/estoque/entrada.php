@@ -206,7 +206,7 @@ require_once '../../includes/layout_inicio.php';
 
                     <button
                         type="submit"
-                        class="btn btn-success">
+                        class="btn btn-primary">
 
                         <i class="fas fa-save"></i>
                         Salvar Entrada
