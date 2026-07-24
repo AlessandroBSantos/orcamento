@@ -6,46 +6,14 @@ class Manutencao extends BaseModel
 {
 
     /**
-     * Lista todas as manutenções
+     * Lista todas as Ordens de Manutenção
      */
     public function listar()
     {
 
         $sql = "
 
-            SELECT$sql = "
-
-INSERT INTO manutencao_historico
-(
-    manutencao_id,
-    usuario_id,
-    status,
-    descricao
-)
-
-VALUES
-(
-    :manutencao,
-    :usuario,
-    :status,
-    :descricao
-)
-
-";
-
-$stmt = $db->prepare($sql);
-
-$stmt->execute([
-
-    'manutencao' => $idManutencao,
-
-    'usuario' => $_SESSION['usuario_id'] ?? null,
-
-    'status' => 'ABERTA',
-
-    'descricao' => 'Ordem de manutenção criada.'
-
-]);
+            SELECT
 
                 m.*,
 
@@ -57,9 +25,7 @@ $stmt->execute([
             INNER JOIN equipamentos e
                 ON e.id = m.equipamento_id
 
-            ORDER BY
-
-                m.id DESC
+            ORDER BY m.id DESC
 
         ";
 
@@ -68,7 +34,7 @@ $stmt->execute([
     }
 
     /**
-     * Busca manutenção
+     * Busca uma Ordem de Manutenção
      */
     public function buscar(int $id)
     {
@@ -85,349 +51,354 @@ $stmt->execute([
             FROM manutencoes m
 
             INNER JOIN equipamentos e
-                ON e.id=m.equipamento_id
+                ON e.id = m.equipamento_id
 
-            WHERE
-
-                m.id=:id
+            WHERE m.id = :id
 
             LIMIT 1
 
         ";
 
-        return $this->query($sql,[
+        return $this->query($sql, [
 
-            'id'=>$id
+            'id' => $id
 
         ])->fetch(PDO::FETCH_ASSOC);
 
     }
 
     /**
-     * Gera número da OS
+     * Gera automaticamente o número da Ordem
      */
-    public function gerarNumeroOS()
+    private function gerarNumeroOS()
     {
 
-        $sql="
+        $sql = "
 
-            SELECT MAX(id) ultimo
+            SELECT MAX(id) AS ultimo
 
             FROM manutencoes
 
         ";
 
-        $ultimo=$this->query($sql)->fetch(PDO::FETCH_ASSOC);
+        $ultimo = $this->query($sql)->fetch(PDO::FETCH_ASSOC);
 
-        $numero=((int)$ultimo['ultimo'])+1;
+        $numero = ((int)$ultimo['ultimo']) + 1;
 
-        return "OM".str_pad($numero,6,"0",STR_PAD_LEFT);
+        return 'OM' . str_pad($numero, 6, '0', STR_PAD_LEFT);
 
     }
 
     /**
-     * Nova manutenção
+     * Cadastro de Ordem de Manutenção
      */
     public function cadastrar(array $dados)
     {
 
-        $numeroOS=$this->gerarNumeroOS();
+        $numeroOS = $this->gerarNumeroOS();
 
-        $sql="
+        $sql = "
 
-        INSERT INTO manutencoes(
+            INSERT INTO manutencoes
+            (
 
-            numero_os,
+                numero_os,
+                equipamento_id,
+                usuario_abertura,
+                tecnico_id,
+                fornecedor_id,
+                tipo,
+                prioridade,
+                defeito_informado,
+                diagnostico,
+                servico_executado,
+                observacoes,
+                valor_pecas,
+                valor_mao_obra,
+                valor_total,
+                status,
+                data_abertura
 
-            equipamento_id,
+            )
 
-            usuario_abertura,
+            VALUES
+            (
 
-            tecnico_id,
+                :numero_os,
+                :equipamento_id,
+                :usuario_abertura,
+                :tecnico_id,
+                :fornecedor_id,
+                :tipo,
+                :prioridade,
+                :defeito_informado,
+                :diagnostico,
+                :servico_executado,
+                :observacoes,
+                :valor_pecas,
+                :valor_mao_obra,
+                :valor_total,
+                'ABERTA',
+                NOW()
 
-            fornecedor_id,
-
-            tipo,
-
-            prioridade,
-
-            defeito_informado,
-
-            diagnostico,
-
-            servico_executado,
-
-            descricao,
-
-            valor_pecas,
-
-            valor_mao_obra,
-
-            valor_total,
-
-            status
-
-        )
-
-        VALUES(
-
-            :numero_os,
-
-            :equipamento_id,
-
-            :usuario_abertura,
-
-            :tecnico_id,
-
-            :fornecedor_id,
-
-            :tipo,
-
-            :prioridade,
-
-            :defeito,
-
-            :diagnostico,
-
-            :servico,
-
-            :observacoes,
-
-            :valor_pecas,
-
-            :valor_mao,
-
-            :valor_total,
-
-            'ABERTA'
-
-        )
+            )
 
         ";
 
-        $this->query($sql,[
+        $this->query($sql, [
 
-            'numero_os'=>$numeroOS,
-
-            'equipamento_id'=>$dados['equipamento_id'],
-
-            'usuario_abertura'=>$dados['usuario_abertura'],
-
-            'tecnico_id'=>$dados['tecnico_id'],
-
-            'fornecedor_id'=>$dados['fornecedor_id'],
-
-            'tipo'=>$dados['tipo'],
-
-            'prioridade'=>$dados['prioridade'],
-
-            'defeito'=>$dados['defeito_informado'],
-
-            'diagnostico'=>$dados['diagnostico'],
-
-            'servico'=>$dados['servico_executado'],
-
-            'observacoes'=>$dados['observacoes'],
-
-            'valor_pecas'=>$dados['valor_pecas'],
-
-            'valor_mao'=>$dados['valor_mao_obra'],
-
-            'valor_total'=>$dados['valor_total']
+            'numero_os'         => $numeroOS,
+            'equipamento_id'    => $dados['equipamento_id'],
+            'usuario_abertura'  => $dados['usuario_abertura'],
+            'tecnico_id'        => $dados['tecnico_id'],
+            'fornecedor_id'     => $dados['fornecedor_id'],
+            'tipo'              => $dados['tipo'],
+            'prioridade'        => $dados['prioridade'],
+            'defeito_informado' => $dados['defeito_informado'],
+            'diagnostico'       => $dados['diagnostico'],
+            'servico_executado' => $dados['servico_executado'],
+            'observacoes'       => $dados['observacoes'],
+            'valor_pecas'       => $dados['valor_pecas'],
+            'valor_mao_obra'    => $dados['valor_mao_obra'],
+            'valor_total'       => $dados['valor_total']
 
         ]);
 
         return $this->db->lastInsertId();
 
     }
-
-    /**
-     * Atualiza manutenção
+        /**
+     * Atualiza uma Ordem de Manutenção
      */
     public function atualizar(array $dados)
     {
 
-        $sql="
-
-        UPDATE manutencoes
-
-        SET
-
-            tecnico_id=:tecnico,
-
-            fornecedor_id=:fornecedor,
-
-            tipo=:tipo,
-
-            prioridade=:prioridade,
-
-            defeito_informado=:defeito,
-
-            diagnostico=:diagnostico,
-
-            servico_executado=:servico,
-
-            observacoes=:observacoes,
-
-            valor_pecas=:pecas,
-
-            valor_mao_obra=:mao,
-
-            valor_total=:total
-
-        WHERE
-
-            id=:id
-
-        ";
-
-        return $this->query($sql,[
-
-            'id'=>$dados['id'],
-
-            'tecnico'=>$dados['tecnico_id'],
-
-            'fornecedor'=>$dados['fornecedor_id'],
-
-            'tipo'=>$dados['tipo'],
-
-            'prioridade'=>$dados['prioridade'],
-
-            'defeito'=>$dados['defeito_informado'],
-
-            'diagnostico'=>$dados['diagnostico'],
-
-            'servico'=>$dados['servico_executado'],
-
-            'observacoes'=>$dados['observacoes'],
-
-            'pecas'=>$dados['valor_pecas'],
-
-            'mao'=>$dados['valor_mao_obra'],
-
-            'total'=>$dados['valor_total']
-
-        ]);
-
-    }
-
-    /**
-     * Altera Status
-     */
-    public function alterarStatus(int $id,string $status)
-    {
-
-        $sql="
+        $sql = "
 
             UPDATE manutencoes
 
             SET
 
-                status=:status
+                equipamento_id      = :equipamento_id,
+                tecnico_id          = :tecnico_id,
+                fornecedor_id       = :fornecedor_id,
+                tipo                = :tipo,
+                prioridade          = :prioridade,
+                defeito_informado   = :defeito_informado,
+                diagnostico         = :diagnostico,
+                servico_executado   = :servico_executado,
+                observacoes         = :observacoes,
+                valor_pecas         = :valor_pecas,
+                valor_mao_obra      = :valor_mao_obra,
+                valor_total         = :valor_total
 
             WHERE
 
-                id=:id
+                id = :id
 
         ";
 
         return $this->query($sql,[
 
-            'status'=>$status,
-
-            'id'=>$id
+            'id'                 => $dados['id'],
+            'equipamento_id'     => $dados['equipamento_id'],
+            'tecnico_id'         => $dados['tecnico_id'],
+            'fornecedor_id'      => $dados['fornecedor_id'],
+            'tipo'               => $dados['tipo'],
+            'prioridade'         => $dados['prioridade'],
+            'defeito_informado'  => $dados['defeito_informado'],
+            'diagnostico'        => $dados['diagnostico'],
+            'servico_executado'  => $dados['servico_executado'],
+            'observacoes'        => $dados['observacoes'],
+            'valor_pecas'        => $dados['valor_pecas'],
+            'valor_mao_obra'     => $dados['valor_mao_obra'],
+            'valor_total'        => $dados['valor_total']
 
         ]);
 
     }
 
     /**
-     * Finalizar
+     * Altera o status da Ordem
+     */
+    public function alterarStatus(int $id, string $status)
+    {
+
+        $sql = "
+
+            UPDATE manutencoes
+
+            SET
+
+                status = :status
+
+            WHERE
+
+                id = :id
+
+        ";
+
+        $this->query($sql,[
+
+            'status' => $status,
+            'id'     => $id
+
+        ]);
+
+        return true;
+
+    }
+
+    /**
+     * Finaliza a Ordem
      */
     public function finalizar(int $id)
     {
 
-        $sql="
+        $sql = "
 
             UPDATE manutencoes
 
             SET
 
-                status='FINALIZADA',
+                status = 'FINALIZADA',
 
-                data_fim=NOW()
+                data_fim = NOW()
 
             WHERE
 
-                id=:id
+                id = :id
 
         ";
 
-        return $this->query($sql,[
+        $this->query($sql,[
 
-            'id'=>$id
+            'id' => $id
 
         ]);
 
-    }
+        return true;
 
-    /**
-     * Cancelar
+    }
+        /**
+     * Cancela uma Ordem de Manutenção
      */
     public function cancelar(int $id)
     {
 
-        $sql="
+        $sql = "
 
             UPDATE manutencoes
 
             SET
 
-                status='CANCELADA'
+                status = 'CANCELADA'
 
             WHERE
 
-                id=:id
+                id = :id
 
         ";
 
-        return $this->query($sql,[
+        $this->query($sql, [
 
-            'id'=>$id
+            'id' => $id
 
         ]);
+
+        return true;
 
     }
 
     /**
-     * Dashboard
+     * Lista Ordens por Status
+     */
+    public function buscarPorStatus(string $status)
+    {
+
+        $sql = "
+
+            SELECT
+
+                m.*,
+                e.codigo,
+                e.descricao
+
+            FROM manutencoes m
+
+            INNER JOIN equipamentos e
+                ON e.id = m.equipamento_id
+
+            WHERE
+
+                m.status = :status
+
+            ORDER BY
+
+                m.data_abertura DESC,
+                m.id DESC
+
+        ";
+
+        return $this->query($sql, [
+
+            'status' => $status
+
+        ])->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+    /**
+     * Dashboard da Manutenção
      */
     public function dashboard()
     {
 
-        $sql="
+        $sql = "
 
-        SELECT
+            SELECT
 
-        COUNT(*) total,
+                COUNT(*) AS total,
 
-        SUM(status='ABERTA') abertas,
+                SUM(CASE WHEN status='ABERTA' THEN 1 ELSE 0 END) AS abertas,
 
-        SUM(status='EM_ANALISE') analise,
+                SUM(CASE WHEN status='EM_ANALISE' THEN 1 ELSE 0 END) AS analise,
 
-        SUM(status='AGUARDANDO_PECA') aguardando,
+                SUM(CASE WHEN status='AGUARDANDO_PECA' THEN 1 ELSE 0 END) AS aguardando,
 
-        SUM(status='EM_MANUTENCAO') manutencao,
+                SUM(CASE WHEN status='EM_MANUTENCAO' THEN 1 ELSE 0 END) AS manutencao,
 
-        SUM(status='TESTE') teste,
+                SUM(CASE WHEN status='TESTE' THEN 1 ELSE 0 END) AS teste,
 
-        SUM(status='FINALIZADA') finalizadas
+                SUM(CASE WHEN status='FINALIZADA' THEN 1 ELSE 0 END) AS finalizadas,
 
-        FROM manutencoes
+                SUM(CASE WHEN status='CANCELADA' THEN 1 ELSE 0 END) AS canceladas
+
+            FROM manutencoes
 
         ";
 
         return $this->query($sql)->fetch(PDO::FETCH_ASSOC);
+
+    }
+
+    /**
+     * Total de Ordens
+     */
+    public function total()
+    {
+
+        $sql = "
+
+            SELECT COUNT(*) AS total
+
+            FROM manutencoes
+
+        ";
+
+        $resultado = $this->query($sql)->fetch(PDO::FETCH_ASSOC);
+
+        return (int) $resultado['total'];
 
     }
 
