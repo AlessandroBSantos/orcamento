@@ -1,7 +1,10 @@
 <?php
 
+session_start();
+
 $titulo = "Nova Ordem de Manutenção";
 
+require_once '../../config/app.php';
 require_once '../../models/Database.php';
 
 $db = Database::getConnection();
@@ -12,21 +15,19 @@ $db = Database::getConnection();
 |--------------------------------------------------------------------------
 */
 
-$equipamentos = $db->query("
-
+$sql = "
 SELECT
-
-id,
-codigo,
-descricao
-
+    id,
+    codigo,
+    descricao,
+    marca,
+    modelo
 FROM equipamentos
-
-WHERE ativo=1
-
+WHERE ativo = 1
 ORDER BY descricao
+";
 
-")->fetchAll(PDO::FETCH_ASSOC);
+$equipamentos = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
 /*
 |--------------------------------------------------------------------------
@@ -34,18 +35,16 @@ ORDER BY descricao
 |--------------------------------------------------------------------------
 */
 
-$tecnicos = $db->query("
-
+$sql = "
 SELECT
-
-id,
-nome
-
+    id,
+    nome
 FROM usuarios
-
+WHERE ativo = 1
 ORDER BY nome
+";
 
-")->fetchAll(PDO::FETCH_ASSOC);
+$tecnicos = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
 require_once '../../includes/layout_inicio.php';
 
@@ -53,31 +52,41 @@ require_once '../../includes/layout_inicio.php';
 
 <div class="container-fluid">
 
-    <div class="page-header">
+    <div class="d-flex justify-content-between align-items-center mb-4">
 
         <div>
 
-            <h1>Nova Ordem de Manutenção</h1>
+            <h2>Nova Ordem de Manutenção</h2>
 
-            <p>Abertura de Ordem de Serviço de Manutenção</p>
-
-        </div>
-
-        <div>
-
-            <a href="index.php" class="btn btn-secondary">
-
-                Voltar
-
-            </a>
+            <small class="text-muted">
+                Cadastro de Ordem de Serviço
+            </small>
 
         </div>
+
+        <a href="index.php" class="btn btn-secondary">
+
+            Voltar
+
+        </a>
 
     </div>
 
+    <?php if(isset($_GET['erro'])): ?>
+
+        <div class="alert alert-danger">
+
+            <?= htmlspecialchars($_GET['erro']) ?>
+
+        </div>
+
+    <?php endif; ?>
+
     <form action="salvar.php" method="POST">
 
-        <div class="card mb-4">
+        <!-- ========================================= -->
+
+        <div class="card shadow mb-4">
 
             <div class="card-header">
 
@@ -89,25 +98,40 @@ require_once '../../includes/layout_inicio.php';
 
                 <div class="row">
 
-                    <div class="col-md-6">
+                    <div class="col-md-6 mb-3">
 
-                        <label>Equipamento</label>
+                        <label class="form-label">
 
-                        <select name="equipamento_id" class="form-control" required>
+                            Equipamento
+
+                        </label>
+
+                        <select
+                            name="equipamento_id"
+                            class="form-select"
+                            required>
 
                             <option value="">Selecione...</option>
 
                             <?php foreach($equipamentos as $eq): ?>
 
-                            <option value="<?= $eq['id'] ?>">
+                                <option value="<?= $eq['id'] ?>">
 
-                                <?= $eq['codigo'] ?>
+                                    <?= htmlspecialchars($eq['codigo']) ?>
 
-                                -
+                                    -
 
-                                <?= $eq['descricao'] ?>
+                                    <?= htmlspecialchars($eq['descricao']) ?>
 
-                            </option>
+                                    <?php if(!empty($eq['marca'])): ?>
+
+                                        (<?= htmlspecialchars($eq['marca']) ?>
+
+                                        <?= htmlspecialchars($eq['modelo']) ?>)
+
+                                    <?php endif; ?>
+
+                                </option>
 
                             <?php endforeach; ?>
 
@@ -115,41 +139,89 @@ require_once '../../includes/layout_inicio.php';
 
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-3 mb-3">
 
-                        <label>Tipo</label>
+                        <label class="form-label">
 
-                        <select name="tipo" class="form-control">
+                            Tipo
 
-                            <option value="CORRETIVA">Corretiva</option>
+                        </label>
 
-                            <option value="PREVENTIVA">Preventiva</option>
+                        <select
+                            name="tipo"
+                            class="form-select">
 
-                            <option value="GARANTIA">Garantia</option>
+                            <option value="CORRETIVA">
 
-                            <option value="INSTALACAO">Instalação</option>
+                                Corretiva
 
-                            <option value="CALIBRACAO">Calibração</option>
+                            </option>
 
-                            <option value="OUTROS">Outros</option>
+                            <option value="PREVENTIVA">
+
+                                Preventiva
+
+                            </option>
+
+                            <option value="PREDITIVA">
+
+                                Preditiva
+
+                            </option>
+
+                            <option value="INSTALACAO">
+
+                                Instalação
+
+                            </option>
+
+                            <option value="GARANTIA">
+
+                                Garantia
+
+                            </option>
 
                         </select>
 
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-3 mb-3">
 
-                        <label>Prioridade</label>
+                        <label class="form-label">
 
-                        <select name="prioridade" class="form-control">
+                            Prioridade
 
-                            <option value="BAIXA">Baixa</option>
+                        </label>
 
-                            <option value="MEDIA" selected>Média</option>
+                        <select
+                            name="prioridade"
+                            class="form-select">
 
-                            <option value="ALTA">Alta</option>
+                            <option value="BAIXA">
 
-                            <option value="URGENTE">Urgente</option>
+                                Baixa
+
+                            </option>
+
+                            <option
+                                value="MEDIA"
+                                selected>
+
+                                Média
+
+                            </option>
+
+                            <option value="ALTA">
+
+                                Alta
+
+                            </option>
+
+                            <option value="URGENTE">
+
+                                Urgente
+
+                            </option>
 
                         </select>
 
@@ -157,25 +229,33 @@ require_once '../../includes/layout_inicio.php';
 
                 </div>
 
-                <br>
-
                 <div class="row">
 
-                    <div class="col-md-6">
+                    <div class="col-md-6 mb-3">
 
-                        <label>Técnico Responsável</label>
+                        <label class="form-label">
 
-                        <select name="tecnico_id" class="form-control">
+                            Técnico Responsável
 
-                            <option value="">Selecione...</option>
+                        </label>
+
+                        <select
+                            name="tecnico_id"
+                            class="form-select">
+
+                            <option value="">
+
+                                Não definido
+
+                            </option>
 
                             <?php foreach($tecnicos as $tec): ?>
 
-                            <option value="<?= $tec['id'] ?>">
+                                <option value="<?= $tec['id'] ?>">
 
-                                <?= $tec['nome'] ?>
+                                    <?= htmlspecialchars($tec['nome']) ?>
 
-                            </option>
+                                </option>
 
                             <?php endforeach; ?>
 
@@ -183,11 +263,19 @@ require_once '../../includes/layout_inicio.php';
 
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-6 mb-3">
 
-                        <label>Fornecedor (Opcional)</label>
+                        <label class="form-label">
 
-                        <input type="text" name="fornecedor" class="form-control">
+                            Status Inicial
+
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            value="ABERTA"
+                            readonly>
 
                     </div>
 
@@ -197,7 +285,9 @@ require_once '../../includes/layout_inicio.php';
 
         </div>
 
-        <div class="card mb-4">
+        <!-- ========================================= -->
+
+        <div class="card shadow mb-4">
 
             <div class="card-header">
 
@@ -207,13 +297,25 @@ require_once '../../includes/layout_inicio.php';
 
             <div class="card-body">
 
-                <textarea name="defeito_informado" rows="5" class="form-control" required></textarea>
+                <textarea
+
+                    name="defeito_informado"
+
+                    rows="5"
+
+                    class="form-control"
+
+                    required
+
+                    placeholder="Descreva o problema informado pelo cliente..."></textarea>
 
             </div>
 
         </div>
 
-        <div class="card mb-4">
+        <!-- ========================================= -->
+
+        <div class="card shadow mb-4">
 
             <div class="card-header">
 
@@ -223,13 +325,23 @@ require_once '../../includes/layout_inicio.php';
 
             <div class="card-body">
 
-                <textarea name="diagnostico" rows="5" class="form-control"></textarea>
+                <textarea
+
+                    name="diagnostico"
+
+                    rows="5"
+
+                    class="form-control"
+
+                    placeholder="Diagnóstico realizado pelo técnico..."></textarea>
 
             </div>
 
         </div>
 
-        <div class="card mb-4">
+        <!-- ========================================= -->
+
+        <div class="card shadow mb-4">
 
             <div class="card-header">
 
@@ -239,13 +351,23 @@ require_once '../../includes/layout_inicio.php';
 
             <div class="card-body">
 
-                <textarea name="servico_executado" rows="5" class="form-control"></textarea>
+                <textarea
+
+                    name="servico_executado"
+
+                    rows="5"
+
+                    class="form-control"
+
+                    placeholder="Serviço realizado..."></textarea>
 
             </div>
 
         </div>
 
-        <div class="card mb-4">
+        <!-- ========================================= -->
+
+        <div class="card shadow mb-4">
 
             <div class="card-header">
 
@@ -259,25 +381,73 @@ require_once '../../includes/layout_inicio.php';
 
                     <div class="col-md-4">
 
-                        <label>Peças</label>
+                        <label class="form-label">
 
-                        <input type="number" step="0.01" value="0" name="valor_pecas" class="form-control">
+                            Peças
+
+                        </label>
+
+                        <input
+
+                            type="number"
+
+                            step="0.01"
+
+                            min="0"
+
+                            value="0.00"
+
+                            name="valor_pecas"
+
+                            class="form-control">
 
                     </div>
 
                     <div class="col-md-4">
 
-                        <label>Mão de Obra</label>
+                        <label class="form-label">
 
-                        <input type="number" step="0.01" value="0" name="valor_mao_obra" class="form-control">
+                            Mão de Obra
+
+                        </label>
+
+                        <input
+
+                            type="number"
+
+                            step="0.01"
+
+                            min="0"
+
+                            value="0.00"
+
+                            name="valor_mao_obra"
+
+                            class="form-control">
 
                     </div>
 
                     <div class="col-md-4">
 
-                        <label>Total</label>
+                        <label class="form-label">
 
-                        <input type="number" step="0.01" value="0" name="valor_total" class="form-control">
+                            Valor Total
+
+                        </label>
+
+                        <input
+
+                            type="number"
+
+                            step="0.01"
+
+                            min="0"
+
+                            value="0.00"
+
+                            name="valor_total"
+
+                            class="form-control">
 
                     </div>
 
@@ -287,7 +457,9 @@ require_once '../../includes/layout_inicio.php';
 
         </div>
 
-        <div class="card mb-4">
+        <!-- ========================================= -->
+
+        <div class="card shadow mb-4">
 
             <div class="card-header">
 
@@ -297,17 +469,33 @@ require_once '../../includes/layout_inicio.php';
 
             <div class="card-body">
 
-                <textarea name="observacoes" rows="5" class="form-control"></textarea>
+                <textarea
+
+                    name="observacoes"
+
+                    rows="4"
+
+                    class="form-control"
+
+                    placeholder="Observações adicionais..."></textarea>
 
             </div>
 
         </div>
 
-        <div class="text-end">
+        <div class="text-end mb-5">
 
-            <button type="submit" class="btn btn-success btn-lg">
+            <a href="index.php" class="btn btn-secondary">
 
-                Abrir Ordem de Manutenção
+                Cancelar
+
+            </a>
+
+            <button
+                type="submit"
+                class="btn btn-success">
+
+                Salvar Ordem de Manutenção
 
             </button>
 
@@ -317,8 +505,4 @@ require_once '../../includes/layout_inicio.php';
 
 </div>
 
-<?php
-
-require_once '../../includes/layout_fim.php';
-
-?>
+<?php require_once '../../includes/layout_fim.php'; ?>
