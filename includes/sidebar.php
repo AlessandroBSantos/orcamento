@@ -29,6 +29,10 @@ echo "<!-- SIDEBAR CARREGADA -->";
             Propostas
         </a>
 
+        <a href="<?= BASE_URL ?>/pages/manutencao/index.php">
+            Manutenção
+        </a>
+
         <a href="<?= BASE_URL ?>/pages/financeiro/index.php">
             Financeiro
         </a>
