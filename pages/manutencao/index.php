@@ -6,8 +6,8 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 
-require_once __DIR__ . '/../models/Manutencao.php';
-require_once __DIR__ . '/BaseController.php';
+require_once '../../models/Manutencao.php';
+require_once '../../controllers/ManutencaoController.php';
 
 class ManutencaoController extends BaseController
 {
