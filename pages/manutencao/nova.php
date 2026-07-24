@@ -11,7 +11,7 @@ session_start();
 $titulo = "Nova Ordem de Manutenção";
 
 require_once '../../config/app.php';
-require_once '../../models/Database.php';
+require_once '../../config/database.php';
 
 $db = Database::getConnection();
 
