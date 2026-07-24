@@ -28,6 +28,10 @@ echo "<!-- SIDEBAR CARREGADA -->";
         <a href="<?= BASE_URL ?>/pages/propostas/index.php">
             Propostas
         </a>
+        
+        <a href="<?= BASE_URL ?>/pages/equipamentos/index.php">
+            Equipamentos
+        </a>
 
         <a href="<?= BASE_URL ?>/pages/manutencao/index.php">
             Manutenção
