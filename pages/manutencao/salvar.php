@@ -6,7 +6,7 @@ require_once '../../config/app.php';
 require_once '../../models/Database.php';
 require_once '../../controllers/ManutencaoController.php';
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+if ($_SERVER['REQUEST_METHOD'] != 'POST') {
     header("Location: index.php");
     exit;
 }
@@ -17,46 +17,77 @@ try {
 
     $db->beginTransaction();
 
-    $controller = new ManutencaoController();
+    /*
+    |--------------------------------------------------------------------------
+    | Validação
+    |--------------------------------------------------------------------------
+    */
+
+    if (empty($_POST['equipamento_id'])) {
+        throw new Exception("Selecione um equipamento.");
+    }
+
+    if (empty(trim($_POST['defeito_informado']))) {
+        throw new Exception("Informe o defeito.");
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Dados
+    |--------------------------------------------------------------------------
+    */
 
     $dados = [
 
-        'equipamento_id'      => (int)($_POST['equipamento_id'] ?? 0),
-        'usuario_abertura'    => $_SESSION['usuario_id'],
-        'tecnico_id'          => !empty($_POST['tecnico_id']) ? (int)$_POST['tecnico_id'] : null,
-        'fornecedor_id'       => !empty($_POST['fornecedor_id']) ? (int)$_POST['fornecedor_id'] : null,
+        'equipamento_id'     => (int)$_POST['equipamento_id'],
+        'usuario_abertura'   => $_SESSION['usuario_id'] ?? 1,
 
-        'tipo'                => $_POST['tipo'] ?? 'CORRETIVA',
-        'prioridade'          => $_POST['prioridade'] ?? 'MEDIA',
+        'tecnico_id'         => !empty($_POST['tecnico_id'])
+                                    ? (int)$_POST['tecnico_id']
+                                    : null,
 
-        'defeito_informado'   => trim($_POST['defeito_informado']),
-        'diagnostico'         => trim($_POST['diagnostico']),
-        'servico_executado'   => trim($_POST['servico_executado']),
-        'observacoes'         => trim($_POST['observacoes']),
+        'fornecedor_id'      => null,
 
-        'valor_pecas'         => (float)($_POST['valor_pecas'] ?? 0),
-        'valor_mao_obra'      => (float)($_POST['valor_mao_obra'] ?? 0),
-        'valor_total'         => (float)($_POST['valor_total'] ?? 0)
+        'tipo'               => $_POST['tipo'] ?? 'CORRETIVA',
+
+        'prioridade'         => $_POST['prioridade'] ?? 'MEDIA',
+
+        'defeito_informado'  => trim($_POST['defeito_informado']),
+
+        'diagnostico'        => trim($_POST['diagnostico']),
+
+        'servico_executado'  => trim($_POST['servico_executado']),
+
+        'observacoes'        => trim($_POST['observacoes']),
+
+        'valor_pecas'        => (float)($_POST['valor_pecas'] ?? 0),
+
+        'valor_mao_obra'     => (float)($_POST['valor_mao_obra'] ?? 0),
+
+        'valor_total'        => (float)($_POST['valor_total'] ?? 0)
 
     ];
 
     /*
     |--------------------------------------------------------------------------
-    | Salva Ordem
+    | Controller
     |--------------------------------------------------------------------------
     */
 
-    $manutencaoId = $controller->cadastrar($dados);
+    $controller = new ManutencaoController();
+
+    $idManutencao = $controller->cadastrar($dados);
 
     /*
     |--------------------------------------------------------------------------
-    | Histórico Inicial
+    | Histórico
     |--------------------------------------------------------------------------
     */
 
     $sql = "
 
-        INSERT INTO manutencao_historico(
+        INSERT INTO manutencao_historico
+        (
 
             manutencao_id,
             usuario_id,
@@ -66,12 +97,13 @@ try {
 
         )
 
-        VALUES(
+        VALUES
+        (
 
             :manutencao,
             :usuario,
             'ABERTA',
-            'Ordem aberta.',
+            'Ordem criada.',
             NOW()
 
         )
@@ -82,14 +114,15 @@ try {
 
     $stmt->execute([
 
-        'manutencao' => $manutencaoId,
-        'usuario'    => $_SESSION['usuario_id']
+        'manutencao' => $idManutencao,
+
+        'usuario'    => $_SESSION['usuario_id'] ?? 1
 
     ]);
 
     /*
     |--------------------------------------------------------------------------
-    | Atualiza Equipamento
+    | Atualiza equipamento
     |--------------------------------------------------------------------------
     */
 
@@ -111,7 +144,7 @@ try {
 
     $stmt->execute([
 
-        'id' => $dados['equipamento_id']
+        'id'=>$dados['equipamento_id']
 
     ]);
 
@@ -123,17 +156,18 @@ try {
 
     $db->commit();
 
-    header("Location: index.php?sucesso=1");
+    header("Location:index.php?sucesso=1");
 
     exit;
 
-} catch (Exception $e) {
+}
+catch(Exception $e){
 
-    if ($db->inTransaction()) {
+    if($db->inTransaction()){
         $db->rollBack();
     }
 
-    header("Location: nova.php?erro=" . urlencode($e->getMessage()));
+    header("Location:nova.php?erro=".urlencode($e->getMessage()));
 
     exit;
 
