@@ -13,24 +13,31 @@ abstract class BaseModel
 
     protected function query(string $sql, array $params = [])
     {
-$stmt = $this->db->prepare($sql);
+        $stmt = $this->db->prepare($sql);
 
-try {
+        try {
 
-    $stmt->execute($params);
+            $stmt->execute($params);
 
-} catch (PDOException $e) {
+        } catch (PDOException $e) {
 
-    echo "<pre>";
-    echo $sql;
-    echo "\n\n";
+            echo "<h2>Erro SQL</h2>";
 
-    print_r($params);
+            echo "<h3>Mensagem:</h3>";
+            echo "<pre>" . $e->getMessage() . "</pre>";
 
-    die($e->getMessage());
+            echo "<h3>SQL:</h3>";
+            echo "<pre>" . htmlspecialchars($sql) . "</pre>";
 
-}
+            echo "<h3>Parâmetros:</h3>";
+            echo "<pre>";
+            print_r($params);
+            echo "</pre>";
 
-return $stmt;
+            exit;
+
+        }
+
+        return $stmt;
     }
 }
