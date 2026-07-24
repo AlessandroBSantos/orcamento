@@ -84,31 +84,39 @@ try {
     |--------------------------------------------------------------------------
     */
 
-    $sql = "
+$sql = "
 
-        INSERT INTO manutencao_historico
-        (
+INSERT INTO manutencao_historico
+(
+    manutencao_id,
+    usuario_id,
+    status,
+    descricao
+)
 
-            manutencao_id,
-            usuario_id,
-            status,
-            observacao,
-            data_evento
+VALUES
+(
+    :manutencao,
+    :usuario,
+    :status,
+    :descricao
+)
 
-        )
+";
 
-        VALUES
-        (
+$stmt = $db->prepare($sql);
 
-            :manutencao,
-            :usuario,
-            'ABERTA',
-            'Ordem criada.',
-            NOW()
+$stmt->execute([
 
-        )
+    'manutencao' => $idManutencao,
 
-    ";
+    'usuario' => $_SESSION['usuario_id'] ?? null,
+
+    'status' => 'ABERTA',
+
+    'descricao' => 'Ordem de manutenção criada.'
+
+]);
 
     $stmt = $db->prepare($sql);
 

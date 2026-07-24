@@ -13,7 +13,39 @@ class Manutencao extends BaseModel
 
         $sql = "
 
-            SELECT
+            SELECT$sql = "
+
+INSERT INTO manutencao_historico
+(
+    manutencao_id,
+    usuario_id,
+    status,
+    descricao
+)
+
+VALUES
+(
+    :manutencao,
+    :usuario,
+    :status,
+    :descricao
+)
+
+";
+
+$stmt = $db->prepare($sql);
+
+$stmt->execute([
+
+    'manutencao' => $idManutencao,
+
+    'usuario' => $_SESSION['usuario_id'] ?? null,
+
+    'status' => 'ABERTA',
+
+    'descricao' => 'Ordem de manutenção criada.'
+
+]);
 
                 m.*,
 
@@ -125,7 +157,7 @@ class Manutencao extends BaseModel
 
             servico_executado,
 
-            observacoes,
+            descricao,
 
             valor_pecas,
 
