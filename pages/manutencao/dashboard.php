@@ -1,109 +1,47 @@
 <?php
 
+session_start();
+
 $titulo = "Dashboard da Manutenção";
 
-require_once '../../models/Database.php';
+require_once '../../config/app.php';
+require_once '../../controllers/ManutencaoController.php';
 
-$db = Database::getConnection();
+$controller = new ManutencaoController();
 
-/*
-|--------------------------------------------------------------------------
-| Indicadores
-|--------------------------------------------------------------------------
-*/
-
-$totalEquipamentos = $db->query("
-    SELECT COUNT(*) total
-    FROM equipamentos
-    WHERE ativo = 1
-")->fetch(PDO::FETCH_ASSOC)['total'];
-
-$totalManutencoes = $db->query("
-    SELECT COUNT(*) total
-    FROM manutencoes
-")->fetch(PDO::FETCH_ASSOC)['total'];
-
-$abertas = $db->query("
-    SELECT COUNT(*) total
-    FROM manutencoes
-    WHERE status='ABERTA'
-")->fetch(PDO::FETCH_ASSOC)['total'];
-
-$analise = $db->query("
-    SELECT COUNT(*) total
-    FROM manutencoes
-    WHERE status='EM_ANALISE'
-")->fetch(PDO::FETCH_ASSOC)['total'];
-
-$pecas = $db->query("
-    SELECT COUNT(*) total
-    FROM manutencoes
-    WHERE status='AGUARDANDO_PECA'
-")->fetch(PDO::FETCH_ASSOC)['total'];
-
-$execucao = $db->query("
-    SELECT COUNT(*) total
-    FROM manutencoes
-    WHERE status='EM_MANUTENCAO'
-")->fetch(PDO::FETCH_ASSOC)['total'];
-
-$teste = $db->query("
-    SELECT COUNT(*) total
-    FROM manutencoes
-    WHERE status='TESTE'
-")->fetch(PDO::FETCH_ASSOC)['total'];
-
-$finalizadas = $db->query("
-    SELECT COUNT(*) total
-    FROM manutencoes
-    WHERE status='FINALIZADA'
-")->fetch(PDO::FETCH_ASSOC)['total'];
-
-$ultimas = $db->query("
-SELECT
-
-m.id,
-m.numero_os,
-m.status,
-m.prioridade,
-m.data_abertura,
-
-e.codigo,
-e.descricao
-
-FROM manutencoes m
-
-INNER JOIN equipamentos e
-ON e.id=m.equipamento_id
-
-ORDER BY m.id DESC
-
-LIMIT 10
-
-")->fetchAll(PDO::FETCH_ASSOC);
+$dados = $controller->dashboard();
+$ultimas = $controller->index();
 
 require_once '../../includes/layout_inicio.php';
+
+$total = (int)($dados['total'] ?? 0);
+$abertas = (int)($dados['abertas'] ?? 0);
+$analise = (int)($dados['analise'] ?? 0);
+$aguardando = (int)($dados['aguardando'] ?? 0);
+$manutencao = (int)($dados['manutencao'] ?? 0);
+$teste = (int)($dados['teste'] ?? 0);
+$finalizadas = (int)($dados['finalizadas'] ?? 0);
 
 ?>
 
 <div class="container-fluid">
 
-    <div class="page-header">
+    <div class="d-flex justify-content-between align-items-center mb-4">
 
         <div>
 
-            <h1>Dashboard da Manutenção</h1>
+            <h2>Dashboard da Manutenção</h2>
 
-            <p>Controle das Ordens de Manutenção</p>
+            <small class="text-muted">
+                Indicadores gerais da manutenção
+            </small>
 
         </div>
 
         <div>
 
-            <a href="nova.php" class="btn btn-primary">
-
-                Nova Manutenção
-
+            <a href="index.php" class="btn btn-primary">
+                Ordens de Manutenção
             </a>
 
         </div>
@@ -112,15 +50,15 @@ require_once '../../includes/layout_inicio.php';
 
     <div class="row">
 
-        <div class="col-md-3">
+        <div class="col-lg-3 col-md-6 mb-4">
 
-            <div class="card">
+            <div class="card shadow border-0">
 
                 <div class="card-body">
 
-                    <h6>Equipamentos</h6>
+                    <h6>Total de OS</h6>
 
-                    <h2><?= $totalEquipamentos ?></h2>
+                    <h2><?= $total ?></h2>
 
                 </div>
 
@@ -128,15 +66,15 @@ require_once '../../includes/layout_inicio.php';
 
         </div>
 
-        <div class="col-md-3">
+        <div class="col-lg-3 col-md-6 mb-4">
 
-            <div class="card">
+            <div class="card shadow border-0">
 
                 <div class="card-body">
 
-                    <h6>Total OS</h6>
+                    <h6>Em Manutenção</h6>
 
-                    <h2><?= $totalManutencoes ?></h2>
+                    <h2><?= $manutencao ?></h2>
 
                 </div>
 
@@ -144,95 +82,9 @@ require_once '../../includes/layout_inicio.php';
 
         </div>
 
-        <div class="col-md-2">
+        <div class="col-lg-3 col-md-6 mb-4">
 
-            <div class="card">
-
-                <div class="card-body">
-
-                    <h6>Abertas</h6>
-
-                    <h2><?= $abertas ?></h2>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="col-md-2">
-
-            <div class="card">
-
-                <div class="card-body">
-
-                    <h6>Em análise</h6>
-
-                    <h2><?= $analise ?></h2>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="col-md-2">
-
-            <div class="card">
-
-                <div class="card-body">
-
-                    <h6>Aguardando peças</h6>
-
-                    <h2><?= $pecas ?></h2>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <br>
-
-    <div class="row">
-
-        <div class="col-md-4">
-
-            <div class="card">
-
-                <div class="card-body">
-
-                    <h6>Em manutenção</h6>
-
-                    <h2><?= $execucao ?></h2>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="col-md-4">
-
-            <div class="card">
-
-                <div class="card-body">
-
-                    <h6>Em teste</h6>
-
-                    <h2><?= $teste ?></h2>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="col-md-4">
-
-            <div class="card">
+            <div class="card shadow border-0">
 
                 <div class="card-body">
 
@@ -246,15 +98,105 @@ require_once '../../includes/layout_inicio.php';
 
         </div>
 
+        <div class="col-lg-3 col-md-6 mb-4">
+
+            <div class="card shadow border-0">
+
+                <div class="card-body">
+
+                    <h6>Aguardando Peça</h6>
+
+                    <h2><?= $aguardando ?></h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
 
-    <br>
+    <div class="row">
 
-    <div class="card">
+        <div class="col-lg-8">
+
+            <div class="card shadow">
+
+                <div class="card-header">
+
+                    Situação das Ordens
+
+                </div>
+
+                <div class="card-body">
+
+                    <canvas id="graficoStatus" height="120"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-4">
+
+            <div class="card shadow">
+
+                <div class="card-header">
+
+                    Resumo
+
+                </div>
+
+                <div class="card-body">
+
+                    <table class="table table-sm">
+
+                        <tr>
+                            <td>Aberta</td>
+                            <td><?= $abertas ?></td>
+                        </tr>
+
+                        <tr>
+                            <td>Em Análise</td>
+                            <td><?= $analise ?></td>
+                        </tr>
+
+                        <tr>
+                            <td>Aguardando Peça</td>
+                            <td><?= $aguardando ?></td>
+                        </tr>
+
+                        <tr>
+                            <td>Em Manutenção</td>
+                            <td><?= $manutencao ?></td>
+                        </tr>
+
+                        <tr>
+                            <td>Teste</td>
+                            <td><?= $teste ?></td>
+                        </tr>
+
+                        <tr>
+                            <td>Finalizadas</td>
+                            <td><?= $finalizadas ?></td>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="card shadow mt-4">
 
         <div class="card-header">
 
-            Últimas Ordens de Manutenção
+            Últimas Ordens
 
         </div>
 
@@ -267,18 +209,10 @@ require_once '../../includes/layout_inicio.php';
                     <tr>
 
                         <th>OS</th>
-
                         <th>Equipamento</th>
-
-                        <th>Descrição</th>
-
-                        <th>Prioridade</th>
-
                         <th>Status</th>
-
+                        <th>Prioridade</th>
                         <th>Data</th>
-
-                        <th>Ações</th>
 
                     </tr>
 
@@ -286,59 +220,31 @@ require_once '../../includes/layout_inicio.php';
 
                 <tbody>
 
-                    <?php foreach($ultimas as $os): ?>
+                <?php foreach(array_slice($ultimas,0,10) as $os): ?>
 
                     <tr>
 
-                        <td>
-
-                            <?= $os['numero_os'] ?>
-
-                        </td>
+                        <td><?= htmlspecialchars($os['numero_os']) ?></td>
 
                         <td>
 
-                            <?= $os['codigo'] ?>
+                            <?= htmlspecialchars($os['codigo']) ?>
+
+                            -
+
+                            <?= htmlspecialchars($os['descricao']) ?>
 
                         </td>
 
-                        <td>
+                        <td><?= htmlspecialchars($os['status']) ?></td>
 
-                            <?= $os['descricao'] ?>
+                        <td><?= htmlspecialchars($os['prioridade']) ?></td>
 
-                        </td>
-
-                        <td>
-
-                            <?= $os['prioridade'] ?>
-
-                        </td>
-
-                        <td>
-
-                            <?= $os['status'] ?>
-
-                        </td>
-
-                        <td>
-
-                            <?= date('d/m/Y',strtotime($os['data_abertura'])) ?>
-
-                        </td>
-
-                        <td>
-
-                            <a href="visualizar.php?id=<?= $os['id'] ?>" class="btn btn-sm btn-primary">
-
-                                Abrir
-
-                            </a>
-
-                        </td>
+                        <td><?= date('d/m/Y',strtotime($os['data_abertura'])) ?></td>
 
                     </tr>
 
-                    <?php endforeach; ?>
+                <?php endforeach; ?>
 
                 </tbody>
 
@@ -349,6 +255,67 @@ require_once '../../includes/layout_inicio.php';
     </div>
 
 </div>
+
+<script>
+
+const dadosStatus = {
+
+labels:[
+'Aberta',
+'Análise',
+'Aguardando',
+'Manutenção',
+'Teste',
+'Finalizadas'
+],
+
+datasets:[{
+
+data:[
+<?= $abertas ?>,
+<?= $analise ?>,
+<?= $aguardando ?>,
+<?= $manutencao ?>,
+<?= $teste ?>,
+<?= $finalizadas ?>
+
+]
+
+}]
+
+};
+
+new Chart(
+
+document.getElementById('graficoStatus'),
+
+{
+
+type:'bar',
+
+data:dadosStatus,
+
+options:{
+
+responsive:true,
+
+plugins:{
+
+legend:{
+
+display:false
+
+}
+
+}
+
+}
+
+}
+
+);
+
+</script>
 
 <?php
 
