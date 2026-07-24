@@ -1,152 +1,282 @@
 <?php
 
+session_start();
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+$titulo = "Ordens de Manutenção";
 
-
-require_once '../../models/Manutencao.php';
+require_once '../../config/app.php';
 require_once '../../controllers/ManutencaoController.php';
 
-class ManutencaoController extends BaseController
-{
+$controller = new ManutencaoController();
+$manutencoes = $controller->index();
 
-    private Manutencao $manutencao;
+require_once '../../includes/layout_inicio.php';
 
-    public function __construct()
-    {
-        $this->manutencao = new Manutencao();
-    }
+?>
 
-    /**
-     * Dashboard
-     */
-    public function dashboard()
-    {
-        return $this->manutencao->dashboard();
-    }
+<div class="container-fluid">
 
-    /**
-     * Lista todas as Ordens
-     */
-    public function index()
-    {
-        return $this->manutencao->listar();
-    }
+    <div class="d-flex justify-content-between align-items-center mb-4">
 
-    /**
-     * Busca uma Ordem
-     */
-    public function buscar(int $id)
-    {
-        return $this->manutencao->buscar($id);
-    }
+        <div>
+            <h2 class="mb-1">Ordens de Manutenção</h2>
+            <small class="text-muted">
+                Controle das Ordens de Manutenção
+            </small>
+        </div>
 
-    /**
-     * Nova Ordem
-     */
-    public function cadastrar(array $dados)
-    {
+        <div>
 
-        if (empty($dados['equipamento_id'])) {
-            throw new Exception("Selecione um equipamento.");
-        }
+            <a href="dashboard.php" class="btn btn-secondary">
+                Dashboard
+            </a>
 
-        if (empty($dados['defeito_informado'])) {
-            throw new Exception("Informe o defeito.");
-        }
+            <a href="nova.php" class="btn btn-primary">
+                Nova Ordem
+            </a>
 
-        if (empty($dados['tipo'])) {
-            $dados['tipo'] = 'CORRETIVA';
-        }
+        </div>
 
-        if (empty($dados['prioridade'])) {
-            $dados['prioridade'] = 'MEDIA';
-        }
+    </div>
 
-        if (!isset($dados['usuario_abertura'])) {
-            $dados['usuario_abertura'] = $_SESSION['usuario_id'] ?? null;
-        }
+    <?php if(isset($_GET['sucesso'])): ?>
 
-        if (!isset($dados['tecnico_id'])) {
-            $dados['tecnico_id'] = null;
-        }
+        <div class="alert alert-success">
+            Operação realizada com sucesso.
+        </div>
 
-        if (!isset($dados['fornecedor_id'])) {
-            $dados['fornecedor_id'] = null;
-        }
+    <?php endif; ?>
 
-        if (!isset($dados['diagnostico'])) {
-            $dados['diagnostico'] = '';
-        }
+    <?php if(isset($_GET['erro'])): ?>
 
-        if (!isset($dados['servico_executado'])) {
-            $dados['servico_executado'] = '';
-        }
+        <div class="alert alert-danger">
+            <?= htmlspecialchars($_GET['erro']) ?>
+        </div>
 
-        if (!isset($dados['observacoes'])) {
-            $dados['observacoes'] = '';
-        }
+    <?php endif; ?>
 
-        if (!isset($dados['valor_pecas'])) {
-            $dados['valor_pecas'] = 0;
-        }
+    <div class="card shadow">
 
-        if (!isset($dados['valor_mao_obra'])) {
-            $dados['valor_mao_obra'] = 0;
-        }
+        <div class="card-header">
 
-        if (!isset($dados['valor_total'])) {
-            $dados['valor_total'] = 0;
-        }
+            <strong>Ordens Cadastradas</strong>
 
-        return $this->manutencao->cadastrar($dados);
+        </div>
 
-    }
+        <div class="card-body">
 
-    /**
-     * Atualizar Ordem
-     */
-    public function atualizar(array $dados)
-    {
+            <table class="table table-striped table-hover align-middle">
 
-        if (empty($dados['id'])) {
-            throw new Exception("Ordem inválida.");
-        }
+                <thead>
 
-        return $this->manutencao->atualizar($dados);
+                    <tr>
 
-    }
+                        <th>OS</th>
 
-    /**
-     * Alterar Status
-     */
-    public function alterarStatus(int $id, string $status)
-    {
+                        <th>Equipamento</th>
 
-        return $this->manutencao->alterarStatus($id, $status);
+                        <th>Tipo</th>
 
-    }
+                        <th>Prioridade</th>
 
-    /**
-     * Finalizar Ordem
-     */
-    public function finalizar(int $id)
-    {
+                        <th>Status</th>
 
-        return $this->manutencao->finalizar($id);
+                        <th>Data</th>
 
-    }
+                        <th width="300">Ações</th>
 
-    /**
-     * Cancelar Ordem
-     */
-    public function cancelar(int $id)
-    {
+                    </tr>
 
-        return $this->manutencao->cancelar($id);
+                </thead>
 
-    }
+                <tbody>
 
-}
+                <?php if(empty($manutencoes)): ?>
+
+                    <tr>
+
+                        <td colspan="7" class="text-center">
+
+                            Nenhuma Ordem cadastrada.
+
+                        </td>
+
+                    </tr>
+
+                <?php else: ?>
+
+                    <?php foreach($manutencoes as $item): ?>
+
+                        <tr>
+
+                            <td>
+
+                                <?= htmlspecialchars($item['numero_os']) ?>
+
+                            </td>
+
+                            <td>
+
+                                <strong><?= htmlspecialchars($item['codigo']) ?></strong>
+
+                                <br>
+
+                                <?= htmlspecialchars($item['descricao']) ?>
+
+                            </td>
+
+                            <td>
+
+                                <?= htmlspecialchars($item['tipo']) ?>
+
+                            </td>
+
+                            <td>
+
+                                <?php
+
+                                switch($item['prioridade']){
+
+                                    case 'URGENTE':
+
+                                        echo '<span class="badge bg-danger">URGENTE</span>';
+
+                                        break;
+
+                                    case 'ALTA':
+
+                                        echo '<span class="badge bg-warning text-dark">ALTA</span>';
+
+                                        break;
+
+                                    case 'MEDIA':
+
+                                        echo '<span class="badge bg-primary">MÉDIA</span>';
+
+                                        break;
+
+                                    default:
+
+                                        echo '<span class="badge bg-success">BAIXA</span>';
+
+                                }
+
+                                ?>
+
+                            </td>
+
+                            <td>
+
+                                <?php
+
+                                switch($item['status']){
+
+                                    case 'ABERTA':
+                                        echo '<span class="badge bg-secondary">ABERTA</span>';
+                                        break;
+
+                                    case 'EM_ANALISE':
+                                        echo '<span class="badge bg-info text-dark">EM ANÁLISE</span>';
+                                        break;
+
+                                    case 'AGUARDANDO_APROVACAO':
+                                        echo '<span class="badge bg-warning text-dark">AG. APROVAÇÃO</span>';
+                                        break;
+
+                                    case 'AGUARDANDO_PECA':
+                                        echo '<span class="badge bg-warning text-dark">AG. PEÇA</span>';
+                                        break;
+
+                                    case 'EM_MANUTENCAO':
+                                        echo '<span class="badge bg-primary">EM MANUTENÇÃO</span>';
+                                        break;
+
+                                    case 'TESTE':
+                                        echo '<span class="badge bg-dark">TESTE</span>';
+                                        break;
+
+                                    case 'FINALIZADA':
+                                        echo '<span class="badge bg-success">FINALIZADA</span>';
+                                        break;
+
+                                    case 'ENTREGUE':
+                                        echo '<span class="badge bg-success">ENTREGUE</span>';
+                                        break;
+
+                                    case 'CANCELADA':
+                                        echo '<span class="badge bg-danger">CANCELADA</span>';
+                                        break;
+
+                                    default:
+                                        echo htmlspecialchars($item['status']);
+
+                                }
+
+                                ?>
+
+                            </td>
+
+                            <td>
+
+                                <?php
+
+                                if(!empty($item['data_abertura'])){
+
+                                    echo date('d/m/Y', strtotime($item['data_abertura']));
+
+                                }
+
+                                ?>
+
+                            </td>
+
+                            <td>
+
+                                <a href="visualizar.php?id=<?= $item['id'] ?>"
+                                   class="btn btn-sm btn-info">
+
+                                    Visualizar
+
+                                </a>
+
+                                <a href="editar.php?id=<?= $item['id'] ?>"
+                                   class="btn btn-sm btn-primary">
+
+                                    Editar
+
+                                </a>
+
+                                <a href="finalizar.php?id=<?= $item['id'] ?>"
+                                   class="btn btn-sm btn-success">
+
+                                    Finalizar
+
+                                </a>
+
+                                <a href="cancelar.php?id=<?= $item['id'] ?>"
+                                   class="btn btn-sm btn-danger"
+                                   onclick="return confirm('Deseja cancelar esta Ordem?')">
+
+                                    Cancelar
+
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                    <?php endforeach; ?>
+
+                <?php endif; ?>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<?php require_once '../../includes/layout_fim.php'; ?>
