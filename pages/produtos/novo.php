@@ -130,101 +130,357 @@ $produto = [];
     </div>
 
 
-    <!-- =====================================================
-         DADOS GERAIS
-    ====================================================== -->
+   <!-- ==========================================
+     DADOS GERAIS
+=========================================== -->
 
-    <div class="tab-content active" id="dados">
+<div class="tab-content active" id="dados">
 
-        <div class="panel">
+    <div class="panel">
 
-            <h2>Dados Gerais</h2>
+        <h2>Dados Gerais</h2>
 
-            <div class="form-grid">
+        <div class="form-grid">
 
-                <div class="form-group">
+            <!-- NOME DO PRODUTO -->
 
-                    <label for="nome">
-                        Nome do Produto
-                    </label>
+            <div class="form-group">
 
-                    <input
-                        type="text"
-                        id="nome"
-                        name="nome"
-                        required
-                    >
+                <label for="nome">
+                    Nome do Produto *
+                </label>
 
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="sku">
-                        SKU
-                    </label>
-
-                    <input
-                        type="text"
-                        id="sku"
-                        name="sku"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="codigo">
-                        Código
-                    </label>
-
-                    <input
-                        type="text"
-                        id="codigo"
-                        name="codigo"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="codigo_barras">
-                        Código de Barras
-                    </label>
-
-                    <input
-                        type="text"
-                        id="codigo_barras"
-                        name="codigo_barras"
-                    >
-
-                </div>
-
-
-                <div
-                    class="form-group"
-                    style="grid-column: 1 / -1;"
+                <input
+                    type="text"
+                    id="nome"
+                    name="nome"
+                    required
+                    maxlength="255"
+                    value="<?= htmlspecialchars($produto['nome'] ?? '') ?>"
+                    placeholder="Digite o nome do produto"
                 >
 
-                    <label for="descricao">
-                        Descrição
-                    </label>
+            </div>
 
-                    <textarea
-                        id="descricao"
-                        name="descricao"
-                        rows="5"
-                    ></textarea>
 
-                </div>
+            <!-- NOME COMERCIAL -->
+
+            <div class="form-group">
+
+                <label for="nome_comercial">
+                    Nome Comercial
+                </label>
+
+                <input
+                    type="text"
+                    id="nome_comercial"
+                    name="nome_comercial"
+                    maxlength="255"
+                    value="<?= htmlspecialchars($produto['nome_comercial'] ?? '') ?>"
+                    placeholder="Nome utilizado nos anúncios"
+                >
+
+            </div>
+
+
+            <!-- SKU -->
+
+            <div class="form-group">
+
+                <label for="sku">
+                    SKU
+                </label>
+
+                <input
+                    type="text"
+                    id="sku"
+                    name="sku"
+                    maxlength="100"
+                    value="<?= htmlspecialchars($produto['sku'] ?? '') ?>"
+                    placeholder="Ex.: SPT1003"
+                >
+
+            </div>
+
+
+            <!-- CÓDIGO INTERNO -->
+
+            <div class="form-group">
+
+                <label for="codigo">
+                    Código Interno
+                </label>
+
+                <input
+                    type="text"
+                    id="codigo"
+                    name="codigo"
+                    maxlength="100"
+                    value="<?= htmlspecialchars($produto['codigo'] ?? '') ?>"
+                    placeholder="Código interno do ERP"
+                >
+
+            </div>
+
+
+            <!-- CÓDIGO DE BARRAS -->
+
+            <div class="form-group">
+
+                <label for="codigo_barras">
+                    Código de Barras / EAN
+                </label>
+
+                <input
+                    type="text"
+                    id="codigo_barras"
+                    name="codigo_barras"
+                    maxlength="50"
+                    value="<?= htmlspecialchars($produto['codigo_barras'] ?? '') ?>"
+                    placeholder="Ex.: 7891234567890"
+                >
+
+            </div>
+
+
+            <!-- GTIN -->
+
+            <div class="form-group">
+
+                <label for="gtin">
+                    GTIN
+                </label>
+
+                <input
+                    type="text"
+                    id="gtin"
+                    name="gtin"
+                    maxlength="50"
+                    value="<?= htmlspecialchars($produto['gtin'] ?? '') ?>"
+                    placeholder="Código GTIN"
+                >
+
+            </div>
+
+
+            <!-- MODELO -->
+
+            <div class="form-group">
+
+                <label for="modelo">
+                    Modelo
+                </label>
+
+                <input
+                    type="text"
+                    id="modelo"
+                    name="modelo"
+                    maxlength="150"
+                    value="<?= htmlspecialchars($produto['modelo'] ?? '') ?>"
+                    placeholder="Modelo do produto"
+                >
+
+            </div>
+
+
+            <!-- FABRICANTE -->
+
+            <div class="form-group">
+
+                <label for="fabricante">
+                    Fabricante
+                </label>
+
+                <input
+                    type="text"
+                    id="fabricante"
+                    name="fabricante"
+                    maxlength="255"
+                    value="<?= htmlspecialchars($produto['fabricante'] ?? '') ?>"
+                    placeholder="Nome do fabricante"
+                >
+
+            </div>
+
+
+            <!-- LINHA -->
+
+            <div class="form-group">
+
+                <label for="linha">
+                    Linha / Coleção
+                </label>
+
+                <input
+                    type="text"
+                    id="linha"
+                    name="linha"
+                    maxlength="150"
+                    value="<?= htmlspecialchars($produto['linha'] ?? '') ?>"
+                    placeholder="Ex.: Premium, Profissional"
+                >
+
+            </div>
+
+
+            <!-- QUANTIDADE POR EMBALAGEM -->
+
+            <div class="form-group">
+
+                <label for="quantidade_embalagem">
+                    Quantidade por Embalagem
+                </label>
+
+                <input
+                    type="number"
+                    id="quantidade_embalagem"
+                    name="quantidade_embalagem"
+                    min="1"
+                    step="1"
+                    value="<?= htmlspecialchars($produto['quantidade_embalagem'] ?? '1') ?>"
+                    placeholder="Ex.: 1"
+                >
+
+            </div>
+
+
+            <!-- PAÍS DE ORIGEM -->
+
+            <div class="form-group">
+
+                <label for="pais_origem">
+                    País de Origem
+                </label>
+
+                <input
+                    type="text"
+                    id="pais_origem"
+                    name="pais_origem"
+                    maxlength="100"
+                    value="<?= htmlspecialchars($produto['pais_origem'] ?? 'Brasil') ?>"
+                    placeholder="Ex.: Brasil"
+                >
+
+            </div>
+
+
+            <!-- GARANTIA -->
+
+            <div class="form-group">
+
+                <label for="garantia">
+                    Garantia
+                </label>
+
+                <input
+                    type="text"
+                    id="garantia"
+                    name="garantia"
+                    maxlength="100"
+                    value="<?= htmlspecialchars($produto['garantia'] ?? '') ?>"
+                    placeholder="Ex.: 90 dias"
+                >
+
+            </div>
+
+
+            <!-- TIPO DO PRODUTO -->
+
+            <div class="form-group">
+
+                <label for="tipo_produto">
+                    Tipo do Produto
+                </label>
+
+                <select
+                    id="tipo_produto"
+                    name="tipo_produto"
+                >
+
+                    <option value="">
+                        Selecione
+                    </option>
+
+                    <option
+                        value="produto"
+                        <?= (($produto['tipo_produto'] ?? '') === 'produto') ? 'selected' : '' ?>
+                    >
+                        Produto
+                    </option>
+
+                    <option
+                        value="servico"
+                        <?= (($produto['tipo_produto'] ?? '') === 'servico') ? 'selected' : '' ?>
+                    >
+                        Serviço
+                    </option>
+
+                    <option
+                        value="kit"
+                        <?= (($produto['tipo_produto'] ?? '') === 'kit') ? 'selected' : '' ?>
+                    >
+                        Kit
+                    </option>
+
+                    <option
+                        value="componente"
+                        <?= (($produto['tipo_produto'] ?? '') === 'componente') ? 'selected' : '' ?>
+                    >
+                        Componente
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- DESCRIÇÃO CURTA -->
+
+            <div
+                class="form-group"
+                style="grid-column: 1 / -1;"
+            >
+
+                <label for="descricao_curta">
+                    Descrição Curta
+                </label>
+
+                <textarea
+                    id="descricao_curta"
+                    name="descricao_curta"
+                    rows="3"
+                    maxlength="500"
+                    placeholder="Resumo do produto para utilização em anúncios..."
+                ><?= htmlspecialchars($produto['descricao_curta'] ?? '') ?></textarea>
+
+            </div>
+
+
+            <!-- DESCRIÇÃO INTERNA -->
+
+            <div
+                class="form-group"
+                style="grid-column: 1 / -1;"
+            >
+
+                <label for="descricao">
+                    Descrição Interna
+                </label>
+
+                <textarea
+                    id="descricao"
+                    name="descricao"
+                    rows="5"
+                    placeholder="Descrição completa do produto..."
+                ><?= htmlspecialchars($produto['descricao'] ?? '') ?></textarea>
 
             </div>
 
         </div>
 
     </div>
+
+</div>
 
 
     <!-- =====================================================
