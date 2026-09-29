@@ -13,6 +13,12 @@ $scripts = [
     'produtos.js'
 ];
 
+/*
+|--------------------------------------------------------------------------
+| Layout e Controller
+|--------------------------------------------------------------------------
+*/
+
 require_once '../../includes/layout_inicio.php';
 require_once '../../controllers/ProdutoController.php';
 
@@ -39,9 +45,11 @@ $acao = "salvar.php";
 
 $produto = [];
 
-require_once "form.php";
-
 ?>
+
+<!-- =========================================================
+     CABEÇALHO
+========================================================= -->
 
 <div class="dashboard-header">
 
@@ -54,217 +62,163 @@ require_once "form.php";
     </div>
 
     <a href="index.php" class="btn btn-primary">
-
         ← Voltar
-
     </a>
 
 </div>
 
-<!-- ==========================================
+<!-- =========================================================
+     FORMULÁRIO
+========================================================= -->
+
+<form method="POST" action="<?= htmlspecialchars($acao); ?>">
+
+    <!-- =====================================================
          ABAS
-    =========================================== -->
+    ====================================================== -->
+
+    <div class="tabs">
+
+        <button
+            type="button"
+            class="tab-button active"
+            data-tab="dados"
+        >
+            📦 Dados Gerais
+        </button>
+
+        <button
+            type="button"
+            class="tab-button"
+            data-tab="classificacao"
+        >
+            🏷️ Classificação
+        </button>
+
+        <button
+            type="button"
+            class="tab-button"
+            data-tab="fiscal"
+        >
+            📄 Fiscal
+        </button>
+
+        <button
+            type="button"
+            class="tab-button"
+            data-tab="comercial"
+        >
+            💰 Comercial
+        </button>
+
+        <button
+            type="button"
+            class="tab-button"
+            data-tab="estoque"
+        >
+            📦 Estoque
+        </button>
+
+        <button
+            type="button"
+            class="tab-button"
+            data-tab="observacoes"
+        >
+            📝 Observações
+        </button>
+
+    </div>
 
 
-
-<div class="tabs">
-
-    <button type="button" class="tab-button active" data-tab="dados">
-
-        📦 Dados Gerais
-
-    </button>
-
-    <button type="button" class="tab-button" data-tab="classificacao">
-
-        🏷️ Classificação
-
-    </button>
-
-    <button type="button" class="tab-button" data-tab="fiscal">
-
-        📄 Fiscal
-
-    </button>
-
-    <button type="button" class="tab-button" data-tab="comercial">
-
-        💰 Comercial
-
-    </button>
-
-    <button type="button" class="tab-button" data-tab="estoque">
-
-        📦 Estoque
-
-    </button>
-
-    <button type="button" class="tab-button" data-tab="observacoes">
-
-        📝 Observações
-
-    </button>
-
-</div>
-
-<!-- ==========================================
+    <!-- =====================================================
          DADOS GERAIS
-    =========================================== -->
+    ====================================================== -->
 
-<div class="tab-content active" id="dados">
+    <div class="tab-content active" id="dados">
 
-    <div class="panel">
+        <div class="panel">
 
-        <h2>Dados Gerais</h2>
+            <h2>Dados Gerais</h2>
 
-        <div class="form-grid">
+            <div class="form-grid">
 
-            <div class="form-group">
+                <div class="form-group">
 
-                <label>Nome do Produto</label>
+                    <label for="nome">
+                        Nome do Produto
+                    </label>
 
-                <input type="text" name="nome" required>
+                    <input
+                        type="text"
+                        id="nome"
+                        name="nome"
+                        required
+                    >
 
-            </div>
+                </div>
 
-            <div class="form-group">
 
-                <label>SKU</label>
+                <div class="form-group">
 
-                <input type="text" name="sku">
+                    <label for="sku">
+                        SKU
+                    </label>
 
-            </div>
+                    <input
+                        type="text"
+                        id="sku"
+                        name="sku"
+                    >
 
-            <div class="form-group">
+                </div>
 
-                <label>Código</label>
 
-                <input type="text" name="codigo">
+                <div class="form-group">
 
-            </div>
+                    <label for="codigo">
+                        Código
+                    </label>
 
-            <div class="form-group">
+                    <input
+                        type="text"
+                        id="codigo"
+                        name="codigo"
+                    >
 
-                <label>Código de Barras</label>
+                </div>
 
-                <input type="text" name="codigo_barras">
 
-            </div>
+                <div class="form-group">
 
-            <div class="form-group" style="grid-column:1/-1;">
+                    <label for="codigo_barras">
+                        Código de Barras
+                    </label>
 
-                <label>Descrição</label>
+                    <input
+                        type="text"
+                        id="codigo_barras"
+                        name="codigo_barras"
+                    >
 
-                <textarea name="descricao" rows="5"></textarea>
+                </div>
 
-            </div>
 
-        </div>
-    </div>
+                <div
+                    class="form-group"
+                    style="grid-column: 1 / -1;"
+                >
 
-</div>
+                    <label for="descricao">
+                        Descrição
+                    </label>
 
-<!-- ==========================================
-     CLASSIFICAÇÃO
-=========================================== -->
+                    <textarea
+                        id="descricao"
+                        name="descricao"
+                        rows="5"
+                    ></textarea>
 
-<div class="tab-content" id="classificacao">
-
-    <div class="panel">
-
-        <h2>Classificação</h2>
-
-        <div class="form-grid">
-
-            <div class="form-group">
-
-                <label>Categoria</label>
-
-                <select name="categoria_id" required>
-
-                    <option value="">Selecione uma categoria</option>
-
-                    <?php foreach ($categorias as $categoria): ?>
-
-                    <option value="<?= $categoria['id']; ?>">
-
-                        <?= htmlspecialchars($categoria['nome']); ?>
-
-                    </option>
-
-                    <?php endforeach; ?>
-
-                </select>
-
-            </div>
-
-            <div class="form-group">
-
-                <label>Marca</label>
-
-                <select name="marca_id">
-
-                    <option value="">Selecione uma marca</option>
-
-                    <?php foreach ($marcas as $marca): ?>
-
-                    <option value="<?= $marca['id']; ?>">
-
-                        <?= htmlspecialchars($marca['nome']); ?>
-
-                    </option>
-
-                    <?php endforeach; ?>
-
-                </select>
-
-            </div>
-
-            <div class="form-group">
-
-                <label>Unidade de Medida</label>
-
-                <select name="unidade_id" required>
-
-                    <option value="">Selecione uma unidade</option>
-
-                    <?php foreach ($unidades as $unidade): ?>
-
-                    <option value="<?= $unidade['id']; ?>">
-
-                        <?= htmlspecialchars($unidade['sigla']); ?>
-                        -
-                        <?= htmlspecialchars($unidade['descricao']); ?>
-
-                    </option>
-
-                    <?php endforeach; ?>
-
-                </select>
-
-            </div>
-
-            <div class="form-group">
-
-                <label>Unidade de Medida</label>
-
-                <select name="unidade_id" required>
-
-                    <option value="">Selecione uma unidade</option>
-
-                    <?php foreach ($unidades as $unidade): ?>
-
-                    <option value="<?= $unidade['id']; ?>">
-
-                        <?= htmlspecialchars($unidade['sigla']); ?>
-                        -
-                        <?= htmlspecialchars($unidade['descricao']); ?>
-
-                    </option>
-
-                    <?php endforeach; ?>
-
-                </select>
+                </div>
 
             </div>
 
@@ -272,71 +226,127 @@ require_once "form.php";
 
     </div>
 
-</div>
 
-<!-- ==========================================
-     FISCAL
-=========================================== -->
+    <!-- =====================================================
+         CLASSIFICAÇÃO
+    ====================================================== -->
 
-<div class="tab-content" id="fiscal">
+    <div class="tab-content" id="classificacao">
 
-    <div class="panel">
+        <div class="panel">
 
-        <h2>Dados Fiscais</h2>
+            <h2>Classificação</h2>
 
-        <div class="form-grid">
+            <div class="form-grid">
 
-            <div class="form-group">
+                <!-- CATEGORIA -->
 
-                <label>NCM</label>
+                <div class="form-group">
 
-                <input type="text" name="ncm" maxlength="8">
+                    <label for="categoria_id">
+                        Categoria
+                    </label>
 
-            </div>
+                    <select
+                        id="categoria_id"
+                        name="categoria_id"
+                        required
+                    >
 
-            <div class="form-group">
+                        <option value="">
+                            Selecione uma categoria
+                        </option>
 
-                <label>CFOP</label>
+                        <?php foreach ($categorias as $categoria): ?>
 
-                <input type="text" name="cfop" maxlength="4">
+                            <option value="<?= $categoria['id']; ?>">
 
-            </div>
+                                <?= htmlspecialchars(
+                                    $categoria['nome']
+                                ); ?>
 
-            <div class="form-group">
+                            </option>
 
-                <label>CEST</label>
+                        <?php endforeach; ?>
 
-                <input type="text" name="cest">
+                    </select>
 
-            </div>
+                </div>
 
-            <div class="form-group">
 
-                <label>Origem</label>
+                <!-- MARCA -->
 
-                <select name="origem">
+                <div class="form-group">
 
-                    <option value="">Selecione</option>
+                    <label for="marca_id">
+                        Marca
+                    </label>
 
-                    <option value="0">0 - Nacional</option>
+                    <select
+                        id="marca_id"
+                        name="marca_id"
+                    >
 
-                    <option value="1">1 - Estrangeira - Importação Direta</option>
+                        <option value="">
+                            Selecione uma marca
+                        </option>
 
-                    <option value="2">2 - Estrangeira - Mercado Interno</option>
+                        <?php foreach ($marcas as $marca): ?>
 
-                    <option value="3">3 - Nacional com conteúdo de importação superior a 40%</option>
+                            <option value="<?= $marca['id']; ?>">
 
-                    <option value="4">4 - Nacional produzida conforme PPB</option>
+                                <?= htmlspecialchars(
+                                    $marca['nome']
+                                ); ?>
 
-                    <option value="5">5 - Nacional com conteúdo inferior ou igual a 40%</option>
+                            </option>
 
-                    <option value="6">6 - Estrangeira - Importação Direta sem similar nacional</option>
+                        <?php endforeach; ?>
 
-                    <option value="7">7 - Estrangeira - Mercado Interno sem similar nacional</option>
+                    </select>
 
-                    <option value="8">8 - Nacional com conteúdo de importação superior a 70%</option>
+                </div>
 
-                </select>
+
+                <!-- UNIDADE -->
+
+                <div class="form-group">
+
+                    <label for="unidade_id">
+                        Unidade de Medida
+                    </label>
+
+                    <select
+                        id="unidade_id"
+                        name="unidade_id"
+                        required
+                    >
+
+                        <option value="">
+                            Selecione uma unidade
+                        </option>
+
+                        <?php foreach ($unidades as $unidade): ?>
+
+                            <option value="<?= $unidade['id']; ?>">
+
+                                <?= htmlspecialchars(
+                                    $unidade['sigla']
+                                ); ?>
+
+                                -
+
+                                <?= htmlspecialchars(
+                                    $unidade['descricao']
+                                ); ?>
+
+                            </option>
+
+                        <?php endforeach; ?>
+
+                    </select>
+
+                </div>
 
             </div>
 
@@ -344,41 +354,128 @@ require_once "form.php";
 
     </div>
 
-</div>
 
-<!-- ==========================================
-     COMERCIAL
-=========================================== -->
+    <!-- =====================================================
+         FISCAL
+    ====================================================== -->
 
-<div class="tab-content" id="comercial">
+    <div class="tab-content" id="fiscal">
 
-    <div class="panel">
+        <div class="panel">
 
-        <h2>Dados Comerciais</h2>
+            <h2>Dados Fiscais</h2>
 
-        <div class="form-grid">
+            <div class="form-grid">
 
-            <div class="form-group">
+                <!-- NCM -->
 
-                <label>Custo (R$)</label>
+                <div class="form-group">
 
-                <input type="number" step="0.01" min="0" id="custo" name="custo" value="0.00">
+                    <label for="ncm">
+                        NCM
+                    </label>
 
-            </div>
+                    <input
+                        type="text"
+                        id="ncm"
+                        name="ncm"
+                        maxlength="8"
+                    >
 
-            <div class="form-group">
+                </div>
 
-                <label>Percentual de Lucro (%)</label>
 
-                <input type="number" step="0.01" min="0" id="percentual_lucro" name="percentual_lucro" value="0.00">
+                <!-- CFOP -->
 
-            </div>
+                <div class="form-group">
 
-            <div class="form-group">
+                    <label for="cfop">
+                        CFOP
+                    </label>
 
-                <label>Preço de Venda (R$)</label>
+                    <input
+                        type="text"
+                        id="cfop"
+                        name="cfop"
+                        maxlength="4"
+                    >
 
-                <input type="number" step="0.01" min="0" id="preco_venda" name="preco_venda" value="0.00">
+                </div>
+
+
+                <!-- CEST -->
+
+                <div class="form-group">
+
+                    <label for="cest">
+                        CEST
+                    </label>
+
+                    <input
+                        type="text"
+                        id="cest"
+                        name="cest"
+                    >
+
+                </div>
+
+
+                <!-- ORIGEM -->
+
+                <div class="form-group">
+
+                    <label for="origem">
+                        Origem
+                    </label>
+
+                    <select
+                        id="origem"
+                        name="origem"
+                    >
+
+                        <option value="">
+                            Selecione
+                        </option>
+
+                        <option value="0">
+                            0 - Nacional
+                        </option>
+
+                        <option value="1">
+                            1 - Estrangeira - Importação Direta
+                        </option>
+
+                        <option value="2">
+                            2 - Estrangeira - Mercado Interno
+                        </option>
+
+                        <option value="3">
+                            3 - Nacional com conteúdo de importação superior a 40%
+                        </option>
+
+                        <option value="4">
+                            4 - Nacional produzida conforme PPB
+                        </option>
+
+                        <option value="5">
+                            5 - Nacional com conteúdo inferior ou igual a 40%
+                        </option>
+
+                        <option value="6">
+                            6 - Estrangeira - Importação Direta sem similar nacional
+                        </option>
+
+                        <option value="7">
+                            7 - Estrangeira - Mercado Interno sem similar nacional
+                        </option>
+
+                        <option value="8">
+                            8 - Nacional com conteúdo de importação superior a 70%
+                        </option>
+
+                    </select>
+
+                </div>
 
             </div>
 
@@ -386,120 +483,256 @@ require_once "form.php";
 
     </div>
 
-</div>
 
-<!-- ==========================================
-     ESTOQUE
-=========================================== -->
+    <!-- =====================================================
+         COMERCIAL
+    ====================================================== -->
 
-<div class="tab-content" id="estoque">
+    <div class="tab-content" id="comercial">
 
-    <div class="panel">
+        <div class="panel">
 
-        <h2>Controle de Estoque</h2>
+            <h2>Dados Comerciais</h2>
 
-        <div class="form-grid">
+            <div class="form-grid">
 
-            <div class="form-group">
+                <!-- CUSTO -->
 
-                <label>Localização</label>
+                <div class="form-group">
 
-                <input type="text" name="localizacao" placeholder="Ex.: Prateleira A01">
+                    <label for="custo">
+                        Custo (R$)
+                    </label>
+
+                    <input
+                        type="number"
+                        step="0.01"
+                        min="0"
+                        id="custo"
+                        name="custo"
+                        value="0.00"
+                    >
+
+                </div>
+
+
+                <!-- LUCRO -->
+
+                <div class="form-group">
+
+                    <label for="percentual_lucro">
+                        Percentual de Lucro (%)
+                    </label>
+
+                    <input
+                        type="number"
+                        step="0.01"
+                        min="0"
+                        id="percentual_lucro"
+                        name="percentual_lucro"
+                        value="0.00"
+                    >
+
+                </div>
+
+
+                <!-- PREÇO DE VENDA -->
+
+                <div class="form-group">
+
+                    <label for="preco_venda">
+                        Preço de Venda (R$)
+                    </label>
+
+                    <input
+                        type="number"
+                        step="0.01"
+                        min="0"
+                        id="preco_venda"
+                        name="preco_venda"
+                        value="0.00"
+                    >
+
+                </div>
 
             </div>
 
         </div>
 
-        <br>
+    </div>
 
-        <div class="form-group">
 
-            <label>
+    <!-- =====================================================
+         ESTOQUE
+    ====================================================== -->
 
-                <input type="checkbox" name="controla_estoque" value="1" checked>
+    <div class="tab-content" id="estoque">
 
-                Controlar Estoque
+        <div class="panel">
 
-            </label>
+            <h2>Controle de Estoque</h2>
 
-        </div>
+            <div class="form-grid">
 
-        <div class="form-group">
+                <!-- LOCALIZAÇÃO -->
 
-            <label>
+                <div class="form-group">
 
-                <input type="checkbox" name="vende" value="1" checked>
+                    <label for="localizacao">
+                        Localização
+                    </label>
 
-                Produto disponível para Venda
+                    <input
+                        type="text"
+                        id="localizacao"
+                        name="localizacao"
+                        placeholder="Ex.: Prateleira A01"
+                    >
 
-            </label>
+                </div>
 
-        </div>
+            </div>
 
-        <div class="form-group">
+            <br>
 
-            <label>
 
-                <input type="checkbox" name="compra" value="1" checked>
+            <!-- CONTROLAR ESTOQUE -->
 
-                Produto disponível para Compra
+            <div class="form-group">
 
-            </label>
+                <label>
 
-        </div>
+                    <input
+                        type="checkbox"
+                        name="controla_estoque"
+                        value="1"
+                        checked
+                    >
 
-        <div class="form-group">
+                    Controlar Estoque
 
-            <label>
+                </label>
 
-                <input type="checkbox" name="ativo" value="1" checked>
+            </div>
 
-                Produto Ativo
 
-            </label>
+            <!-- VENDER -->
+
+            <div class="form-group">
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        name="vende"
+                        value="1"
+                        checked
+                    >
+
+                    Produto disponível para Venda
+
+                </label>
+
+            </div>
+
+
+            <!-- COMPRAR -->
+
+            <div class="form-group">
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        name="compra"
+                        value="1"
+                        checked
+                    >
+
+                    Produto disponível para Compra
+
+                </label>
+
+            </div>
+
+
+            <!-- ATIVO -->
+
+            <div class="form-group">
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        name="ativo"
+                        value="1"
+                        checked
+                    >
+
+                    Produto Ativo
+
+                </label>
+
+            </div>
 
         </div>
 
     </div>
 
-</div>
 
-<!-- ==========================================
-     OBSERVAÇÕES
-=========================================== -->
+    <!-- =====================================================
+         OBSERVAÇÕES
+    ====================================================== -->
 
-<div class="tab-content" id="observacoes">
+    <div class="tab-content" id="observacoes">
 
-    <div class="panel">
+        <div class="panel">
 
-        <h2>Observações</h2>
+            <h2>Observações</h2>
 
-        <div class="form-group">
+            <div class="form-group">
 
-            <label>Observações Internas</label>
+                <label for="observacoes">
+                    Observações Internas
+                </label>
 
-            <textarea name="observacoes" rows="8"
-                placeholder="Digite informações importantes sobre o produto..."></textarea>
+                <textarea
+                    id="observacoes"
+                    name="observacoes"
+                    rows="8"
+                    placeholder="Digite informações importantes sobre o produto..."
+                ></textarea>
+
+            </div>
 
         </div>
 
     </div>
 
-</div>
 
-<br>
+    <!-- =====================================================
+         BOTÃO SALVAR
+    ====================================================== -->
 
-<button type="submit" class="btn btn-primary">
+    <br>
 
-    💾 Salvar Produto
-
-</button>
+    <button
+        type="submit"
+        class="btn btn-primary"
+    >
+        💾 Salvar Produto
+    </button>
 
 </form>
 
 
-
 <?php
+
+/*
+|--------------------------------------------------------------------------
+| Final do Layout
+|--------------------------------------------------------------------------
+*/
 
 require_once '../../includes/layout_fim.php';
 
